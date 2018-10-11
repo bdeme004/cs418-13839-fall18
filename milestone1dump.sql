@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `channels` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE  IF NOT EXISTS `channels` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 USE `channels`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
@@ -23,7 +23,8 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '8c1f5630-cd85-11e8-9a15-54e1adad9a7e:1-14,
+a4c821dc-cd85-11e8-8d9b-54e1adad9a7e:1-51';
 
 --
 -- Table structure for table `channel1`
@@ -38,7 +39,7 @@ CREATE TABLE `channel1` (
   `creation` timestamp NOT NULL,
   `chKey` double NOT NULL,
   PRIMARY KEY (`chKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +64,7 @@ CREATE TABLE `channel2` (
   `creation` timestamp NOT NULL,
   `chKey` double NOT NULL,
   PRIMARY KEY (`chKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +73,7 @@ CREATE TABLE `channel2` (
 
 LOCK TABLES `channel2` WRITE;
 /*!40000 ALTER TABLE `channel2` DISABLE KEYS */;
+INSERT INTO `channel2` VALUES ('DNE','eh? nande?','2018-10-11 19:22:03',20181011152203.69),('DNE','eh? nande?','2018-10-11 19:22:09',20181011152209.55);
 /*!40000 ALTER TABLE `channel2` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +90,7 @@ CREATE TABLE `channel3` (
   `creation` timestamp NOT NULL,
   `chKey` double NOT NULL,
   PRIMARY KEY (`chKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +115,7 @@ CREATE TABLE `channel4` (
   `creation` timestamp NOT NULL,
   `chKey` double NOT NULL,
   PRIMARY KEY (`chKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +140,7 @@ CREATE TABLE `channel5` (
   `creation` timestamp NOT NULL,
   `chKey` double NOT NULL,
   PRIMARY KEY (`chKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,8 +162,8 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-11 15:11:31
-CREATE DATABASE  IF NOT EXISTS `users` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+-- Dump completed on 2018-10-11 15:25:56
+CREATE DATABASE  IF NOT EXISTS `users` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 USE `users`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
@@ -187,7 +189,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 --
 
 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '8c1f5630-cd85-11e8-9a15-54e1adad9a7e:1-14,
-a4c821dc-cd85-11e8-8d9b-54e1adad9a7e:1-34';
+a4c821dc-cd85-11e8-8d9b-54e1adad9a7e:1-51';
 
 --
 -- Table structure for table `usertable`
@@ -202,7 +204,7 @@ CREATE TABLE `usertable` (
   `password` varchar(32) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`handle`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,4 +227,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-11 15:11:32
+-- Dump completed on 2018-10-11 15:25:56
