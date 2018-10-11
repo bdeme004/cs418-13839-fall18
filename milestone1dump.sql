@@ -23,8 +23,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '8c1f5630-cd85-11e8-9a15-54e1adad9a7e:1-14,
-a4c821dc-cd85-11e8-8d9b-54e1adad9a7e:1-34';
+
 
 --
 -- Table structure for table `channel1`
