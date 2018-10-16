@@ -35,7 +35,7 @@ $conn= set_connection("channels");
 </form>
 <?php 
 
-$stmt="INSERT INTO channel3 (user, body, chKey) VALUES (?, ?, now(4))";
+$stmt="INSERT INTO channel3 (user, body) VALUES (?, ?)";
 
 $sql = $conn->prepare($stmt);
 
