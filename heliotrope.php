@@ -19,10 +19,6 @@ navbars();
 
 $conn= set_connection("channels");
 
-//test using the output of a function that doesn't exist yet!
-//This is a brilliant idea which will in no way cause future issues.
-    //if (test_permission())
-
 ?>
 
 
@@ -49,10 +45,10 @@ $sql->bind_param("ss", $user, $body);
 
 if($sql->execute()){
     fetch_messages($conn, "channel1");
-    {echo "CAT PETS";}
 }
     else
-{echo ("Sorry, Message not sent. Error: ".$conn->error);}
+{echo ("Sorry, Message not sent.); }
+/*Error: ".$conn->error);}*/
 
 ?>
 
