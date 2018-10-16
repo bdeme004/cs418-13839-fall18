@@ -54,6 +54,7 @@ body{
 .name-left {
     float: left;
     color: #aaa;
+    margin-left: 10px;
     
 }
 
