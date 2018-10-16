@@ -50,6 +50,8 @@ $sql->bind_param("ss", $user, $body);
 if($sql->execute()){
     fetch_messages($conn);
 }
+    else
+{echo ("Sorry, Message not sent. Error: ".$conn->error);}
 
 ?>
 
