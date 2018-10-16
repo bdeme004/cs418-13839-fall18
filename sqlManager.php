@@ -16,7 +16,7 @@ function set_connection($_dbname){
 }
 
 function fetch_messages ($conn, $channel) {
-    $sql="SELECT * FROM" . $channel ."ORDER BY chKey DESC";
+    $sql="SELECT * FROM" . $channel . "ORDER BY chKey DESC";
     if($result=$conn->query($sql)){
         $index=1;
         while($row= ($result->fetch_assoc())){
@@ -28,6 +28,7 @@ function fetch_messages ($conn, $channel) {
             $index=$index+1;
             $newmess->print_with_format(($index%2));
         }
+        else echo("NOPE");
     }
 }
 
