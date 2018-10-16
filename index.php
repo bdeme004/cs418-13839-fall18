@@ -52,6 +52,13 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
           else {echo nl2br("user not found.\n");}}
 }
 ?>
-
+<div class="container b">
+<span class="name-left">Admin</span>    
+<img class="b" src="round_account_circle_black_48dp.png" alt="Admin">
+<p><b>Welcome to Lin Picked The Colors!</b></p>
+<p>Click on a link to the left to enter a chat group.</p>
+<p>(You must be logged in to join a chat group.</p>
+<span class="time-right">".$this->time."</span>
+</div>
 </body>
 </html>
