@@ -32,7 +32,7 @@ function fetch_messages ($conn, $channel) {
 }
 
 function post_message($conn, $channel){
-    $stmt="INSERT INTO" . $channel . "(user, body, chKey) VALUES (?, ?, now(4))";
+    $stmt="INSERT INTO" . $channel . "(user, body) VALUES (?, ?)";
         
     $sql = $conn->prepare($stmt);
     $sql->bind_param("ss", $user, $body);
@@ -42,7 +42,7 @@ function post_message($conn, $channel){
         $user="DNE";
         
         if($sql->execute()){
-            fetch_messages($conn);
+            fetch_messages($conn, $channel);
         }
         else {
             echo "error: message not sent: \t". $conn->error;
