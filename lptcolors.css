@@ -57,7 +57,8 @@ body{
 
 .name-left {
     float: left;
-    color: #aaa;    
+    color: #aaa; 
+	margin-left:10px;
 }
 
 .topnav{
