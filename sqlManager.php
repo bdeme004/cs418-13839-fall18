@@ -29,7 +29,7 @@ function fetch_messages ($conn, $channel) {
             $newmess->print_with_format(($index%2));
         }
     }
-     else echo("NOPE");
+     else echo("Error executing". $sql);
 }
 
 function post_message($conn, $channel){
