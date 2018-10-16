@@ -28,8 +28,8 @@ function fetch_messages ($conn, $channel) {
             $index=$index+1;
             $newmess->print_with_format(($index%2));
         }
-        else echo("NOPE");
     }
+     else echo("NOPE");
 }
 
 function post_message($conn, $channel){
