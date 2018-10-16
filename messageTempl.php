@@ -58,8 +58,8 @@ class message{
         if($index==0)
         {
             print( "<div class=\"container\">
-                    <span class=\"name-left\">".$this->name."</span>
                     <img src=\"round_account_circle_black_48dp.png\" alt=\"Avatar\">
+                    <span class=\"name-left\">".$this->name."</span>
                     <p>". $this->body. "</p>
                     <span class=\"time-right\">".$this->time."</span>
                     </div>");
@@ -67,8 +67,8 @@ class message{
         else 
         {
             print( "<div class=\"container b\">
-                    <span class=\"name-left\">".$this->name."</span>    
                     <img class=\"b\" src=\"round_account_circle_black_48dp.png\" alt=\"Avatar\">
+                    <span class=\"name-left\">".$this->name."</span>    
                     <p>". $this->body. "</p>
                     <span class=\"time-right\">".$this->time."</span>
                     </div>");
