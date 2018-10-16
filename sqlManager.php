@@ -15,8 +15,8 @@ function set_connection($_dbname){
     return $conn;
 }
 
-function fetch_messages ($conn) {
-    $sql="SELECT * FROM channel1 ORDER BY chKey DESC";
+function fetch_messages ($conn, $channel) {
+    $sql="SELECT * FROM" . $channel ."ORDER BY chKey DESC";
     if($result=$conn->query($sql)){
         $index=1;
         while($row= ($result->fetch_assoc())){
