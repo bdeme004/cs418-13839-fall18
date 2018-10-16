@@ -49,6 +49,7 @@ $sql->bind_param("ss", $user, $body);
 
 if($sql->execute()){
     fetch_messages($conn, "channel1");
+    {echo "CAT PETS";}
 }
     else
 {echo ("Sorry, Message not sent. Error: ".$conn->error);}
