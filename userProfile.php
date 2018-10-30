@@ -39,7 +39,7 @@ else {
 
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
-<?php print("<img class=\"b\" style=\"border-color: var(--color-acc-monarchs);\" src=\"img/". $avatar."\" alt=\"Avatar\">") ?>
+<?php print("<img class=\"b\" style=\"border-color: var(--color-acc-monarchs);\" src=\. $avatar."\" alt=\"Avatar\">") ?>
 <div style="margin-left:75px;">    
 <h2><?php echo $user;?></h2>
 <hr>

@@ -44,7 +44,7 @@ class message{
         $this->time=$_newraw[2];
         $this->key=$_newraw[3];
         $this->avatar=$_newraw[4];
-        if (!(file_exists("img/".$this->avatar)))
+        if (!(file_exists($this->avatar)))
         {$this->avatar="default_img.png";
         }}
        else

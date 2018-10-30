@@ -20,9 +20,9 @@ $result="";
 navbars("monarchs");
 
 if(isset($_POST["submit"])) {
-$target_dir = "img/";
+$target_dir = ;
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-if ($target_file="img/")
+if ($target_file=)
     $uploadOk=0;
     else{
 $uploadOk = 1;
