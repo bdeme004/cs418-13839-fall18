@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql->bind_param("sis", $title, $private, $allowed_users);
     if( $sql->execute()){
-      header("Location: thread.php?top=".$channel_top."&thread=".$id."");
+      header("Location: thread.php?top=".$channel_top."&thread=".$id.");
    }
    else echo($conn->error);
   
