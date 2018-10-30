@@ -1,26 +1,63 @@
+:root{
+/* background colors */
+--color-main-bcg: #232323;
+--color-sub-bcg: #333333;
+--color-main-textbox: #666666;
+
+/* accent colors */
+--color-acc-monarchs: #003768;
+--color-acc-heliotrope: #c88bff;
+--color-acc-tearose: #ff8bcb;
+--color-acc-mint: #90ff8b;
+--color-acc-milan: #f9ff8b;
+--color-acc-lightsky: #8bb8ff;
+
+/* contrast colors */
+--color-con-heliotrope: #9f38fc;
+--color-con-tearose: #FD32A1;
+--color-con-mint: #3CFD32;
+--color-con-milan: #F5FF32;
+--color-con-lightsky: #3A85FC;
+}
 
 body{
-	background-color:#f9ff8b;
+	background-color:var(--color-sub-bcg);
 	margin-left: 150px; 
 	margin-top: 100px;
 	padding: 10px 10px;
     }
     
-
-
 .container {
     border: 2px solid #c88bff;
-    background-color: #f0f0f0;
+    background-color: var(--color-main-textbox);
     border-radius: 5px;
-    padding: 10px 10px 10px 2px;
+    min-height:75px;
+    padding: 10px 10px 15px 10px;
     margin: 0 10px 10px 10px;
 }
 
 .b {
     border-color: #ff8bcb;
-    background-color:#f0f0f0;
 }
 
+.thread{
+	min-height:4px;
+	padding: 2px;
+}
+
+.thread-b{
+	min-height:4px;
+	padding: 2px;
+}
+
+.thread a{
+	text-decoration:none;
+	color:#000000;
+}
+.thread-b a{
+	text-decoration:none;
+	color:#000000;
+}
 
 .container::after {
     content: "";
@@ -28,24 +65,28 @@ body{
     display: table;
 }
 
+.message-text {
+	margin-left: 72px;
+}
+   
+
 .container img {
+	position: absolute;
+	border-radius: 50%;
 	border: 2px solid #c88bff;
     float: left;
-    max-width: 60px;
+    height:50px;
+    max-width: 50px;
     width: 100%;
-    margin-right: 20px;
-    margin-top: 22px;
+    margin-right: 35px;
+    margin-top:24px;
+    z-index: 0;
 }
 
 .container img.b {
 	border: 2px solid #ff8bcb;
-    float: left;
-    max-width: 60px;
-    width: 100%;
-    margin-right: 20px;
-    margin-top: 22px;
-
-}
+   }
+   
 
 
 .time-right {
@@ -57,21 +98,62 @@ body{
 .name-left {
     float: left;
     color: #aaa; 
-	margin-left:5px;
+	margin-top:auto;
+}
+
+.name-left a{
+	color: #aaa; 
+	text-decoration: none;
+}
+
+.name-left a:hover {
+    color: #f1f1f1;
 }
 
 .topnav{
-	overflow: hidden; 
 	position:fixed;
-    background-color: #8bb7ff;
+    background-color: #181818;
 	width:100%; 
-	height: 100px; 
+	height: 77px; 
 	top:0;
 	left:0;
 	padding-left: 20px;
+	padding-top: 25px;
 	z-index:2;
 }
 
+
+.topnav a {
+	display:inline;
+	text-decoration: none;
+    font-size: 30px;
+    color: #818181;
+}
+
+.topnav a:hover {
+    color: #f1f1f1;
+}
+
+/*.accent-bar{ */
+.accent{
+    background-color: #ff8bcb;
+	height: 13px; 
+	top:69px;
+	padding-top:0;
+	z-index:2;
+}
+
+.topnav-icon{
+	position: relative;
+	border-radius: 50%;
+	border: 2px solid #818181;
+	height:50px;
+	max-width: 50px;
+	width: 100%;
+	top: 4px;
+	margin-right:3px;
+	z-index: 3;
+}
 
 /* The sidebar menu */
 .sidenav {
@@ -80,7 +162,7 @@ body{
     position: fixed;
 	top:0;
 	left:0;
-    background-color: #90ff8b;
+    background-color: #232323;
     overflow-x: hidden;
     padding-top: 20px;
     z-index: -1;
@@ -98,3 +180,46 @@ body{
 
 .sidenav a:hover {
     color: #f1f1f1;
+}
+
+.dropdown{
+	position:relative;
+	padding-bottom:30px;
+	float: right;
+	top:-20px;
+	right:130px;
+	font-size:20px;
+	color: #818181;
+	z-index:3;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position:absolute;
+    padding: 14px 4px;
+    margin-top:5px;
+    background-color: #818181;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 3px 4px;
+    text-decoration: none;
+    display: block;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+
+
