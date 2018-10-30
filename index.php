@@ -10,22 +10,26 @@ session_start();
 </head>
 <body>
   
-    <div class="container b">
-<span class="name-left">Admin</span>    
-<img class="b" src="round_account_circle_black_48dp.png" alt="Admin">
+    <div class="container" style="border-color: var(--color-acc-monarchs);">
+
+<img class="b" style="border-color: var(--color-acc-monarchs);" src="img/default_img.png" alt="Admin">
+<span class="name-left">Admin</span>
+<div style="margin-left:75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>
 <p>Click on a link to the left to enter a chat group.
     (You must be logged in to join a chat group.)<br>
-    Note: We're experiencing some technical difficulties with the login bar. Don't worry if it doesn't go away once you're logged in-- we know it's you!</p>
 <span class="time-right">Time is a myth</span>
 </div>
+</div>
+
+
+
 <?php
 
 require 'htmlManager.php';
 require 'sqlManager.php';
 
-navbars();
-
+navbars("monarchs");
 
 $conn=set_connection("users");
 $name=$passcode=$pass_correct="DNE";
@@ -39,16 +43,30 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
    
     
     
-    $sql="SELECT passcode FROM usertable WHERE handle LIKE '".$name."'";
-    if($pass_correct=$conn->query($sql)){
-        $pass_correct= ($pass_correct->fetch_assoc()["passcode"]);
+    $sql="SELECT passcode, avatar FROM usertable WHERE handle LIKE '".$name."'";
+    if($result=$conn->query($sql)){
+        $result=$result->fetch_assoc();
+        $pass_correct= ($result["passcode"]);
+        $avatar=($result["avatar"]);
     }
     
     if(isset($pass_correct)){
         if ($pass_correct==$passcode)
         {echo "Success! The page may take a few seconds to update.";
         $_SESSION["user"]=$name;
-        header( "refresh:2;" );}
+        //should properly be testing the link. oh, well.
+        $file="img/".$avatar;
+        if(($file!="img/")&& file_exists($file))
+        { $_SESSION["avatar"]=$avatar;
+        } else
+        {
+            $_SESSION["avatar"]="default_img.png";
+            $conn->query("UPDATE usertable SET avatar=\"default_img.png\" WHERE handle=\"".$name."\"");
+        }
+        
+       header( "refresh:2;" );
+       
+        }
         
         else
         {echo "user/password combination doesn't match our records.";}}
