@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if( $sql->execute()){
       header("Location: thread.php?top=".$channel_top."&thread=".$id."");
    }
-   else error_log($conn->error);
+   else echo($conn->error);
+  
 }
 
 ?>
