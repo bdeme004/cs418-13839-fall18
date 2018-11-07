@@ -5,7 +5,7 @@ session_start();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>New User- Lin Picked The Colors</title>
+<title>Avatar- Lin Picked The Colors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
