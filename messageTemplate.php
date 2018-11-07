@@ -66,7 +66,7 @@ class message{
         {
             print( "<div class=\"container\" style=\"border-color:var(--color-acc-".$channel_top.");\">
                     <img src=img/".$this->avatar." alt=\"Avatar\">
-                    <span class=\"name-left\"><a href=\"userProfile?user=".$this->name."\">".$this->name."</a></span>
+                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
                     <div class=\"message-text\"><p>". $this->body. "</p></div>
                     <span class=\"time-right\">".$this->time."</span>
                     </div>");
@@ -75,7 +75,7 @@ class message{
         {
             print( "<div class=\"container b\"style=\"border-color:var(--color-con-".$channel_top.");\">
                     <img class=\"b\" src=img/".$this->avatar." alt=\"Avatar\">
-                    <span class=\"name-left\">".$this->name."</span>    
+                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
                     <div class=\"message-text\"><p>". $this->body. "</p></div>
                     <span class=\"time-right\">".$this->time."</span>
                     </div>");
