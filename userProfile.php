@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 ?>
@@ -13,15 +14,10 @@ session_start();
 <?php
 require 'htmlManager.php';
 require 'sqlManager.php';
-
 navbars("monarchs");
-
 $user=$_GET["user"];
-
 $conn=set_connection("users");
-
 $sql="SELECT * FROM usertable WHERE handle LIKE\"". $user ."\";";
-
 if ($result=$conn->query($sql))
 {
     $result=$result->fetch_assoc();
@@ -34,12 +30,12 @@ else {
     $avatar="default_img.png";
     $comment="Looks like something went wrong. Sorry about that!";
 }
-
 ?>
 
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
-<?php print("<img class=\"b\" style=\"border-color: var(--color-acc-monarchs);\" src=\. $avatar."\" alt=\"Avatar\">") ?>
+<?php print("<img class=\"b\" style=\"border-color: var(--color-acc-
+monarchs);\" src=\"". $avatar."\"alt=\"Avatar\">") ?>
 <div style="margin-left:75px;">    
 <h2><?php echo $user;?></h2>
 <hr>
