@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `heliotrope` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL DEFAULT '2018-10-30 14:21:31' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `lightsky` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL DEFAULT '2018-10-30 14:21:31' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `milan` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL DEFAULT '2018-10-30 14:21:31' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `tearose` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL DEFAULT '2018-10-30 14:21:31' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
