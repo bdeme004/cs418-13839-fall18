@@ -12,7 +12,7 @@ session_start();
   
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
-<img class="b" style="border-color: var(--color-acc-monarchs);" src="img/default_img.png" alt="Admin">
+<img class="b" style="border-color: var(--color-acc-monarchs);" src="default_img.png" alt="Admin">
 <span class="name-left">Admin</span>
 <div style="margin-left:75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>
