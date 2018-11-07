@@ -53,7 +53,7 @@ class message{
        $this->body="ERROR";
        $this->time=803;
        $this->key=803;
-       $this->avatar="round_account_circle_black_48dp.png";
+       $this->avatar="default_img.png";
        }      
     }
     
