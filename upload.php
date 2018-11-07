@@ -11,6 +11,7 @@ session_start();
 <body>
 
     
+
 <?php
 
 require 'htmlManager.php';
@@ -22,7 +23,7 @@ navbars("monarchs");
 
 if(isset($_POST["submit"])) {
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-if ($target_file=)
+if ($target_file)
     $uploadOk=0;
     else{
 $uploadOk = 1;
