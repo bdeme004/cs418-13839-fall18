@@ -23,10 +23,6 @@ navbars("monarchs");
 
 if(isset($_POST["submit"])) {
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-if ($target_file)
-    $uploadOk=0;
-    else{
-$uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 
