@@ -42,7 +42,7 @@ if ($result=$conn->query($sql))
 }
 else {echo "issue executing";
 error_log($conn->error .". SQL: ". $sql);
-      echo " ". $conn->error. " .SQL: ". $sql);
+      echo (" ". $conn->error. " .SQL: ". $sql);
 }
 ?>
 
