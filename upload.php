@@ -33,7 +33,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $result= "File is not an image.";
         $uploadOk = 0;
     }
-    }
+    
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
