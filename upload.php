@@ -9,7 +9,7 @@ session_start();
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
-  
+  <!--
 <?php
 
 require 'htmlManager.php';
@@ -72,6 +72,7 @@ if ($uploadOk == 0) {
 }
 
 ?>
+-->
 <div class="container">
 <h1>Change Avatar</h1>
 <hr><br>
