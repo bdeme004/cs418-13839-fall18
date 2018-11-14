@@ -18,6 +18,7 @@ require 'htmlManager.php';
 require 'sqlManager.php';
 
 $result="";
+$target_dir="";
 
 navbars("monarchs");
 

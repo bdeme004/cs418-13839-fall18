@@ -54,7 +54,7 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         if ($pass_correct==$passcode)
         {echo "Success! The page may take a few seconds to update.";
         $_SESSION["user"]=$name;
-        //should properly be testing the link. oh, well.
+        
         $file=$avatar;
         if(file_exists($file))
         { $_SESSION["avatar"]=$avatar;

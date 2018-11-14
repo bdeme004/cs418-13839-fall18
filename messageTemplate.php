@@ -12,7 +12,7 @@ class message{
     function __construct()
     {
         $a = func_get_args();
-        if (func_num_args()==4) {
+        if (func_num_args()==5) {
             call_user_func_array(array($this,"set_message"),$a);
         }
         else if  (func_num_args()==1) {
@@ -65,7 +65,7 @@ class message{
         if($odd==0)
         {
             print( "<div class=\"container\" style=\"border-color:var(--color-acc-".$channel_top.");\">
-                    <img src=\"".$this->avatar." alt=\"Avatar\">
+                    <img src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");>
                     <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
                     <div class=\"message-text\"><p>". $this->body. "</p></div>
                     <span class=\"time-right\">".$this->time."</span>
@@ -74,14 +74,35 @@ class message{
         else 
         {
             print( "<div class=\"container b\"style=\"border-color:var(--color-con-".$channel_top.");\">
-                    <img class=\"b\" src=\"".$this->avatar." alt=\"Avatar\">
+                    <img class=\"b\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-con-".$channel_top.");>
                     <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
                     <div class=\"message-text\"><p>". $this->body. "</p></div>
                     <span class=\"time-right\">".$this->time."</span>
                     </div>");
         }
         
-       
+    }
+    
+    function print_as_searchresult($odd, $channel_top)
+    { 
+        
+        if(($odd%2)==0){
+            
+        
+        print( "    <a href=\"userProfile.php?user=".$this->name."\">
+                    <div class=\"container\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+                    <img src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+                    <div style=\"padding-left:70px;\"><h2>".$this->name."</h2></div></div></a>"
+                    );
+    }
+    else
+    {
+        print( "    <a href=\"userProfile.php?user=".$this->name."\">
+                    <div class=\"container b\" style=\"border-color:var(--color-con-".$channel_top.");\">
+                    <img class=\"b\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-con-".$channel_top.");\">
+                    <div style=\"padding-left:70px;\"><h2>".$this->name."</h2></div></div></a>"
+                    );
+    }
     }
     
 //===================================

@@ -28,12 +28,6 @@ function navbars($color) {
         );
     }
     
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
     
     function test_permissions($address){
         if(isset($_SESSION["user"]))
@@ -62,6 +56,8 @@ function navbars($color) {
                        <img class= \"topnav-icon\" src=\"".$_SESSION["avatar"]."\" alt=\"Avatar\">
                                  <div class=\"dropdown-content\" >
                                 <a href=\"upload.php\">Change Avatar</a>
+                                <a href=\"searchUsers.php\">Search Users</a>
+                                <a href=\"pageNotFound.php\">Help</a>
                                 <a href=\"logout.php\">Log out</a>
                               </div>
                            
