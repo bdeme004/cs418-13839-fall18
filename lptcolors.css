@@ -71,21 +71,44 @@ body{
 }
    
 
-.container img {
+.container img.embed{
+	
+	position: relative;
+	border: none;
+    float: top;
+    max-width:500px;
+    max-height:500px;
+    margin-right: 100px;
+    margin-top:24px;
+    z-index: 0;
+	
+}
+
+.container img.a {
 	position: absolute;
 	border-radius: 50%;
 	border: 2px solid #c88bff;
-    float: left;
+	float: left;
     height:50px;
     max-width: 50px;
     width: 100%;
     margin-right: 35px;
     margin-top:24px;
     z-index: 0;
+
 }
 
 .container img.b {
+	position: absolute;
+	border-radius: 50%;
 	border: 2px solid #ff8bcb;
+	float: left;
+    height:50px;
+    max-width: 50px;
+    width: 100%;
+    margin-right: 35px;
+    margin-top:24px;
+    z-index: 0;
    }
    
 

@@ -5,15 +5,15 @@ session_start();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>New User- Lin Picked The Colors</title>
+<title>New User- lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
   
 <?php
 
-require 'htmlManager.php';
-require 'sqlManager.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
 
 navbars("monarchs");
 
@@ -24,8 +24,10 @@ $conn=set_connection("users");
 
 $stmt="SELECT handle, email FROM usertable WHERE handle LIKE ? OR email LIKE ?;";
 $stmt2="INSERT INTO usertable (handle, email, passcode, avatar) VALUES (?,?,?, \"default_img.png\");";
-$sql=$conn->prepare($stmt);
-$sql2=$conn->prepare($stmt2);
+if(!$sql=$conn->prepare($stmt))
+    $email_err = $conn->error;
+if(!$sql2=$conn->prepare($stmt2))
+    $email_err = $conn->error;
 //get the password associated with the username in the database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
@@ -35,18 +37,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $email_err = " *Invalid email format";
         }
+        if (strlen($email)>13)
+        {$email_err = "*Max 45 characters";}
     }
     
     if (empty($_POST["handle"])) {
         $handle_err = " *Username is required";
     } else {
         $handle = test_input($_POST["handle"]);
+        if (strlen($handle)>13)
+        {$handle_err = "*Max 13 characters";}
+        
     }
     
     if (empty($_POST["passcode"])) {
         $password_err= " *Password is required";
     } else {
         $passcode = test_input($_POST["passcode"]);
+        if (strlen($passcode)>13)
+        {$password_err = "*Max 13 characters";}
     }
     
     if (empty($_POST["passcode-repeat"])){
@@ -56,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($passcode!=$repeat)
             $repeat_err = " *Passwords don't match";
     }
-}
+
 
     
     $col1=$col2="";
@@ -81,7 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["avatar"]="default_img.png";
     header("Location: index.php");
     }
+    //over 13 chars for username or password will cause it to do nothing
+    //but it doesn't crash so-- actually, hold that thought. It might just be faster to fix than to document.
+    //there, now it complains when it fails.
+    else $email_err=$conn->error;
 
+}
 }
 
 
@@ -110,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </label>
 <hr>
 
-<button type="submit" class="registerbtn">Sign Up</button>
+<button type="submit">Sign Up</button>
 
 </div>
 </form>
