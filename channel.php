@@ -5,21 +5,15 @@ require_once 'threadTemplate.php';
 require_once 'htmlManager.php';
 require_once 'sqlManager.php';
 
-
 if(!isset($_SESSION["user"]))
 {
     header("Location: index.php?login=0");
 }
 
 
-
 $user_admin=$_SESSION["admin"];
 $channel_top=$_GET["top"];
 navbars($channel_top);
-
-
-$conn= set_connection("channels");
-
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +31,6 @@ $conn= set_connection("channels");
 
 
 
-
 <div class="container thread" id="pageinfo" data-archive-mode="" data-channel-top="<?php echo $channel_top;?>"
 style="border-color:var(--color-acc-<?php echo $channel_top;?>); border-radius: 7px; color:#000000;">
       
@@ -52,49 +45,11 @@ style="border-color:var(--color-acc-<?php echo $channel_top;?>); border-radius: 
        <div class="message-text" style="display:inline-block;"><h2><a href="newthread.php?top=<?php echo $channel_top; ?>">・Create a New Thread</a></h2></div>
 
 <?php
-
-
-echo (
-      "<div class=\"container thread\" id=\"infobox\" style=\"border-color:var(--color-acc-".$channel_top.");  color:#000000;\">
-       <div class=\"message-text\" style=\"display:inline-block;\"><h2 ><a href=\"newthread.php?top=".$channel_top."\">・Create a New Thread</a></div>"
-    );
-    if($user_admin==1)
-    {
-    echo ("<div class=\"message-text\" style=\"display:inline-block;\"><a href=\"javascript:archiveThreads()\"><h2>・ Archive Threads</h2></a></div>");
-    }
-echo("</h2></div></div></a>");
-
-
-
-
-<?php
 if($user_admin==1)
 {
-
     echo ("
 <div class=\"message-text\" style=\"display:inline-block; color: #FF0000;\"><a href=\"javascript:toggleArchiveMode()\"><h2><span id=\"archive-mode-toggle\">・ Archive Threads</span></h2></a></div>");
 }
-=======
-    $index=1;
-    while($thread_list=$result->fetch_assoc()){
-        $thread=array();
-        foreach ($thread_list as $field){
-            array_push($thread, $field);
-        }
-        $new_thread=new thread($thread);
-        $index=$index+1;
-        $new_thread->print_with_format(($index%2), $channel_top, $_SESSION["admin"]);
-    }
-}
-else {
-    echo "issue executing";
-    error_log($conn->error .". SQL: ". $sql);
-    //  echo (" ". $conn->error. " .SQL: ". $sql);
-}
-
-echo ("Hello, world!");
-
-
 ?>
 </div>
 
@@ -106,8 +61,6 @@ update_channel($channel_top, $user_admin);
 ?> 
 
 </div>
-
-
 
 </body>
 

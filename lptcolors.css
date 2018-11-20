@@ -126,7 +126,6 @@ body{
 	margin-left: 72px;
 }
 
-
 .thread-title{
 font-size:18px;
 font-weight:bold;
@@ -144,6 +143,26 @@ padding-top:8px;
     margin-top:24px;
     z-index: 0;
     color: #aaa;
+}
+
+.post-react{
+	float: left;
+    position: relative;
+   /*	display: inline-block;*/
+	left:-51px;
+	top:82px;
+	font-size:10px;
+    z-index: 0;
+}
+
+.post-react a{
+	color: #aaa; 
+	text-decoration: none;
+}
+
+.post-react a:hover{
+	color:#f1f1f1;
+	text-decoration: none;
 }
   
 .page-count{
@@ -165,8 +184,6 @@ padding-top:8px;
 	position:relative;
 	/*top:287px; */
 }
-
-
 .container img.embed{
 	
 	position: relative;
@@ -181,37 +198,27 @@ padding-top:8px;
 }
 
 .container img.a {
-
 	position: relative;
-
-	position: absolute;
-
 	border-radius: 50%;
 	border: 2px solid #c88bff;
 	float: left;
     height:50px;
     max-width: 50px;
     width: 100%;
-   
     margin-top:24px;
     z-index: 0;
 
 }
 
 .container img.b {
-
 	display:inline-block;
 	position: relative;
-
-	position: absolute;
-
 	border-radius: 50%;
 	border: 2px solid #ff8bcb;
 	float: left;
     height:50px;
     max-width: 50px;
     width: 100%;
-
     /*margin-right: 35px;*/
     margin-top:24px;
     z-index: 0;
@@ -229,11 +236,6 @@ padding-top:8px;
     margin-top:12px;
     margin-left:14px; 
     z-index: 0;
-
-    margin-right: 35px;
-    margin-top:24px;
-    z-index: 0;
-
    }
    
 
@@ -246,7 +248,7 @@ padding-top:8px;
 .name-left {
 	position:relative;
 	display: inline-block;
-	left:-56px;
+	left:-104px;
     float: left;
     color: #aaa; 
 	margin-top:auto;
@@ -399,7 +401,10 @@ a.name-center-a:hover {
 	margin-bottom:10px;
 }
 
+/*temp-- C&P from W3 schools */
 
+
+/* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -408,7 +413,7 @@ a.name-center-a:hover {
     width: 80%;
 }
 
-
+/* The Close Button */
 .close {
     color: #aaaaaa;
     float: right;
@@ -423,3 +428,4 @@ a.name-center-a:hover {
     cursor: pointer;
 }
 
+/* end cnp */
