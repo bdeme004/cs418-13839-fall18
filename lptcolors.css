@@ -41,6 +41,66 @@ body{
     border-color: #ff8bcb;
 }
 
+.container.archive-notice
+{
+	position:relative;
+	z-index: 2;
+	width:70%;
+	border: 4px solid  #ffE800;
+}
+
+.container.archive-switch-notice
+{
+	position:relative;
+	z-index: 2;
+	border: 4px solid  #ffE800;
+}
+
+.container.import-dialog{
+	display: none;
+    position: fixed;
+    top:230px;
+    left:230px;
+    z-index: 2;
+    border: 4px solid  #ccc;
+}
+
+.close
+{
+	float: right;
+	color:#aaa;
+}
+
+.import-frame{
+	display: inline-block;
+	position: relative;
+	line-height: 100px;
+	left: 5px;
+	width: 100px;
+	height:100px;
+	border: 2px solid #aaa;
+	margin-right: 18px;
+}
+
+.import-frame img.import{
+	position: relative;
+	display:block;
+	width: 100px;
+	height:100px;
+	object-fit:cover;
+  }
+
+.thread-header
+{
+	position:fixed;
+	z-index: 1;
+	top:100px;
+	width:100%;
+	background-color: var(--color-sub-bcg);
+	border-style: none none solid none;
+	padding: 10px;
+}
+
 .thread{
 	min-height:4px;
 	padding: 2px;
@@ -60,43 +120,116 @@ body{
 	color:#000000;
 }
 
-.container::after {
-    content: "";
-    clear: both;
-    display: table;
-}
+
 
 .message-text {
 	margin-left: 72px;
 }
-   
 
-.container img {
-	position: absolute;
-	border-radius: 50%;
-	border: 2px solid #c88bff;
-    float: left;
+.thread-title{
+font-size:18px;
+font-weight:bold;
+padding-top:8px;
+}
+
+.thr-archived{
+	position: relative;
+	float: left;
+	display:inline-block;
     height:50px;
     max-width: 50px;
     width: 100%;
-    margin-right: 35px;
+    margin-left: 15px;
     margin-top:24px;
     z-index: 0;
+    color: #aaa;
+}
+  
+.page-count{
+	position:fixed;
+	z-index: 1;
+	top:254px;
+	background-color: var(--color-sub-bcg);
+	width:100%;
+	text-align:center;
+} 
+
+.message-area{
+	position:absolute;
+	top:287px; 
+	width:88%;
+}
+
+.thread-area{
+	position:relative;
+	/*top:287px; */
+}
+.container img.embed{
+	
+	position: relative;
+	border: none;
+    float: top;
+    max-width:500px;
+    max-height:500px;
+    margin-right: 100px;
+    margin-top:24px;
+    z-index: 0;
+	
+}
+
+.container img.a {
+	position: relative;
+	border-radius: 50%;
+	border: 2px solid #c88bff;
+	float: left;
+    height:50px;
+    max-width: 50px;
+    width: 100%;
+   
+    margin-top:24px;
+    z-index: 0;
+
 }
 
 .container img.b {
+	display:inline-block;
+	position: relative;
+	border-radius: 50%;
 	border: 2px solid #ff8bcb;
+	float: left;
+    height:50px;
+    max-width: 50px;
+    width: 100%;
+    /*margin-right: 35px;*/
+    margin-top:24px;
+    z-index: 0;
+   }
+   
+   .container img.search-user {
+	position: relative;
+	border-radius: 50%;
+	border: 2px solid #ff8bcb;
+	float: left;
+    height:60px;
+    max-width: 60px;
+    width: 100%;
+    margin-right:30px;
+    margin-top:12px;
+    margin-left:14px; 
+    z-index: 0;
    }
    
 
-
-.time-right {
+.right-corner {
     float: right;
     color: #aaa;
 }
 
 
 .name-left {
+	position:relative;
+	display: inline-block;
+	left:-56px;
     float: left;
     color: #aaa; 
 	margin-top:auto;
@@ -105,6 +238,24 @@ body{
 .name-left a{
 	color: #aaa; 
 	text-decoration: none;
+}
+
+.name-center{
+	position:relative;
+	
+	padding-top: 25px;
+	display:inline-block;
+	font-size:28px;
+	font-weight:bold;
+}
+
+a.name-center-a{
+	color: #aaa; 
+	text-decoration: none;
+}
+
+a.name-center-a:hover {
+    color: #f1f1f1;
 }
 
 .name-left a:hover {
@@ -135,7 +286,6 @@ body{
     color: #f1f1f1;
 }
 
-/*.accent-bar{ */
 .accent{
     background-color: #ff8bcb;
 	height: 13px; 
@@ -223,4 +373,40 @@ body{
 .dropdown:hover .dropdown-content {display: block;}
 
 
+.material-icons.archived { 
+	font-size: 60px;
+	color:#181818;
+	margin-left: 15px; 
+	margin-top:10px; 
+	margin-right:10px; 
+	margin-bottom:10px;
+}
 
+/*temp-- C&P from W3 schools */
+
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* end cnp */

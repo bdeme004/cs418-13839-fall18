@@ -5,7 +5,7 @@ session_start();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lin Picked The Colors</title>
+<title>lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
@@ -14,11 +14,11 @@ session_start();
 
 <img class="b" style="border-color: var(--color-acc-monarchs);" src="default_img.png" alt="Admin">
 <span class="name-left">Admin</span>
-<div style="margin-left:75px;">    
+<div style="margin-left: 75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>
 <p>Click on a link to the left to enter a chat group.
     (You must be logged in to join a chat group.)<br>
-<span class="time-right">Time is a myth</span>
+<span class="right-corner">Time is a myth</span>
 </div>
 </div>
 
@@ -26,10 +26,13 @@ session_start();
 
 <?php
 
-require 'htmlManager.php';
-require 'sqlManager.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
 
 navbars("monarchs");
+
+if(isset($_GET["login"]))
+    echo "Your login session has expired.";
 
 $conn=set_connection("users");
 $name=$passcode=$pass_correct="DNE";
@@ -43,7 +46,7 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
    
     
     
-    $sql="SELECT passcode, avatar FROM usertable WHERE handle LIKE '".$name."'";
+    $sql="SELECT passcode, avatar FROM usertable WHERE handle LIKE '".$name."';";
     if($result=$conn->query($sql)){
         $result=$result->fetch_assoc();
         $pass_correct= ($result["passcode"]);
@@ -54,7 +57,12 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         if ($pass_correct==$passcode)
         {echo "Success! The page may take a few seconds to update.";
         $_SESSION["user"]=$name;
+        if($name=="ADMINISTRATOR" || $name=="bdemerch")
+        {$_SESSION["admin"]=true;}
+        else 
+        {$_SESSION["admin"]=false;}
         
+        echo $_SESSION["admin"];
         $file=$avatar;
         if(file_exists($file))
         { $_SESSION["avatar"]=$avatar;
@@ -69,7 +77,9 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         }
         
         else
-        {echo "user/password combination doesn't match our records.";}}
+        {echo "user/password combination doesn't match our records.";
+        echo $sql;
+        }}
         
         else
         { if($name=="logout")

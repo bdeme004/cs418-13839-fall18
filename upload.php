@@ -14,8 +14,8 @@ session_start();
 
 <?php
 
-require 'htmlManager.php';
-require 'sqlManager.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
 
 $result="";
 $target_dir="";

@@ -20,7 +20,7 @@ navbars("monarchs");
 <div style="margin-left:75px;">    
 <p><b>Page Not Found</b></p>
 <p>Sorry, that page doesn't seem to exist. Maybe the gnomes ate it?<br>
-<span class="time-right">Time is a myth</span>
+<span class="right-corner">Time is a myth</span>
 </div>
 </div>
 </body>

@@ -61,7 +61,7 @@ class message{
                     <img src=\"round_account_circle_black_48dp.png\" alt=\"Avatar\">
                     <span class=\"name-left\">".$this->name."</span>
                     <p>". $this->body. "</p>
-                    <span class=\"time-right\">".$this->time."</span>
+                    <span class=\"right-corner\">".$this->time."</span>
                     </div>");
         }
         else 
@@ -70,7 +70,7 @@ class message{
                     <img class=\"b\" src=\"round_account_circle_black_48dp.png\" alt=\"Avatar\">
                     <span class=\"name-left\">".$this->name."</span>    
                     <p>". $this->body. "</p>
-                    <span class=\"time-right\">".$this->time."</span>
+                    <span class=\"right-corner\">".$this->time."</span>
                     </div>");
         }
         
