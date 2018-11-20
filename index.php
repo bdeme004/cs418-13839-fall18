@@ -17,7 +17,7 @@ navbars("monarchs");
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
 <img class="b" style="border-color: var(--color-acc-monarchs);" src="default_img.png" alt="Admin">
-<span class="name-left">Admin</span>
+<span class="name-left" style="margin-left:55px;">Admin</span>
 <div style="margin-left: 75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>
 <p>Click on a link to the left to enter a chat group.
