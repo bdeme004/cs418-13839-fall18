@@ -75,7 +75,6 @@ class thread{
             if($odd!=0)
             {
                 print( "
-
                     <a href=\"javascript:clickThread('".$this->index."')\"style=\"text-decoration:none; color:#000000;\">
                     <div class=\"container thread\" id=\"".$this->index."\" style=\"border-color:var(--color-acc-".$channel_top.");\">
                     <span class=\"thr-archived\">".$archived."</span>
@@ -90,27 +89,6 @@ class thread{
                     <span class=\"thr-archived\">".$archived."</span>
                     <div class=\"thread-title\"><p>". $this->title. "</p></div>
                     </div></a>");
-
-                        <div class=\"container thread\"style=\"border-color:var(--color-acc-".$channel_top.");\" >
-                    
-                    <div class=\"message-text\"><p>$this->title </p></div>
-                    <span class=\"time-right\"><a href=\"thread.php?top=".$channel_top."&thread=".$this->index."\"style=\"text-decoration:none;\"> Join </a> </span>");
-                
-                if ($admin=="1")
-                {print ("<br><span class=\"time-right\" onclick=\"killPost(2)\"> archive thread </span>");}
-                print("</div>");
-            }
-            else
-            {
-                print( "
-                        <div class=\"container thread-b\" style=\"border-color:var(--color-con-".$channel_top.");\">
-                    <div class=\"message-text\"><p>". $this->title. "</p></div>
-                    <span class=\"time-right\"><a href=\"thread.php?top=".$channel_top."&thread=".$this->index."\"style=\"text-decoration:none;\"> Join </a> </span>");
-                
-                if ($admin=="1")
-                {print ("<br><span class=\"time-right\" onclick=\"killPost(2)\"> archive thread </span>");}
-                print("</div>");
-
                   
             }
             
