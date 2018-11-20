@@ -72,21 +72,49 @@ function updateThread(user, avatar, mess, admin) {
  	 	hideCommentBox();
  	} 
 
- 	function delete_post($channel_top, $thread, $chkey, $admin)
-{
-    $conn=set_connection("threads");
-    $sql="UPDATE ".$thread." SET user='admin', body= 'This post was deleted by an administrator.', avatar='default_img.png' WHERE chkey= ".$chkey;
-    if($conn->query($sql))
-    {fetch_messages($thread, $channel_top, 1, 10, 1);}
-}
+ 	function deletePost(chkey){
+ 			 	
+ 		if (confirm("This post will be replaced with a delete notice--This can't be undone! Really delete?")) {
+ 			thread=getPageInfo("thread-id");
+ 			channelTop=getPageInfo("channel-top");
+ 	 	
+ 		 if (window.XMLHttpRequest) {
+ 	         xmlhttp = new XMLHttpRequest();
+ 	     } 
 
-function kill_post($channel_top, $thread, $chkey)
-{
-    $conn=set_connection("threads");
-    $sql="DELETE FROM ".$thread." WHERE chkey= ".$chkey;
-    if($conn->query($sql))
-    { fetch_messages($thread, $channel_top, 1, 10, 1);}
-}
+ 		 xmlhttp.onreadystatechange = function() {
+ 	         if (this.readyState == 4 && this.status == 200) {
+ 	        	document.getElementById("message-area").innerHTML = this.responseText;
+ 	         }
+ 	     };
+ 	 	
+ 		xmlhttp.open("POST","ajaxManager.php",true);
+ 	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 	 	xmlhttp.send("op=4&top="+channelTop+"&thread="+thread+"&chkey="+chkey); 
+ 	}
+ 	}
+ 	
+
+ 	function killPost(chkey){
+ 		if (confirm("This post will be totally deleted--This can't be undone! Really delete?")) {
+ 	 		thread=getPageInfo("thread-id");
+ 			channelTop=getPageInfo("channel-top");
+ 			
+ 		 if (window.XMLHttpRequest) {
+ 	         xmlhttp = new XMLHttpRequest();
+ 	     } 
+
+ 		 xmlhttp.onreadystatechange = function() {
+ 	         if (this.readyState == 4 && this.status == 200) {
+ 	        	document.getElementById("message-area").innerHTML = this.responseText;
+ 	         }
+ 	     };
+ 	     
+ 		xmlhttp.open("POST","ajaxManager.php",true);
+ 	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 	 	xmlhttp.send("op=5&top="+channelTop+"&thread="+thread+"&chkey="+chkey); 
+ 	}
+ 	}
 	
 function searchUsers(str) {
      if (str == "") {
