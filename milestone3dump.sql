@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 20, 2018 at 12:10 PM
+-- Generation Time: Nov 20, 2018 at 12:13 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `heliotrope` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `lightsky` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `milan` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `mint` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `tearose` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
