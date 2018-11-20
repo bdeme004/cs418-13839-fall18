@@ -42,13 +42,13 @@ style="border-color:var(--color-acc-<?php echo $channel_top;?>); border-radius: 
         </span>
         </div>
       
-       <div class="message-text" style="display:inline-block;"><h2><a href="newthread.php?top=<?php echo $channel_top; ?>">・Create a New Thread</a></h2></div>
+       <div class="message-text" style="display:inline-block;"><h2><a href="newthread.php?top=<?php echo $channel_top; ?>"> - Create a New Thread</a></h2></div>
 
 <?php
 if($user_admin==1)
 {
     echo ("
-<div class=\"message-text\" style=\"display:inline-block; color: #FF0000;\"><a href=\"javascript:toggleArchiveMode()\"><h2><span id=\"archive-mode-toggle\">・ Archive Threads</span></h2></a></div>");
+<div class=\"message-text\" style=\"display:inline-block; color: #FF0000;\"><a href=\"javascript:toggleArchiveMode()\"><h2><span id=\"archive-mode-toggle\"> - Archive Threads</span></h2></a></div>");
 }
 ?>
 </div>
