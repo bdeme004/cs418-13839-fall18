@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
+
+navbars("monarchs");
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,10 +30,7 @@ session_start();
 
 <?php
 
-require_once 'htmlManager.php';
-require_once 'sqlManager.php';
 
-navbars("monarchs");
 
 if(isset($_GET["login"]))
     echo "Your login session has expired.";
