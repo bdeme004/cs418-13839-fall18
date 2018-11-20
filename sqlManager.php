@@ -110,6 +110,7 @@ function update_channel($channel_top, $admin){
     else {
         echo "issue executing";
         error_log($conn->error .". SQL: ". $sql);
+        echo $conn->error .". SQL: ". $sql;
 }
 }
 
@@ -155,7 +156,7 @@ function delete_post($thread, $chkey)
     $sql="UPDATE ".$thread." SET user='admin', body= 'This post was deleted by an administrator.', avatar='default_img.png' WHERE chkey= ".$chkey;
     if($conn->query($sql))
     {
-        echo "Deleted";
+        echo "Thread deleted.";
     }
     else echo $sql;
 }
@@ -165,7 +166,7 @@ function kill_post($thread, $chkey)
     $conn=set_connection("threads");
     $sql="DELETE FROM ".$thread." WHERE chkey= ".$chkey;
     if($conn->query($sql))
-    {echo ("KILL IT WITH FIRE");
+    {echo ("Thread deleted.");
     echo $conn->error;
    // print("<br> ".$sql);
     }
