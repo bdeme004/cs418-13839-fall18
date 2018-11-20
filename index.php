@@ -63,7 +63,7 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         else 
         {$_SESSION["admin"]=false;}
         
-        echo $_SESSION["admin"];
+        
         $file=$avatar;
         if(file_exists($file))
         { $_SESSION["avatar"]=$avatar;
