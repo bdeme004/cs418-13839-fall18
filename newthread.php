@@ -5,15 +5,15 @@ session_start();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>New User- Lin Picked The Colors</title>
+<title>New Thread- lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
   
 <?php
 
-require 'htmlManager.php';
-require 'sqlManager.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
 
 navbars("monarchs");
 
@@ -28,7 +28,7 @@ $id="t".(microtime(true)*10000);
 $stmt="INSERT INTO ". $channel_top." (chIndex, chTitle, chPrivate, chAllowedUsers) VALUES (\"".$id."\",?,?,?)";
 $sql=$conn->prepare($stmt);
 
-//get the password associated with the username in the database
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["title"])) {
         $title_err = "Title is required";
@@ -50,12 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    }
    else error_log($conn->error);
 }
-
 ?>
 
 <form action="#" method="post">
-<div class="container">
-<h1>New Account</h1>
+<div class="container" style="border-color: var(--color-acc-<?php echo $channel_top?>);">
+<h1>New Thread</h1>
 <hr>
 
 <label><b>Title: </b>

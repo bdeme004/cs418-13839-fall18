@@ -12,8 +12,8 @@ session_start();
 <body>
 
 <?php
-require 'htmlManager.php';
-require 'sqlManager.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
 navbars("monarchs");
 $user=$_GET["user"];
 $conn=set_connection("users");

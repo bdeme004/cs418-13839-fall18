@@ -1,9 +1,7 @@
 <?php
 
-    //since it's all handled internally, shouldn't be a problem for now
-    //though there may be a tidier way to handle it
+
 function navbars($color) {
-    
     print(
         "
         <div class=\"topnav\">
@@ -28,12 +26,11 @@ function navbars($color) {
         );
     }
     
-    
     function test_permissions($address){
         if(isset($_SESSION["user"]))
         {return $address;}
         else
-            return "#";     
+            return "index.php?login=0";     
     }
     
     function login_info (){
@@ -65,4 +62,5 @@ function navbars($color) {
         }
         return $output;
     }
+    
         
