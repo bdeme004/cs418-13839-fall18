@@ -150,25 +150,20 @@ function count_pages($thread)
     else return 0;
 }
 
-function delete_post($thread, $chkey)
+function delete_post($channel_top, $thread, $chkey, $admin)
 {
     $conn=set_connection("threads");
     $sql="UPDATE ".$thread." SET user='admin', body= 'This post was deleted by an administrator.', avatar='default_img.png' WHERE chkey= ".$chkey;
     if($conn->query($sql))
-    {
-        echo "Thread deleted.";
-    }
-    else echo $sql;
+    {fetch_messages($thread, $channel_top, 1, 10, 1);}
 }
 
-function kill_post($thread, $chkey)
+function kill_post($channel_top, $thread, $chkey)
 {
     $conn=set_connection("threads");
     $sql="DELETE FROM ".$thread." WHERE chkey= ".$chkey;
     if($conn->query($sql))
-    {echo ("Thread deleted.");
-    echo $conn->error;
-   // print("<br> ".$sql);
+    { fetch_messages($thread, $channel_top, 1, 10, 1);
     }
 }
 

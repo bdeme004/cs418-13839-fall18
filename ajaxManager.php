@@ -29,11 +29,11 @@ else
             break;
             
         case 4:
-            delete_post($_POST["thread"],$_POST["chkey"]);
+            delete_post($_POST["top"],$_POST["thread"],$_POST["chkey"]);
             break;
             
         case 5:
-            kill_post($_POST["thread"],$_POST["chkey"]);
+            kill_post($_POST["top"],$_POST["thread"],$_POST["chkey"]);
             break;
             
         case 6:
