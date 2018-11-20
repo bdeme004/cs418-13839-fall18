@@ -1,6 +1,6 @@
 <?php
 
-//require 'htmlpurifier-4.10.0-standalone/HTMLPurifier.standalone.php';
+require 'htmlpurifier-4.10.0-standalone/HTMLPurifier.standalone.php';
 
 
 
