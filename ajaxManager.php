@@ -35,6 +35,7 @@ else
         case 5:
             kill_post($_POST["thread"],$_POST["chkey"]);
             break;
+
             
         case 6:
             toggle_thread_archived($_POST["top"], $_POST["thread"], $_POST["archive-switch"]);
@@ -45,6 +46,8 @@ else
             load_threads($$_POST["archived"]); */
             break;
             
+
+
                     
     } //end switch
     

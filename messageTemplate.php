@@ -66,6 +66,7 @@ class message{
         if($odd==0)
         {
             print( "<div class=\"container\" id=\"".$this->key."\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+
                     <img class=\"a\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");\">
                     <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
                     <div class=\"message-text\"><p>".$this->body. "</p></div>
@@ -74,10 +75,19 @@ class message{
             {print ("<br><span class=\"right-corner\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
             else
             {print ("<br><span class=\"right-corner\">   </span>");}
+
+                    <img class=\"a\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");\" onclick=\"deletePost(".$this->key.")\">
+                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
+                    <div class=\"message-text\"><p>".$this->body. "</p></div>
+                    <span class=\"time-right\">".$this->time."</span>");
+             if ($admin=="1")
+            {print ("<br><span class=\"time-right\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
+
             print("</div>");
         }
         else 
         {
+
             print( "<div class=\"container b\" id=\"".$this->key."\" style=\"border-color:var(--color-con-".$channel_top.")\">
                     <img class=\"b\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-con-".$channel_top.")\">
                     <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
@@ -87,6 +97,15 @@ class message{
             {print ("<br><span class=\"right-corner\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
             else
             {print ("<br><span class=\"right-corner\">   </span>");}
+
+            print( "<div class=\"container b\" id=\"".$this->key."\" style=\"border-color:#ff0000\">
+                    <img class=\"b\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:#ff0000\">
+                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
+                    <div class=\"message-text\"><p>".$this->body. "</p></div>
+                    <span class=\"time-right\">".$this->time."</span>");
+            if ($admin=="1")
+            {print ("<br><span class=\"time-right\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
+
             print("</div>");
         }
         

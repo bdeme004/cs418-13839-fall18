@@ -77,6 +77,7 @@ $conn=set_connection("users");
 $sql="SELECT handle, avatar FROM usertable WHERE handle LIKE '%". $q . "%';";
 $result = $conn->query($sql);
 
+print $sql;
 $odd=1;
 while ($row=$result->fetch_assoc())
 {
@@ -168,6 +169,7 @@ function kill_post($thread, $chkey)
     {echo ("KILL IT WITH FIRE");
     echo $conn->error;
    // print("<br> ".$sql);
+
     }
 }
 
@@ -196,6 +198,8 @@ function isArchived($channel_top, $thread){
     {
         return $result->fetch_assoc()["chArchived"];
         
+
+
     }
     else  return $conn->error. $sql;
 }
