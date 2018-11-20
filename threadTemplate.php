@@ -9,11 +9,12 @@ class thread{
     protected $allowed_users;
     protected $replies;
     protected $updated;
+    protected $archived;
     
     function __construct()
     {
         $a = func_get_args();
-        if (func_num_args()==5) {
+        if (func_num_args()==6) {
             call_user_func_array(array($this,"set_thread"),$a);
         }
         else if  (func_num_args()==1) {
@@ -29,16 +30,17 @@ class thread{
         }
     }
     
-    function set_thread($title0, $private0, $allowed_users0, $replies0, $updated0){
+    function set_thread($title0, $private0, $allowed_users0, $replies0, $updated0, $archived0){
         $this->title=$title0;
         $this->private=$private0;
         $this->allowed_users=$allowed_users0;
         $this->replies=$replies0;
         $this->updated=$updated0;
+        $this->archived=$archived0;
     }
     
     function new_from_data($newraw0){
-        if((count($newraw0))>5)
+        if((count($newraw0))>6)
         
         {
             $this->index=$newraw0[0];
@@ -47,6 +49,7 @@ class thread{
             $this->allowed_users=$newraw0[3];
             $this->replies=$newraw0[4];
             $this->updated=$newraw0[5];
+            $this->archived=$newraw0[6];
             
         }
         else
@@ -56,6 +59,7 @@ class thread{
             $this->allowed_users=array("8","0","3");
             $this->replies=803;
             $this->updated=date_create();
+            $this->updated=1;
         }
     }
         
@@ -64,9 +68,29 @@ class thread{
         
         function print_with_format($odd, $channel_top, $admin)
         {
-            if($odd==0)
+            if($this->archived==true)
+                $archived="<i class=\"material-icons\">speaker_notes_off</i>";
+            else $archived="";
+            
+            if($odd!=0)
             {
                 print( "
+
+                    <a href=\"javascript:clickThread('".$this->index."')\"style=\"text-decoration:none; color:#000000;\">
+                    <div class=\"container thread\" id=\"".$this->index."\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+                    <span class=\"thr-archived\">".$archived."</span>
+                    <div class=\"thread-title\"><p>". $this->title. "</p></div>
+                    </div></a>");
+            }
+            else
+            {
+                print(  "
+                    <a href=\"javascript:clickThread('".$this->index."')\"style=\"text-decoration:none; color:#000000;\">
+                    <div class=\"container thread\" id=\"".$this->index."\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+                    <span class=\"thr-archived\">".$archived."</span>
+                    <div class=\"thread-title\"><p>". $this->title. "</p></div>
+                    </div></a>");
+
                         <div class=\"container thread\"style=\"border-color:var(--color-acc-".$channel_top.");\" >
                     
                     <div class=\"message-text\"><p>$this->title </p></div>
@@ -86,6 +110,7 @@ class thread{
                 if ($admin=="1")
                 {print ("<br><span class=\"time-right\" onclick=\"killPost(2)\"> archive thread </span>");}
                 print("</div>");
+
                   
             }
             
@@ -106,6 +131,9 @@ class thread{
         function get_updated() {
             return $this->updated;
         }
+        function get_archived() {
+            return $this->archived;
+        }
         //-----------------------------------
         function set_title($new) {
             $this->title=$new;
@@ -118,6 +146,9 @@ class thread{
         }
         function set_updated($new) {
             $this->updated=$new;
+        }
+        function set_archived($new) {
+            $this->archived=$new;
         }
         //===================================
         

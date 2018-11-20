@@ -8,26 +8,7 @@ include 'htmlManager.php';
 <meta charset="UTF-8">
 <title>Search Users - lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
-<script>
-function searchUsers(str) {
-     if (str == "") {
-        document.getElementById("userResults").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } 
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("userResults").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","ajaxManager.php?op=1&q="+str,true);
-
-        xmlhttp.send();
-    } 
-}
-</script>
+<script src="lptcolors.js"></script>
 </head>
 <body>
 <?php navbars("monarchs");?>

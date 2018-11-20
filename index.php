@@ -18,7 +18,7 @@ session_start();
 <p><b>Welcome to Lin Picked The Colors!</b></p>
 <p>Click on a link to the left to enter a chat group.
     (You must be logged in to join a chat group.)<br>
-<span class="time-right">Time is a myth</span>
+<span class="right-corner">Time is a myth</span>
 </div>
 </div>
 

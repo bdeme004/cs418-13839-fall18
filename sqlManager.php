@@ -91,6 +91,29 @@ while ($row=$result->fetch_assoc())
     }
 }
 
+function update_channel($channel_top, $admin){
+    $conn=set_connection("channels");
+
+    $sql="SELECT * FROM ". $channel_top .";";
+    if ($result=$conn->query($sql))
+    {
+        $index=1;
+        while($thread_list=$result->fetch_assoc()){
+            $thread=array();
+            foreach ($thread_list as $field){
+                array_push($thread, $field);
+            }
+            $new_thread=new thread($thread);
+            $index=$index+1;
+            $new_thread->print_with_format(($index%2), $channel_top, $admin);
+        }
+    }
+    else {
+        echo "issue executing";
+        error_log($conn->error .". SQL: ". $sql);
+}
+}
+
 //I actually have no idea why the parameters are coming in in this order.
 //I'm busy, though, so rather than track it down I just rearranged them here.
 //UPDATE: hey, I fixed it!
@@ -146,7 +169,39 @@ function kill_post($thread, $chkey)
     {echo ("KILL IT WITH FIRE");
     echo $conn->error;
    // print("<br> ".$sql);
+
     }
+}
+
+function toggle_thread_archived($channel_top, $thread, $new_archive_setting)
+{
+     $conn=set_connection("channels");
+    $sql="UPDATE ".$channel_top." SET chArchived=".$new_archive_setting." WHERE chIndex='".$thread."'";
+    if($conn->query($sql))
+    {
+        if ($new_archive_setting==true)
+       {
+        update_channel($channel_top, 1);
+       }
+       else
+       update_channel($channel_top, 1);
+    }
+    else echo $conn->error . $sql; 
+}
+
+////i'm sure there's a better way to do this @_@
+function isArchived($channel_top, $thread){
+    $conn=set_connection("channels");
+    $sql= "SELECT chArchived from ".$channel_top." WHERE chIndex='".$thread."'";
+    
+    if($result=$conn->query($sql))
+    {
+        return $result->fetch_assoc()["chArchived"];
+        
+
+
+    }
+    else  return $conn->error. $sql;
 }
     
 ?>

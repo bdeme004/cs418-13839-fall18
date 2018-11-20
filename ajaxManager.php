@@ -2,8 +2,9 @@
 <html>
 <?php
 
-include 'sqlManager.php';
-include 'messageTemplate.php';
+require_once 'sqlManager.php';
+require_once 'messageTemplate.php';
+require_once 'threadTemplate.php';
 
 if(isset($_GET['op']))
     $op=intval($_GET['op']);
@@ -34,6 +35,19 @@ else
         case 5:
             kill_post($_POST["thread"],$_POST["chkey"]);
             break;
+
+            
+        case 6:
+            toggle_thread_archived($_POST["top"], $_POST["thread"], $_POST["archive-switch"]);
+            break;
+            
+        case 7:
+/*             $target="thread.php?top=".$_POST["top"]."&thread=".$_POST["thread"];
+            load_threads($$_POST["archived"]); */
+            break;
+            
+
+
                     
     } //end switch
     
