@@ -84,7 +84,7 @@ function updateThread(user, avatar, mess, admin) {
 
  		 xmlhttp.onreadystatechange = function() {
  	         if (this.readyState == 4 && this.status == 200) {
- 	        	window.alert(this.responseText);
+ 	        	document.getElementById("message-area").innerHTML = this.responseText;
  	         }
  	     };
  	 	
@@ -103,10 +103,9 @@ function updateThread(user, avatar, mess, admin) {
  		 if (window.XMLHttpRequest) {
  	         xmlhttp = new XMLHttpRequest();
  	     } 
-+s
  		 xmlhttp.onreadystatechange = function() {
  	         if (this.readyState == 4 && this.status == 200) {
- 	        	window.alert(this.responseText);
+ 	        	document.getElementById("message-area").innerHTML = this.responseText;
  	         }
  	     };
  	     
