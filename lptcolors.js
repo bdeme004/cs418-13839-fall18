@@ -153,7 +153,7 @@ function toggleArchiveMode(){
 	else
 		{
 		document.getElementById("pageinfo").getAttributeNode("data-archive-mode").value = "on";
-		document.getElementById("archive-mode-toggle").innerHTML = "・Finish";
+		document.getElementById("archive-mode-toggle").innerHTML = " - Finish";
 		document.getElementById("archive-switch").getAttributeNode("style").value = "display: inline-block;"
 
 		}
