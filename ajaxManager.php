@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php
 
 require_once 'sqlManager.php';
@@ -41,14 +39,11 @@ else
             break;
             
         case 7:
-/*             $target="thread.php?top=".$_POST["top"]."&thread=".$_POST["thread"];
-            load_threads($$_POST["archived"]); */
+            use_default($_POST["user"]);
             break;
-            
                     
     } //end switch
     
 
 
 ?> 
-</html>

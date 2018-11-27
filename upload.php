@@ -7,6 +7,7 @@ session_start();
 <meta charset="UTF-8">
 <title>Avatar- Lin Picked The Colors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
+<script src="lptcolors.js"></script>
 </head>
 <body>
 
@@ -20,9 +21,12 @@ require_once 'sqlManager.php';
 $result="";
 $target_dir="";
 
-navbars("monarchs");
 
-if(isset($_POST["submit"])) {
+
+if(isset($_POST["default-img"])) {
+    $_SESSION["avatar"]=$_POST["default-img"];
+}
+elseif (isset($_POST["submit"])) {
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
@@ -68,10 +72,10 @@ if ($uploadOk == 0) {
     }
 }
 }
-
+navbars("monarchs");
 ?>
 
-    
+    <script src="lptcolors.js"></script>
     
 <div class="container">
 <h1>Change Avatar</h1>
@@ -80,6 +84,7 @@ if ($uploadOk == 0) {
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit">
+    <input type="submit" value="Use Default" name="use-default" onclick="useDefault('<?php echo $_SESSION["user"]?>')">
     <span><br><br><?php echo $result;?></span>
 </form>
 </div>

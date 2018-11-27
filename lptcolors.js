@@ -6,18 +6,6 @@ function getPageInfo(_attribute)
 	attribute="data-"+_attribute;
 	return document.getElementById("pageinfo").getAttribute(attribute);
 }
-
-
-/*function addImage(){
-
-	imgSrc=window.prompt('Enter the source of your image: ','image source...' );
-
-	if(!(imgSrc == null || imgSrc == ""|| imgSrc=="image source..."))
-	{
-		document.getElementById("message").innerHTML = 
-			"<img class=\"embed\" src=\""+imgSrc+"\" alt=\""+imgSrc+"\">";
-	}
-	}*/
 	
 function updateThread(user, avatar, mess, admin) {
 
@@ -153,7 +141,7 @@ function toggleArchiveMode(){
 	else
 		{
 		document.getElementById("pageinfo").getAttributeNode("data-archive-mode").value = "on";
-		document.getElementById("archive-mode-toggle").innerHTML = " - Finish";
+		document.getElementById("archive-mode-toggle").innerHTML = "・Finish";
 		document.getElementById("archive-switch").getAttributeNode("style").value = "display: inline-block;"
 
 		}
@@ -296,4 +284,36 @@ function submitWithImage(user, avatar){
 		document.getElementById("import-form").reset();
 	}
 	
+function useDefault(user){
+if (confirm("Your current avatar will be deleted from the server and your default image will be used instead. Are you sure?")) {
+	 	
+		if (window.XMLHttpRequest) {
+ 	         xmlhttp = new XMLHttpRequest();
+ 	    } 
 
+ 		 xmlhttp.onreadystatechange = function() {
+ 	         if (this.readyState == 4 && this.status == 200) {
+ 	        	singlePOST("default-img",this.responseText);
+ 	        	document.getElementById("topnav-icon").setAttribute("src", this.responseText);
+ 	        	
+ 	         }
+ 	         	        
+ 	     };
+ 	     
+ 		xmlhttp.open("POST","ajaxManager.php",true);
+ 	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 	 	xmlhttp.send("op=7&user="+user); 
+ 	}
+	
+}
+
+function singlePOST(name, value){
+	
+	if (window.XMLHttpRequest) {
+	         xmlhttp = new XMLHttpRequest();
+	    } 
+	     
+		xmlhttp.open("POST","upload.php",true);
+	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 	xmlhttp.send(name+"="+value); 
+}

@@ -29,9 +29,7 @@ class message{
     
     function set_message($_name, $_avatar, $_body, $_time, $_key){
         $this->name=$_name;
-        $this->avatar=$_avatar;
-            if (!(file_exists($this->avatar)))
-                {$this->avatar="default_img.png";}
+        $this->avatar=test_image($_avatar);
         $this->body=$_body;
         $this->time=$_time;
         $this->key=$_key;
@@ -44,10 +42,8 @@ class message{
         $this->body=$_newraw[1];
         $this->time=$_newraw[2];
         $this->key=$_newraw[3];
-        $this->avatar=$_newraw[4];
-        if (!(file_exists($this->avatar)))
-        {$this->avatar="default_img.png";
-        }}
+        $this->avatar=test_image($_newraw[4]);
+       }
        else
        { 
        $this->name="ERROR";

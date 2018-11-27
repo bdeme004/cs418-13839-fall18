@@ -50,7 +50,7 @@ function navbars($color) {
             $output = "
                        <div class=\"dropdown\">
                
-                       <img class= \"topnav-icon\" src=\"".$_SESSION["avatar"]."\" alt=\"Avatar\">
+                       <img class= \"topnav-icon\" id=\"topnav-icon\" src=\"".$_SESSION["avatar"]."\" alt=\"Avatar\">
                                  <div class=\"dropdown-content\" >
                                 <a href=\"upload.php\">Change Avatar</a>
                                 <a href=\"searchUsers.php\">Search Users</a>

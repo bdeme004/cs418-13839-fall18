@@ -163,8 +163,7 @@ function kill_post($channel_top, $thread, $chkey)
     $conn=set_connection("threads");
     $sql="DELETE FROM ".$thread." WHERE chkey= ".$chkey;
     if($conn->query($sql))
-    { fetch_messages($thread, $channel_top, 1, 10, 1);
-    }
+    { fetch_messages($thread, $channel_top, 1, 10, 1);}
 }
 
 function toggle_thread_archived($channel_top, $thread, $new_archive_setting)
@@ -195,5 +194,36 @@ function isArchived($channel_top, $thread){
     }
     else  return $conn->error. $sql;
 }
+
+function test_image($src){
+    if (!strpos($src, "gravatar.com/")){ //if it's not a gravatar image...
+        if (!(file_exists($src))) //...and it doesn't exist...
+        {
+            return "default_img_inf.png"; //...return the "image not found" fallback.
+        }
+    }
+    return $src; // just return it as-is.  
+}
     
+function use_default($user){
+    return get_gravatar($user);
+}
+
+function get_gravatar($user){
+    $conn=set_connection("users");
+    $sql="SELECT email FROM usertable WHERE handle=\"".$user."\"";
+    if($result=$conn->query($sql))
+    {
+        $email=$result->fetch_assoc()["email"];
+        $email=md5( strtolower( trim( $email ) ) ) ;
+        $avatar= "https://www.gravatar.com/avatar/" . $email. "?d=identicon&s=50";
+        $sql="UPDATE usertable SET avatar=\"".$avatar."\" WHERE handle=\"".$user."\"";
+        if($result=$conn->query($sql))
+        {
+        print $avatar;
+        }
+    }
+   // print $conn->error. $sql; // this is seriously bad error handling @_@
+    
+}
 ?>

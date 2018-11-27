@@ -47,11 +47,12 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
    
     
     
-    $sql="SELECT passcode, avatar FROM usertable WHERE handle LIKE '".$name."';";
+    $sql="SELECT passcode, avatar, email FROM usertable WHERE handle LIKE '".$name."';";
     if($result=$conn->query($sql)){
         $result=$result->fetch_assoc();
         $pass_correct= ($result["passcode"]);
         $avatar=($result["avatar"]);
+        $email=($result["email"]);
     }
     
     if(isset($pass_correct)){
@@ -64,14 +65,32 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         {$_SESSION["admin"]=false;}
         
         
-        $file=$avatar;
-        if(file_exists($file))
-        { $_SESSION["avatar"]=$avatar;
-        } else
-        {
-            $_SESSION["avatar"]="default_img.png";
-            $conn->query("UPDATE usertable SET avatar=\"default_img.png\" WHERE handle=\"".$name."\"");
+        if(!strpos($avatar, "gravatar.com/")){
+        if (($avatar=="default_img.png") || (!file_exists($avatar))) {
+            //currently re-gravataring the gravatar every time. Oh, well
+            //It's not working right yet anyway so it's a bit of a waste fixing that
+                //also, the file pretty seriously doesn't exist. so yeah
+           
+            
+            $avatar= "https://www.gravatar.com/avatar/" . $email. "?d=identicon&s=50";
+       
+            
+            $conn->query("UPDATE usertable SET avatar=\"".$avatar."\" WHERE handle=\"".$name."\"");
+            } 
         }
+   
+            $_SESSION["avatar"]=$avatar;
+        
+    
+            
+          /*  else
+            {
+                $_SESSION["avatar"]="default_img.png";
+                $conn->query("UPDATE usertable SET avatar=\"default_img.png\" WHERE handle=\"".$name."\"");
+            } */
+        
+        
+        
         
        header( "refresh:2;" );
        
