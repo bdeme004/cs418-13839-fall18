@@ -82,9 +82,9 @@ navbars("monarchs");
 <hr><br>
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="file" name="fileToUpload" id="fileToUpload" required>
     <input type="submit" value="Upload Image" name="submit">
-    <input type="submit" value="Use Default" name="use-default" onclick="useDefault('<?php echo $_SESSION["user"]?>')">
+    <input type="button" value="Use Default" name="use-default" onclick="useDefault('<?php echo $_SESSION["user"]?>')">
     <span><br><br><?php echo $result;?></span>
 </form>
 </div>

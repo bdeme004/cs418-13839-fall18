@@ -293,7 +293,7 @@ if (confirm("Your current avatar will be deleted from the server and your defaul
 
  		 xmlhttp.onreadystatechange = function() {
  	         if (this.readyState == 4 && this.status == 200) {
- 	        	singlePOST("default-img",this.responseText);
+ 	        	singlePOST("default-img",this.responseText, "upload.php");
  	        	document.getElementById("topnav-icon").setAttribute("src", this.responseText);
  	        	
  	         }
@@ -307,13 +307,15 @@ if (confirm("Your current avatar will be deleted from the server and your defaul
 	
 }
 
-function singlePOST(name, value){
+function singlePOST(name, value, target){
 	
 	if (window.XMLHttpRequest) {
 	         xmlhttp = new XMLHttpRequest();
 	    } 
 	     
-		xmlhttp.open("POST","upload.php",true);
+		xmlhttp.open("POST",target,true);
 	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	 	xmlhttp.send(name+"="+value); 
+	 	
+	 	
 }
