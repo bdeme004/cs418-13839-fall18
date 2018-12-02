@@ -7,6 +7,8 @@ session_start();
 <meta charset="UTF-8">
 <title>New User- lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 </head>
 <body>
   
@@ -121,12 +123,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <label><b>Repeat Password: </b>
 <input type="password" name="passcode-repeat" required>
 <span> <?php echo $repeat_err;?></span>
+
 </label>
+<br><br>
+<div class="g-recaptcha" data-sitekey="6LfatX0UAAAAABxYqjHLajS2yvFLtmUEejaWSGbX"></div>
 <hr>
 
-<button type="submit">Sign Up</button>
+<button type="submit" disabled>Sign Up</button>
 
 </div>
+
 </form>
 
 </body>

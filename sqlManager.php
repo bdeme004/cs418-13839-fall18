@@ -67,6 +67,7 @@ function generate_thread($conn, $thread_index) {
   `creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `chKey` int(11) NOT NULL AUTO_INCREMENT,
   `avatar` text NOT NULL,
+  `tally` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chKey`)
 ) ENGINE=MyISAM AUTO_INCREMENT=283 DEFAULT CHARSET=latin1;");
 }
@@ -226,4 +227,72 @@ function get_gravatar($user){
    // print $conn->error. $sql; // this is seriously bad error handling @_@
     
 }
+
+function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
+    $conn=set_connection("threads");
+    
+  /*   $sql0="SELECT (EXISTS (SELECT * FROM reactions WHERE chKey='".$chKey."' AND userRX='".$userRX."')) AS 'recordExists'";
+    
+    if ($result=$conn->query($sql0)){
+        $record_exists=(bool)$result->fetch_assoc()['recordExists'];
+        if($record_exists)
+        {
+            $sql= "UPDATE reactions SET rxCode=".$rxCode." WHERE chKey=\"".$chKey."\" AND userRX=\"".$userRX."\"";
+            if($conn->query($sql))
+            {
+              //  print "user ".$userRX." changed score of post to ".$rxCode;
+            }
+            else print "nope: ". $conn->error. ": ".$sql;
+        } */
+    
+    if(0==1){}
+        else {
+            $stmt="INSERT INTO reactions (thIndex, chKey, rxCode, userOP, userRX) VALUES (?,?,?,?,?)";
+            $sql = $conn->prepare($stmt);
+            
+            $sql->bind_param("siiss", $thread, $chKey, $rxCode, $userOP, $userRX);
+            
+            if($sql->execute()){
+                $sql2="UPDATE ".$thread." SET tally=(tally+".$rxCode.") WHERE chKey=".$chKey;
+
+                if($conn->query($sql2))
+                {
+                    if($result=$conn->query("SELECT tally FROM ".$thread." WHERE chKey=".$chKey))
+                    {
+                        print $result->fetch_assoc()["tally"];
+                    }
+                }
+                else {
+                    print "nope: ". $conn->error. ": ".$sql2;;
+                }
+            }
+            else{ print "nope: ". $conn->error;
+            }
+        }
+    }
+ //   else { print "nope: ". $conn->error.": ".$sql0;}
+//}
+
+
+function remove_reaction($chKey, $userRX){
+    $conn=set_connection("threads");
+    $sql="DELETE FROM reactions WHERE chKey=\"".$chKey."\" AND userRX=\"".$userRX."\"";
+    if($conn->query($sql))
+    {
+       print "Removed user ".$userRX."'s reaction to post #".$chKey;
+    }
+    else print "nope: ". $conn->error. ": ".$sql;
+}  
+    
+function tally_reactions($chKey){
+    
+    $conn=set_connection("threads");
+    $sql= "SELECT SUM(rxCode) as 'total' FROM reactions WHERE chKey=".$chKey;
+    if($result=$conn->query($sql))
+    {
+        print ($result->fetch_assoc()["total"]);
+    }
+    else print "nope: ". $conn->error. ": ".$sql;
+}
+
 ?>

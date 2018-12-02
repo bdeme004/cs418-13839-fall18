@@ -6,6 +6,7 @@ class message{
     protected $avatar;
     protected $body;
     protected $time;
+    protected $tally;
     protected $key;
     
     function __construct()
@@ -23,7 +24,9 @@ class message{
             $this->body="DNE";
             $this->avatar="default_img.png";
             $this->time=803;
+            $this->tally=803;
             $this->key=803;
+            
         }
     }
     
@@ -32,6 +35,7 @@ class message{
         $this->avatar=test_image($_avatar);
         $this->body=$_body;
         $this->time=$_time;
+        $this->tally=803;
         $this->key=$_key;
     }
     
@@ -43,12 +47,14 @@ class message{
         $this->time=$_newraw[2];
         $this->key=$_newraw[3];
         $this->avatar=test_image($_newraw[4]);
+        $this->tally=$_newraw[5];
        }
        else
        { 
        $this->name="ERROR";
        $this->body="ERROR";
        $this->time=803;
+       $this->tally=803;
        $this->key=803;
        $this->avatar="default_img.png";
        }      
@@ -59,57 +65,49 @@ class message{
     
     function print_with_format($odd, $channel_top, $admin)
     {
-        if($odd==0)
-        {
-            print( "<div class=\"container\" id=\"".$this->key."\" style=\"border-color:var(--color-acc-".$channel_top.");\">
-                    <img class=\"a\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");\">
-                    <span class=\"post-react\"><a href=\"#\"><i class=\"material-icons\">thumb_up</i></a><a href=\"#\"><i class=\"material-icons\">thumb_down</i></a></span>
-                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
-                    <div class=\"message-text\"><p>".$this->body. "</p></div>
-                    <span class=\"right-corner\">".$this->time."</span>");
-             if ($admin=="1")
-            {print ("<br><span class=\"right-corner\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
-            else
-            {print ("<br><span class=\"right-corner\">   </span>");}
-            print("</div>");
-        }
+        if($admin=="1")
+            $killPost_display=" onclick=\"killPost(".$this->key.")\"> delete post";
+        else
+            $killPost_display="> ";
+      
+        if ($odd==0)
+            $color="--color-acc-".$channel_top;
         else 
-        {
-            print( "<div class=\"container b\" id=\"".$this->key."\" style=\"border-color:var(--color-con-".$channel_top.")\">
-                    <img class=\"b\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-con-".$channel_top.")\">
-                    <span class=\"post-react\"><a href=\"#\"><i class=\"material-icons\">thumb_up</i></a><a href=\"#\"><i class=\"material-icons\">thumb_down</i></a></span>        
-                    <span class=\"name-left\"><a href=\"userProfile.php?user=".$this->name."\">".$this->name."</a></span>
-                    <div class=\"message-text\"><p>".$this->body. "</p></div>
-                    <span class=\"right-corner\">".$this->time."</span>");
-            if ($admin=="1")
-            {print ("<br><span class=\"right-corner\" onclick=\"killPost(".$this->key.")\"> delete post </span>");}
-            else
-            {print ("<br><span class=\"right-corner\">   </span>");}
-            print("</div>");
-        }
+            $color="--color-con-".$channel_top;
         
+          //  $tally=40;     
+            
+
+            
+            print("<div class=\"container\" id=\"".$this->key."\" style=\"border-color:var(".$color.");\">
+                    <img class=\"a\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(".$color.");\">
+                    <div class=\"post-react\">
+                    <a class=\"post-react-a\" href=\"javascript:likePost(".$this->key.")\"> <i class=\"material-icons post-react\">expand_less</i></a>
+                    <span class=\"post-react tally\">".$this->tally."</span>
+                    <a class=\"post-react-a\" href=\"javascript:dislikePost(".$this->key.")\"> <i class=\"material-icons post-react\">expand_more</i></a>
+                    </div>
+                    <a href=\"userProfile.php?user=".$this->name."\"><span class=\"name-left\">".$this->name."</span></a>
+                    <div class=\"message-text\"><p>".$this->body."</p></div>
+                    <span class=\"right-corner\">".$this->time."</span>
+                    <br><span class=\"right-corner\"".$killPost_display."</span></div>");
+            
+
+
     }
     
     function print_as_searchresult($odd, $channel_top)
     { 
         
-        if(($odd%2)==0){
-            
+        if (($odd%2)==0)
+            $color="--color-acc-".$channel_top;
+        else
+            $color="--color-con-".$channel_top;
         
         print( "    <a href=\"userProfile.php?user=".$this->name."\" class=\"name-center-a\">
-                    <div class=\"container\" style=\"border-color:var(--color-acc-".$channel_top.");\">
-                    <img class=\"search-user\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-acc-".$channel_top.");\">
+                    <div class=\"container\" style=\"border-color:var(".$color.");\">
+                    <img class=\"search-user\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(".$color.");\">
                     <div class=\"name-center\">".$this->name."</div></div></a>"
                     );
-    }
-    else
-    {
-        print( "    <a href=\"userProfile.php?user=".$this->name."\" class=\"name-center-a\">
-                    <div class=\"container b\" style=\"border-color:var(--color-con-".$channel_top.");\">
-                    <img class=\"search-user\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(--color-con-".$channel_top.");\">
-                    <div class=\"name-center\">".$this->name."</div></div></a>"
-                    );
-    }
     }
     
 //===================================

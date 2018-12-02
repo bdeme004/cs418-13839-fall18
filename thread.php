@@ -60,7 +60,7 @@ hereGoes();
     <form id="inputform" autocomplete="off" style="<?php echo $input_form;?>">
         <textarea id= "message" name="message" rows="6" cols="180" style="margin-bottom: 5px;"></textarea><br>
         <input type="button" value="Submit" 
-        	onclick="updateThread( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
+        	onclick="submitMessage( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
     	<input type="button" id="add-image" value="Add Image" onclick="toggleImportDialog()">
     </form>
     

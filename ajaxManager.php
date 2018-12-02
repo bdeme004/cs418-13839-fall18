@@ -41,6 +41,15 @@ else
         case 7:
             use_default($_POST["user"]);
             break;
+            
+        case 8:
+            add_reaction($_POST["thread"], $_POST["chKey"], $_POST["rxCode"], $_POST["userOP"], $_POST["userRX"]);
+           // tally_reactions($_POST["chKey"]);
+            break;
+            
+        case 9:
+            remove_reaction($_POST["chKey"], $_POST["userRX"]);
+            break;
                     
     } //end switch
     

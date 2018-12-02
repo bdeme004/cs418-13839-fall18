@@ -6,7 +6,14 @@ function getPageInfo(_attribute)
 	attribute="data-"+_attribute;
 	return document.getElementById("pageinfo").getAttribute(attribute);
 }
+
+function submitMessage(user, avatar, mess, admin){
 	
+	document.getElementById("inputform").reset();
+	updateThread(user, avatar, mess, admin);
+}
+
+
 function updateThread(user, avatar, mess, admin) {
 
 		thread=getPageInfo("thread-id");
@@ -221,7 +228,7 @@ function toggleImportDialog(){
 
 
 
-
+//I should probably rename this function to be something meaningful, but that would require I remember what it does. oops.
 function hereGoes(){
 	
 	document.addEventListener('DOMContentLoaded', init, false);
@@ -317,5 +324,73 @@ function singlePOST(name, value, target){
 	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	 	xmlhttp.send(name+"="+value); 
 	 	
-	 	
+}
+
+function handleCAPTCHA(){
+	
+	greca // <---??????? Pretty sure I fell asleep while I was working... ><
+		  // I'm sure it's meant to be "grecaptcha" but I have no idea what came next.
+	singlePOST(name, value, "https://www.google.com/recaptcha/api/siteverify")
+	
+}
+
+function likePost(chKey){
+	
+	addReaction(0, chKey);
+	//document.getElementById(chKey).getElementsByClassName("post-react-a")[0].setAttribute("href", "javascript:removeReaction("+chKey+")");//not finished!
+}
+
+function dislikePost(chKey){
+	addReaction(2, chKey);
+	//document.getElementById(chKey).getElementsByClassName("post-react-a")[1].setAttribute("href", "javascript:removeReaction("+chKey+")");//not finished!
+}
+
+function addReaction(inde, chKey){
+	
+	//rxCode--;
+	thread=getPageInfo("thread-id");
+	post=document.getElementById(chKey)
+	userOP=post.getElementsByClassName("name-left")[0].innerHTML;
+	userRX=document.getElementById("topnav-user-id").innerHTML;
+	rCode=(-(index-1));
+	
+	if (window.XMLHttpRequest) {
+         xmlhttp = new XMLHttpRequest();
+    }                                                     
+
+	 xmlhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+        	 post.getElementsByClassName("post-react-a")[1].innerHTML=this.responseText;
+        	 post.getElementsByClassName("post-react-a")[index].setAttribute("style", "color:#f1f1f1;")
+         }
+         	        
+     };
+     
+	xmlhttp.open("POST","ajaxManager.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 	xmlhttp.send("op=8&thread="+thread+"&chKey="+chKey+"&rxCode="+(rxCode)+"&userOP="+userOP+"&userRX="+userRX); 
+}
+
+function removeReaction(chKey){
+	userRX=document.getElementById("topnav-user-id").innerHTML;
+	
+	if (window.XMLHttpRequest) {
+         xmlhttp = new XMLHttpRequest();
+    } 
+
+	 xmlhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+        	 window.alert(this.responseText);
+         }
+         	        
+     };
+     
+	xmlhttp.open("POST","ajaxManager.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 	xmlhttp.send("op=9&chKey="+chKey+"&userRX="+userRX); 
+}
+
+function dummyFunction(){
+	window.alert("Hello, World!");
+	
 }

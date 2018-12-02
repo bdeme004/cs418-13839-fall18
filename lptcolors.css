@@ -32,9 +32,10 @@ body{
     border: 2px solid #c88bff;
     background-color: var(--color-main-textbox);
     border-radius: 5px;
-    min-height:75px;
+    min-height:85px;
     padding: 10px 10px 15px 10px;
     margin: 0 10px 10px 10px;
+    position: relative;
 }
 
 .b {
@@ -145,14 +146,16 @@ padding-top:8px;
     color: #aaa;
 }
 
+/*currently fighting with the display of the post reactions. 
+no clue if this last change worked because the net went out.
+Guess I'm going on break */
 .post-react{
 	float: left;
     position: relative;
-   /*	display: inline-block;*/
-	left:-51px;
-	top:82px;
+   	display: inline-block;
 	font-size:10px;
-    z-index: 0;
+	top:39px; 
+	left:-27px;    
 }
 
 .post-react a{
@@ -164,6 +167,22 @@ padding-top:8px;
 	color:#f1f1f1;
 	text-decoration: none;
 }
+
+.post-react.tally{
+	color:#aaa;
+	position:relative;
+	font-size:17px;
+	font-weight:bold;
+	top:41px;
+	}
+  
+  .material-icons post-react{
+  color:#aaa;
+	font-size:17px;
+	font-weight:bold;
+	padding-left:50px;
+  
+  }
   
 .page-count{
 	position:fixed;
@@ -184,6 +203,7 @@ padding-top:8px;
 	position:relative;
 	/*top:287px; */
 }
+
 .container img.embed{
 	
 	position: relative;
@@ -206,6 +226,7 @@ padding-top:8px;
     max-width: 50px;
     width: 100%;
     margin-top:24px;
+    left:5px;
     z-index: 0;
 
 }
@@ -242,16 +263,18 @@ padding-top:8px;
 .right-corner {
     float: right;
     color: #aaa;
+    position:relative;
+    bottom:-5px;
 }
 
 
 .name-left {
 	position:relative;
 	display: inline-block;
-	left:-104px;
+	left:-123px;
     float: left;
     color: #aaa; 
-	margin-top:auto;
+	margin-top: auto;
 }
 
 .name-left a{

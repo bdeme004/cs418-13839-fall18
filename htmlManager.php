@@ -2,9 +2,10 @@
 
 
 function navbars($color) {
+    
     print(
         "
-        <div class=\"topnav\">
+        <div class=\"topnav\" >
         <a href=\"index.php\">Lin Picked The Colors</a>"
 
         .login_info().
@@ -50,13 +51,16 @@ function navbars($color) {
             $output = "
                        <div class=\"dropdown\">
                
-                       <img class= \"topnav-icon\" id=\"topnav-icon\" src=\"".$_SESSION["avatar"]."\" alt=\"Avatar\">
+                       <img class= \"topnav-icon\" id=\"topnav-icon\" data-user-id=\"".$_SESSION["user"]."\"src=\"".$_SESSION["avatar"]."\" alt=\"Avatar\">
+
                                  <div class=\"dropdown-content\" >
                                 <a href=\"upload.php\">Change Avatar</a>
                                 <a href=\"searchUsers.php\">Search Users</a>
                                 <a href=\"pageNotFound.php\">Help</a>
                                 <a href=\"logout.php\">Log out</a>
                               </div>
+
+                        <span id=\"topnav-user-id\">". $_SESSION["user"]."</span>
                            
                         </div>";
         }
