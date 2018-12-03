@@ -294,11 +294,14 @@ function submitWithFile(user, avatar){
 
 	//window.alert(filename);
 
+
+
+
 	body = "<div class=\"container file-display\" id=\""+filename+"\">"+
            "<div class=\"thumb-frame\">"+
 		   "<img class=\"import-display\" id=\"file-pre2\" src=\""+imgSrc+"\" alt=\"no preview available\">"+
 		   "</div>"+
-		   "<span class=\"filename-display\"><a href=\""+filename+"\">"+filename+"</a></span>"+
+		   "<span class=\"filename-display\"><a href=\""+filename+"\" download>"+filename+"</a></span>"+
            "</a></div>"
 	body2 = document.getElementById('file-comment').value;
 
@@ -306,11 +309,118 @@ function submitWithFile(user, avatar){
 		body=body2+"<hr>"+body;
 	}
 
+
+
+
 	updateThread(user, avatar, body, admin);
+
+	//document.getElementById("cat2").protocol="file:"
 	//toggleImportDialog();
-	clearImportDialog();
+	//clearImportDialog();
 
 }
+
+function newMessageJson(){
+	user=document.getElementById("topnav-user-id").innerHTML;
+	avatar= document.getElementById("topnav-icon").innerHTML;
+	body="PeNRFWFTRGjiofwrht03h2nwkfce c20fconvgkc sl";
+
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("message-area").innerHTML= this.responseText;//(JSON.parse(this.responseText));
+		}
+	};
+
+	xmlhttp.open("POST", "ajaxManager.php", true);
+	xmlhttp.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+	xmlhttp.send("op=10&user="+user+"&avatar="+avatar+"&message="+body);
+}
+
+function generateBasicMessage(){//message){
+
+	channel_top=getPageInfo("channel-top");
+	admin=getPageInfo("user-admin");
+
+	//message=JSON.parse(message);
+	parent00=document.createElement("DIV");
+		parent00.setAttribute("class", "container");
+		parent00.setAttribute("id", 3); //message.key);
+		parent00.setAttribute("style", "color:var(--color-con-"+channel_top+";");
+
+	avatar=document.createElement("IMG");
+		avatar.setAttribute("class", "a");
+		avatar.setAttribute("src", "$this->avatar");
+		avatar.setAttribute("alt", "Avatar");
+		avatar.setAttribute("style", "color:var(--color-con-"+channel_top+";");
+
+	post_react00=document.createElement("DIV");
+		post_react00.setAttribute("class", "post-react");
+
+	post_react_a0=document.createElement("A");
+		post_react_a0.setAttribute("class", "post-react-a");
+		post_react_a0.setAttribute("href", "javascript:likePost('$this->key')");
+
+	post_react_i0=document.createElement("I");
+		post_react_i0.setAttribute("class", "material-icons post-react");
+		post_react_i0.appendChild(document.createTextNode("expand_less"));
+
+	post_react_tally=document.createElement("SPAN");
+		post_react_tally.setAttribute("class", "post-react tally");
+		post_react_tally.appendChild(document.createTextNode("$this->tally"));
+
+	post_react_i1=document.createElement("SPAN");
+		post_react_i1.setAttribute("class", "post-react-a");
+		post_react_i1.setAttribute("style", "display:none;");
+
+	post_react_a2=document.createElement("A");
+		post_react_a2.setAttribute("class", "post-react-a");
+		post_react_a2.setAttribute("href", "javascript:dislikePost('$this->key')");
+
+	post_react_i2=document.createElement("I");
+		post_react_i2.setAttribute("class", "material-icons post-react");
+		post_react_i2.appendChild(document.createTextNode("expand_more"));
+
+	username_a=document.createElement("A");
+		username_a.setAttribute("href", "userProfile.php?user=this->name");
+
+	username_disp=document.createElement("SPAN");
+		username_disp.setAttribute("class", "name-left");
+		username_disp.appendChild(document.createTextNode("$this->name"));
+
+	message_disp=document.createElement("DIV");
+		message_disp.setAttribute("class", "message-text");
+		message_disp.appendChild(document.createTextNode("$this->body"));
+
+	time_disp=document.createElement("SPAN");
+		time_disp.setAttribute("class", "right-corner");
+		time_disp.appendChild(document.createTextNode("$this->time"));
+
+	kill_disp=document.createElement("SPAN");
+		time_disp.setAttribute("class", "right-corner");
+		//time_disp.appendChild(document.createTextNode("$this->time"));
+
+	if(admin){
+		kill_disp.appendChild(document.createTextNode("delete post"));
+		kill_disp.addEventListener("click", killPost("this one"));
+	}
+	else{
+		kill_disp.appendChild(document.createTextNode(" "));
+	}
+
+
+
+
+	//document.body.appendChild(parent00);
+}
+
+
+
+
 
 function urlImage() {
 	document.getElementById("import-form").reset();

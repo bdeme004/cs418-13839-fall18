@@ -47,6 +47,11 @@ switch ($op) {
     case 9:
         remove_reaction($_POST["chKey"], $_POST["userRX"]);
         break;
+
+    case 10:
+        $body = test_input($_POST["message"]);
+        new_message_json($_POST["user"], $body, $_POST["avatar"]);
+        break;
 } // end switch
 
 ?>

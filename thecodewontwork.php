@@ -43,106 +43,50 @@ if ($archived) {
 </head>
 
 <body>
-
-	<!-- comment box was here-ish -->
-	<script> fileUploadStandby(); </script>
-
-	<!-- thread-header -->
-	<div class="thread-header" id="pageinfo"
+	<!--
+<div class="thread-header" id="pageinfo"
 		data-thread-id="<?php print($thread);?>"
 		data-channel-top="<?php print($channel_top);?>"
 		data-user-admin="<?php print $admin;?>"
-		data-thread-archived="<?php echo isArchived($channel_top, $thread);?>">
+		data-thread-archived="<?php echo isArchived($channel_top, $thread);?>"></div>
 
-		<!-- inputform -->
-		<form id="inputform" autocomplete="off" style="<?php echo $input_form;?>">
-			<textarea id="message" name="message" rows="6" cols="180"
-				style="margin-bottom: 5px;"></textarea>
-			<br> <input type="button" value="Submit"
-				onclick="submitMessage( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
+<input type="button" onclick="generateBasicMessage()">
+<div id="message-area"></div>
+  -->
 
-			<i class="material-icons import-share"><a
-				href="javascript:toggleImportDialog()" id="add-image">add_photo_alternate</a></i>
-			<i class="material-icons import-share"><a
-				href="javascript:toggleUploadDialog()">attach_file</a></i>
-		</form>
+	<div class="container" id="1" style="border-color: var(- -color-con-lightsky);">
+
+		<img class="a" src="default-img.png" alt="Avatar" style="border-color: var(- -color-con-lightsky);">
+
+		<div class="post-react">
+
+			<a class="post-react-a" href="javascript:likePost(1)">
+				<i class="material-icons post-react">expand_less</i>
+			</a>
+
+			<span class="post-react tally">0</span>
+
+			<span class="post-react-a" style="display:none"></span>
+
+			<a class="post-react-a"	href="javascript:dislikePost(1)">
+				<i class="material-icons post-react">expand_more</i>
+			</a>
+
+		</div>
+
+		<a href="userProfile.php?user=bdemerch">
+			<span class="name-left">bdemerch</span>
+		</a>
+
+		<div class="message-text">
+			BODY
+		</div>
+
+		<span class="right-corner">2018-12-03 01:28:42</span>
+		<br>
+		<span class="right-corner" onclick="killPost(1)"> delete post</span>
 
 	</div>
-	<!-- thread-header end-->
-
-	<!-- import-dialog-->
-	<div class="container import-dialog" id="import-dialog">
-		<div style="font-size: 21px; font-weight: bold;">
-			Enter the address of an image or upload your own: <a
-				href="javascript:toggleImportDialog()"><span class="close"><i
-					class=material-icons>close</i></span></a>
-		</div>
-
-		<hr>
-		<div class="import-frame">
-			<img class="import" id="img-img" src="add-img.png"
-				alt="no image selected">
-		</div>
-		<textarea rows="6" cols="56" id="img-comment"
-			placeholder="Enter a comment (optional)"
-			style="position: relative; vertical-align: top;"></textarea>
-		<hr>
-
-		<form action="#" method="post" id="web-src-form"
-			style="display: inline-block;">
-			<input type="url" name="web-img-src" id="web-img-src"
-				placeholder="Enter image URL..."> <input type=button
-				value="Fetch Image" name="submit-web-src"
-				onclick="javascript:urlImage()">
-		</form>
-		or
-		<form action="#" method="post" enctype="multipart/form-data"
-			id="import-form" style="display: inline-block;">
-
-
-			<input type="file" name="imgToUpload" id="imgToUpload"
-				accept="image/*">
-		</form>
-		<input type="button" value="Send Message" name="submit-message"
-			onclick="submitWithImage(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
-	</div>
-	<!-- import-dialog end -->
-
-	<!-- upload-dialog -->
-	<div class="container import-dialog" id="upload-dialog">
-		<div style="font-size: 21px; font-weight: bold;">
-			Upload a file: <a href="javascript:toggleUploadDialog()"><span
-				class="close"><i class=material-icons>close</i></span></a>
-		</div>
-
-		<hr>
-		<div class="import-frame">
-			<img class="import" id="file-pre" src="file-gen-30.png"
-				alt="no preview available">
-		</div>
-		<textarea rows="6" cols="56" id="file-comment"
-			placeholder="Enter a comment (optional)"
-			style="position: relative; vertical-align: top;"></textarea>
-		<hr>
-
-		<form action="#" method="post" enctype="multipart/form-data"
-			id="upload-form" style="display: inline-block;">
-
-
-			<input type="file" name="fileToUpload" id="fileToUpload">
-		</form>
-		<input type="button" value="Send Message" name="submit-message"
-			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
-	</div>
-	<!-- upload-dialog end -->
-
-	<div class="message-area" id="message-area">
-	<?php echo fetch_messages($thread, $channel_top, 1, 1, $admin); ?>
-
-
-
-
-</div>
 
 </body>
 </html>

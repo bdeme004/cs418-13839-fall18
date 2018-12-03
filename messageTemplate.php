@@ -1,14 +1,14 @@
 <?php
 
 class message{
-    
+
     protected $name;
     protected $avatar;
     protected $body;
     protected $time;
     protected $tally;
     protected $key;
-    
+
     function __construct()
     {
         $a = func_get_args();
@@ -26,10 +26,10 @@ class message{
             $this->time=803;
             $this->tally=803;
             $this->key=803;
-            
+
         }
     }
-    
+
     function set_message($_name, $_avatar, $_body, $_time, $_key){
         $this->name=$_name;
         $this->avatar=test_image($_avatar);
@@ -38,7 +38,7 @@ class message{
         $this->tally=803;
         $this->key=$_key;
     }
-    
+
     function new_from_data($_newraw){
        if((count($_newraw))>4)
        {
@@ -50,35 +50,35 @@ class message{
         $this->tally=$_newraw[5];
        }
        else
-       { 
+       {
        $this->name="ERROR";
        $this->body="ERROR";
        $this->time=803;
        $this->tally=803;
        $this->key=803;
        $this->avatar="default_img.png";
-       }      
+       }
     }
-    
+
     function print_message()
     {echo nl2br($this->name .": \"" . $this->body . "\" (". $this->time . ")\n");}
-    
+
     function print_with_format($odd, $channel_top, $admin)
     {
         if($admin=="1")
             $killPost_display=" onclick=\"killPost(".$this->key.")\"> delete post";
         else
             $killPost_display="> ";
-      
+
         if ($odd==0)
             $color="--color-acc-".$channel_top;
-        else 
+        else
             $color="--color-con-".$channel_top;
-        
-          //  $tally=40;     
-            
 
-            
+          //  $tally=40;
+
+
+
             print("<div class=\"container\" id=\"".$this->key."\" style=\"border-color:var(".$color.");\">
                     <img class=\"a\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(".$color.");\">
                     <div class=\"post-react\">
@@ -91,26 +91,37 @@ class message{
                     <div class=\"message-text\"><p>".$this->body."</p></div>
                     <span class=\"right-corner\">".$this->time."</span>
                     <br><span class=\"right-corner\"".$killPost_display."</span></div>");
-            
+
 
 
     }
-    
+
     function print_as_searchresult($odd, $channel_top)
-    { 
-        
+    {
+
         if (($odd%2)==0)
             $color="--color-acc-".$channel_top;
         else
             $color="--color-con-".$channel_top;
-        
+
         print( "    <a href=\"userProfile.php?user=".$this->name."\" class=\"name-center-a\">
                     <div class=\"container\" style=\"border-color:var(".$color.");\">
                     <img class=\"search-user\" src=\"".$this->avatar."\" alt=\"Avatar\" style=\"border-color:var(".$color.");\">
                     <div class=\"name-center\">".$this->name."</div></div></a>"
                     );
     }
-    
+
+    function get_json(){ //there may have been a better way to do this. but I got fed up.
+        $array=array();
+        $array["name"] = $this->name;
+        $array["body"] = $this->body;
+        $array["avatar"] = $this->avatar;
+        $array["time"] = $this->time;
+        $array["tally"] = $this->tally;
+        $array["key"] = $this->key;
+        return json_encode($array);
+    }
+
 //===================================
   //-----------------------------------
     function get_name() {
@@ -139,7 +150,7 @@ class message{
         $this->key=$new;
     }
 //===================================
-    
+
 }
 //=======================================================================
 ?>

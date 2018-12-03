@@ -76,6 +76,6 @@ else{
     $result="add-img.png";
     $result= "完全失敗";
 }
-print $result;
+//print $result;
 
 ?>

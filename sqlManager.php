@@ -264,7 +264,7 @@ function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
                     }
                 }
             }
-            else print "nope: ". $conn->error. ": ".$sql;
+          //  else print "nope: ". $conn->error. ": ".$sql;
         }
 
    // if(0==1){}
@@ -320,5 +320,36 @@ function tally_reactions($chKey){
     }
     else print "nope: ". $conn->error. ": ".$sql;
 }
+
+function new_message_json($user, $body, $avatar){
+    $new1= new message($user, $body, $avatar, 803, 803);
+
+    echo $new1->get_json();
+
+}
+/*
+function update_thread($body, $channel_top, $thread, $user, $avatar, $admin){
+    $conn=set_connection("threads");
+    $stmt="INSERT INTO ". $thread." (user, body, avatar) VALUES (?,?,?)";
+    $sql = $conn->prepare($stmt);
+
+    $user=$user;
+    $avatar=$avatar;
+    $body=$body;
+
+    $sql->bind_param("sss", $user, $body, $avatar);
+
+    if($sql->execute()){
+        fetch_messages($thread, $channel_top, 1, 10, $admin);
+
+    }
+    else
+    {echo ("Sorry, Message not sent.");
+    echo $conn->error;
+    print("<br> ".$stmt);
+    }
+} */
+
+
 
 ?>
