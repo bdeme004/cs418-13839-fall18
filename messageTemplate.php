@@ -84,6 +84,7 @@ class message{
                     <div class=\"post-react\">
                     <a class=\"post-react-a\" href=\"javascript:likePost(".$this->key.")\"> <i class=\"material-icons post-react\">expand_less</i></a>
                     <span class=\"post-react tally\">".$this->tally."</span>
+                    <span class=\"post-react-a\" style=\"display:none\";></span>
                     <a class=\"post-react-a\" href=\"javascript:dislikePost(".$this->key.")\"> <i class=\"material-icons post-react\">expand_more</i></a>
                     </div>
                     <a href=\"userProfile.php?user=".$this->name."\"><span class=\"name-left\">".$this->name."</span></a>

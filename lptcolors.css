@@ -23,11 +23,11 @@
 
 body{
 	background-color:var(--color-sub-bcg);
-	margin-left: 150px; 
+	margin-left: 150px;
 	margin-top: 100px;
 	padding: 10px 10px;
     }
-    
+
 .container {
     border: 2px solid #c88bff;
     background-color: var(--color-main-textbox);
@@ -91,6 +91,39 @@ body{
 	object-fit:cover;
   }
 
+.container.file-display{
+    border: 2px solid #333;
+    background-color:#aaa;
+    border-radius: 5px;
+    min-height:50px;
+    max-width:500px;
+     padding: 5px 2px 2px 2px;
+    /* margin: 0 8px 8px 8px; */
+    position: relative;
+    top:25px;
+}
+
+.thumb-frame{
+	display: inline-block;
+	position: relative;
+	line-height: 72px;
+	left: -10px;
+	width: 50px;
+	height:50px;
+	border: 2px solid #333;
+	background-color:#818181;
+	border-radius:5px;
+	margin-right: 18px;
+}
+
+.thumb-frame img.import-display{
+	position: relative;
+	display:block;
+	width: 50px;
+	height:50px;
+	object-fit:cover;
+  }
+
 .thread-header
 {
 	position:fixed;
@@ -146,20 +179,17 @@ padding-top:8px;
     color: #aaa;
 }
 
-/*currently fighting with the display of the post reactions. 
-no clue if this last change worked because the net went out.
-Guess I'm going on break */
 .post-react{
 	float: left;
     position: relative;
    	display: inline-block;
 	font-size:10px;
-	top:39px; 
-	left:-27px;    
+	top:39px;
+	left:-27px;
 }
 
 .post-react a{
-	color: #aaa; 
+	color: #aaa;
 	text-decoration: none;
 }
 
@@ -175,15 +205,14 @@ Guess I'm going on break */
 	font-weight:bold;
 	top:41px;
 	}
-  
-  .material-icons post-react{
+
+.material-icons post-react{
   color:#aaa;
 	font-size:17px;
 	font-weight:bold;
 	padding-left:50px;
-  
   }
-  
+
 .page-count{
 	position:fixed;
 	z-index: 1;
@@ -191,11 +220,11 @@ Guess I'm going on break */
 	background-color: var(--color-sub-bcg);
 	width:100%;
 	text-align:center;
-} 
+}
 
 .message-area{
 	position:absolute;
-	top:287px; 
+	top:287px;
 	width:88%;
 }
 
@@ -205,7 +234,7 @@ Guess I'm going on break */
 }
 
 .container img.embed{
-	
+
 	position: relative;
 	border: none;
     float: top;
@@ -214,7 +243,7 @@ Guess I'm going on break */
     margin-right: 100px;
     margin-top:24px;
     z-index: 0;
-	
+
 }
 
 .container img.a {
@@ -244,7 +273,7 @@ Guess I'm going on break */
     margin-top:24px;
     z-index: 0;
    }
-   
+
    .container img.search-user {
 	position: relative;
 	border-radius: 50%;
@@ -255,10 +284,10 @@ Guess I'm going on break */
     width: 100%;
     margin-right:30px;
     margin-top:12px;
-    margin-left:14px; 
+    margin-left:14px;
     z-index: 0;
    }
-   
+
 
 .right-corner {
     float: right;
@@ -273,18 +302,18 @@ Guess I'm going on break */
 	display: inline-block;
 	left:-123px;
     float: left;
-    color: #aaa; 
+    color: #aaa;
 	margin-top: auto;
 }
 
 .name-left a{
-	color: #aaa; 
+	color: #aaa;
 	text-decoration: none;
 }
 
 .name-center{
 	position:relative;
-	
+
 	padding-top: 25px;
 	display:inline-block;
 	font-size:28px;
@@ -292,7 +321,7 @@ Guess I'm going on break */
 }
 
 a.name-center-a{
-	color: #aaa; 
+	color: #aaa;
 	text-decoration: none;
 }
 
@@ -307,8 +336,8 @@ a.name-center-a:hover {
 .topnav{
 	position:fixed;
     background-color: #181818;
-	width:100%; 
-	height: 77px; 
+	width:100%;
+	height: 77px;
 	top:0;
 	left:0;
 	padding-left: 20px;
@@ -330,7 +359,7 @@ a.name-center-a:hover {
 
 .accent{
     background-color: #ff8bcb;
-	height: 13px; 
+	height: 13px;
 	top:69px;
 	padding-top:0;
 	z-index:2;
@@ -350,7 +379,7 @@ a.name-center-a:hover {
 
 /* The sidebar menu */
 .sidenav {
-    height: 100%; 
+    height: 100%;
     width: 160px;
     position: fixed;
 	top:0;
@@ -415,13 +444,45 @@ a.name-center-a:hover {
 .dropdown:hover .dropdown-content {display: block;}
 
 
-.material-icons.archived { 
+.material-icons.archived {
 	font-size: 60px;
 	color:#181818;
-	margin-left: 15px; 
-	margin-top:10px; 
-	margin-right:10px; 
+	margin-left: 15px;
+	margin-top:10px;
+	margin-right:10px;
 	margin-bottom:10px;
+}
+
+.material-icons import-share{
+  	color:#aaa;
+	font-size:17px;
+	font-weight:bold;
+  }
+
+.filename-display{
+	position:relative;
+	left:-20px;
+	top:-4px;
+	font-size:16px;
+}
+
+.filename-display a{
+	color:#181818;
+
+}
+
+.filename-display a:hover{
+	/* color:#818181; */
+	background-color: #ccc;
+}
+  .import-share a{
+	color: #aaa;
+	text-decoration: none;
+}
+
+.import-share a:hover{
+	color:#f1f1f1;
+	text-decoration: none;
 }
 
 /*temp-- C&P from W3 schools */

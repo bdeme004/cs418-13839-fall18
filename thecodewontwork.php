@@ -1,55 +1,148 @@
+<?php
+session_start();
+require_once 'messageTemplate.php';
+require_once 'htmlManager.php';
+require_once 'sqlManager.php';
+require_once 'upload.php';
+// ----------------------------------------------------------
+
+if (! isset($_SESSION["user"])) {
+    header("Location: index.php?login=0");
+}
+
+$channel_top = "lightsky";
+$thread = "TCWW";
+$admin = $_SESSION["admin"];
+
+$archived = isArchived($channel_top, $thread);
+
+$conn = set_connection("threads");
+generate_thread($conn, $thread);
+
+navbars($channel_top);
+
+if ($archived) {
+    $input_form = "display:none";
+} else {
+    $input_form = "";
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Testing - lptColors</title>
+<title>Thread - lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="lptcolors.js"></script>
+
 </head>
+
 <body>
-<?php
 
-include "sqlManager.php";
+	<!-- comment box was here-ish -->
+	<script> fileUploadStandby(); </script>
+
+	<!-- thread-header -->
+	<div class="thread-header" id="pageinfo"
+		data-thread-id="<?php print($thread);?>"
+		data-channel-top="<?php print($channel_top);?>"
+		data-user-admin="<?php print $admin;?>"
+		data-thread-archived="<?php echo isArchived($channel_top, $thread);?>">
+
+		<!-- inputform -->
+		<form id="inputform" autocomplete="off" style="<?php echo $input_form;?>">
+			<textarea id="message" name="message" rows="6" cols="180"
+				style="margin-bottom: 5px;"></textarea>
+			<br> <input type="button" value="Submit"
+				onclick="submitMessage( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
+
+			<i class="material-icons import-share"><a
+				href="javascript:toggleImportDialog()" id="add-image">add_photo_alternate</a></i>
+			<i class="material-icons import-share"><a
+				href="javascript:toggleUploadDialog()">attach_file</a></i>
+		</form>
+
+	</div>
+	<!-- thread-header end-->
+
+	<!-- import-dialog-->
+	<div class="container import-dialog" id="import-dialog">
+		<div style="font-size: 21px; font-weight: bold;">
+			Enter the address of an image or upload your own: <a
+				href="javascript:toggleImportDialog()"><span class="close"><i
+					class=material-icons>close</i></span></a>
+		</div>
+
+		<hr>
+		<div class="import-frame">
+			<img class="import" id="img-img" src="add-img.png"
+				alt="no image selected">
+		</div>
+		<textarea rows="6" cols="56" id="img-comment"
+			placeholder="Enter a comment (optional)"
+			style="position: relative; vertical-align: top;"></textarea>
+		<hr>
+
+		<form action="#" method="post" id="web-src-form"
+			style="display: inline-block;">
+			<input type="url" name="web-img-src" id="web-img-src"
+				placeholder="Enter image URL..."> <input type=button
+				value="Fetch Image" name="submit-web-src"
+				onclick="javascript:urlImage()">
+		</form>
+		or
+		<form action="#" method="post" enctype="multipart/form-data"
+			id="import-form" style="display: inline-block;">
 
 
-?>
+			<input type="file" name="imgToUpload" id="imgToUpload"
+				accept="image/*">
+		</form>
+		<input type="button" value="Send Message" name="submit-message"
+			onclick="submitWithImage(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
+	</div>
+	<!-- import-dialog end -->
 
-<!-- Moved from thread.php for storage because I'm not using it yet and it's cluttering the page. 
-<div class="container" id="commentBox" style=" position:fixed; z-index: 2; display:none; width:100%;">
-<!--   <form autocomplete="off" > 
-<!--     <textarea placeholder="Type comment..." id="comment" required></textarea> 
+	<!-- upload-dialog -->
+	<div class="container import-dialog" id="upload-dialog">
+		<div style="font-size: 21px; font-weight: bold;">
+			Upload a file: <a href="javascript:toggleUploadDialog()"><span
+				class="close"><i class=material-icons>close</i></span></a>
+		</div>
 
-    <input type="button" class="btn" value="Submit" onclick="postComment(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>	, getElementById('comment').value);">
-    <input type="button" class="btn cancel" value="Close" onclick="hideCommentBox()">
-<!--   </form> 
-<!-- </div> -->
+		<hr>
+		<div class="import-frame">
+			<img class="import" id="file-pre" src="file-gen-30.png"
+				alt="no preview available">
+		</div>
+		<textarea rows="6" cols="56" id="file-comment"
+			placeholder="Enter a comment (optional)"
+			style="position: relative; vertical-align: top;"></textarea>
+		<hr>
 
-     <div class="container" id="this-key" style="border-color:var(--color-acc-monarchs);">
-                <img class="a" src="this-avatar" alt="Avatar" style="border-color:var(--color-acc-monarchs);">
-                <div class="post-react">
-                    <a href="javascript:likePost('this-key')"> <i class="material-icons post-react">expand_less</i></a>
-                    <span class="post-react tally">2</span>   
-                    <a href="javascript:dislikePost('this-key')"> <i class="material-icons post-react">expand_more</i></a>
-                </div>
-                <a href="userProfile.php?user=this-name"><span class="name-left">this-name</span></a>
-                <div class="message-text"><p>のはいいけど、このままじゃテキストの量を増やせば問題になるんじゃないかと。なるの？ならないの？っていうか、どっちがいいんだろうね。まあ、こっちくらいは大丈夫みたいね。KILLPOSTDISPLAYは何やってるかわあかんないけど。</p></div>
-                <span class="right-corner">"this-time"</span>
-                <br><span class="right-corner">killPost_display</span></div>
+		<form action="#" method="post" enctype="multipart/form-data"
+			id="upload-form" style="display: inline-block;">
 
-        <div class="container" id="$this->key" style="border-color:var($color);">
-                <img class="a" src="$this->avatar" alt="Avatar" style="border-color:var($color);">
-                <span class="post-react">
-                    <a class="post-react-a" href="javascript:likePost($this->key)"> <i class="material-icons"> keyboard_arrow_up </i> </a>
-                    <a class="post-react-a" href="javascript:dislikePost($this->key)"> <i class="material-icons"> keyboard_arrow_down </i> </a>
-                </span>
-                <a href="userProfile.php?user=$this->name"><span class="name-left">$this->name</span></a>
-                <div class="message-text"><p>$this->body</p></div>
-                <span class="right-corner">$this->time</span>
-                <br><span class="right-corner">$killPost_display</span></div>
 
+			<input type="file" name="fileToUpload" id="fileToUpload">
+		</form>
+		<input type="button" value="Send Message" name="submit-message"
+			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
+	</div>
+	<!-- upload-dialog end -->
+
+	<div class="message-area" id="message-area">
+	<?php echo fetch_messages($thread, $channel_top, 1, 1, $admin); ?>
+
+
+
+
+</div>
 
 </body>
-
-
-
 </html>

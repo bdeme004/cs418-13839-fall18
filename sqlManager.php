@@ -8,14 +8,14 @@ function test_input($data) {
 /*      $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);  */
-    
+
     //------------------------------------------------------------------------
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
     $data=$purifier->purify($data);
-    
+
     //-------------------------------------------------------------------------
-    
+
     return $data;
 }
 
@@ -24,13 +24,13 @@ function set_connection($_dbname){
     $username = "admin";
     $password = "monarchs";
     $dbname = $_dbname;
-    
+
     $conn = new mysqli($servername, $username, $password, $dbname);
-    
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    
+
     return $conn;
 }
 
@@ -48,7 +48,7 @@ function fetch_messages ($thread, $channel_top, $page, $cap, $admin) {
                 array_push($newraw, $field);
             }
             $newmess=new message($newraw);
-          
+
             if($index>=$first && $index<=$last )
             {
             $newmess->print_with_format(($index%2), $channel_top, $admin);
@@ -60,7 +60,7 @@ function fetch_messages ($thread, $channel_top, $page, $cap, $admin) {
 }
 
 function generate_thread($conn, $thread_index) {
-    
+
     $conn->query("CREATE TABLE IF NOT EXISTS `".$thread_index."` (
   `user` varchar(13) NOT NULL,
   `body` text NOT NULL,
@@ -83,10 +83,10 @@ while ($row=$result->fetch_assoc())
 {
     $name=$row["handle"];
     $avatar=$row["avatar"];
-    
+
     $user= new message($name, $avatar, "", 803, 803);
     $user->print_as_searchresult($odd, "monarchs");
-    
+
     $odd++;
     }
 }
@@ -122,16 +122,16 @@ function update_thread($body, $channel_top, $thread, $user, $avatar, $admin){
     $conn=set_connection("threads");
     $stmt="INSERT INTO ". $thread." (user, body, avatar) VALUES (?,?,?)";
     $sql = $conn->prepare($stmt);
-    
+
     $user=$user;
     $avatar=$avatar;
     $body=$body;
-   
+
     $sql->bind_param("sss", $user, $body, $avatar);
-    
+
     if($sql->execute()){
-        fetch_messages($thread, $channel_top, 1, 10, $admin);   
-      
+        fetch_messages($thread, $channel_top, 1, 10, $admin);
+
     }
     else
     {echo ("Sorry, Message not sent.");
@@ -180,18 +180,18 @@ function toggle_thread_archived($channel_top, $thread, $new_archive_setting)
        else
        update_channel($channel_top, 1);
     }
-    else echo $conn->error . $sql; 
+    else echo $conn->error . $sql;
 }
 
 ////i'm sure there's a better way to do this @_@
 function isArchived($channel_top, $thread){
     $conn=set_connection("channels");
     $sql= "SELECT chArchived from ".$channel_top." WHERE chIndex='".$thread."'";
-    
+
     if($result=$conn->query($sql))
     {
         return $result->fetch_assoc()["chArchived"];
-        
+
     }
     else  return $conn->error. $sql;
 }
@@ -203,9 +203,9 @@ function test_image($src){
             return "default_img_inf.png"; //...return the "image not found" fallback.
         }
     }
-    return $src; // just return it as-is.  
+    return $src; // just return it as-is.
 }
-    
+
 function use_default($user){
     return get_gravatar($user);
 }
@@ -225,14 +225,17 @@ function get_gravatar($user){
         }
     }
    // print $conn->error. $sql; // this is seriously bad error handling @_@
-    
+
 }
 
 function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
+
     $conn=set_connection("threads");
-    
-  /*   $sql0="SELECT (EXISTS (SELECT * FROM reactions WHERE chKey='".$chKey."' AND userRX='".$userRX."')) AS 'recordExists'";
-    
+
+   $tally=0;
+   $no_effect=true;
+   $sql0="SELECT (EXISTS (SELECT * FROM reactions WHERE chKey='".$chKey."' AND userRX='".$userRX."')) AS 'recordExists'";
+
     if ($result=$conn->query($sql0)){
         $record_exists=(bool)$result->fetch_assoc()['recordExists'];
         if($record_exists)
@@ -240,18 +243,37 @@ function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
             $sql= "UPDATE reactions SET rxCode=".$rxCode." WHERE chKey=\"".$chKey."\" AND userRX=\"".$userRX."\"";
             if($conn->query($sql))
             {
-              //  print "user ".$userRX." changed score of post to ".$rxCode;
+                if($conn->affected_rows){
+                    $no_effect=false;
+                    $sql= "SELECT SUM(rxCode) as 'total' FROM reactions WHERE chKey=".$chKey;
+                    if($result=$conn->query($sql))
+                    {
+                        $total=($result->fetch_assoc()["total"]);
+                        $sql2="UPDATE ".$thread." SET tally=(".$total.") WHERE chKey=".$chKey;
+                    }
+
+
+                }
+
+                if($no_effect || $conn->query($sql2))
+                {
+                    if($result=$conn->query("SELECT tally FROM ".$thread." WHERE chKey=".$chKey))
+                    {
+                        $tally= $result->fetch_assoc()["tally"];
+                        print $tally;
+                    }
+                }
             }
             else print "nope: ". $conn->error. ": ".$sql;
-        } */
-    
-    if(0==1){}
+        }
+
+   // if(0==1){}
         else {
             $stmt="INSERT INTO reactions (thIndex, chKey, rxCode, userOP, userRX) VALUES (?,?,?,?,?)";
             $sql = $conn->prepare($stmt);
-            
+
             $sql->bind_param("siiss", $thread, $chKey, $rxCode, $userOP, $userRX);
-            
+
             if($sql->execute()){
                 $sql2="UPDATE ".$thread." SET tally=(tally+".$rxCode.") WHERE chKey=".$chKey;
 
@@ -259,7 +281,8 @@ function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
                 {
                     if($result=$conn->query("SELECT tally FROM ".$thread." WHERE chKey=".$chKey))
                     {
-                        print $result->fetch_assoc()["tally"];
+                        $tally= $result->fetch_assoc()["tally"];
+                        print $tally;
                     }
                 }
                 else {
@@ -270,8 +293,11 @@ function add_reaction($thread, $chKey, $rxCode, $userOP, $userRX){
             }
         }
     }
- //   else { print "nope: ". $conn->error.": ".$sql0;}
-//}
+   else { print "nope: ". $conn->error.": ".$sql0;
+   }
+
+
+}
 
 
 function remove_reaction($chKey, $userRX){
@@ -282,10 +308,10 @@ function remove_reaction($chKey, $userRX){
        print "Removed user ".$userRX."'s reaction to post #".$chKey;
     }
     else print "nope: ". $conn->error. ": ".$sql;
-}  
-    
+}
+
 function tally_reactions($chKey){
-    
+
     $conn=set_connection("threads");
     $sql= "SELECT SUM(rxCode) as 'total' FROM reactions WHERE chKey=".$chKey;
     if($result=$conn->query($sql))
