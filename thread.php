@@ -110,6 +110,7 @@ if ($archived) {
 		</form>
 		<input type="button" value="Send Message" name="submit-message"
 			onclick="submitWithImage(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
+        <div id="import-error"> </div>
 </div>
 <!-- import-dialog end -->
 
@@ -138,6 +139,7 @@ if ($archived) {
 		</form>
 		<input type="button" value="Send Message" name="submit-message"
 			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
+        <div id="upload-error"> </div>
 	</div>
 	<!-- upload-dialog end -->
 
@@ -153,7 +155,7 @@ if ($archived) {
 	<div class="message-area" id="message-area">
 
 
-	<?php echo fetch_messages($thread, $channel_top, 1, 10, $admin); ?>
+	<?php echo fetch_messages($thread, $channel_top, "threads", $admin); ?>
 
 </div>
 

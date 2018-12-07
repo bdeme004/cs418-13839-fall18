@@ -1,14 +1,23 @@
 <?php
 $target_dir = "";
 $result= "Failed from the getgo, huh?";
+
+$whitelist=array("txt", "pdf", "doc", "docx", "rtf", "odt", "pptx", "ppt", "odp", "gif", "png", "jpg", ".bmp", "svg", "xlsx", "xlsx", "mp3", "ogg", "wav", "m4a");
+
+
 if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
     if (isset($_FILES["imgToUpload"])){
-
 
     //--------------------------------------------------------
        // $target_dir="img/"
         $target_file = $target_dir . basename($_FILES["imgToUpload"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        
+        if(!(in_array($imageFileType, $whitelist, TRUE)))
+        {
+            $result=0;
+        }
+        else{
 
         if ($target_file != null) {
             $check = getimagesize($_FILES["imgToUpload"]["tmp_name"]);
@@ -33,6 +42,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
                 }
             }
         }
+        }
     //--------------------------------------------------------
 
 
@@ -43,7 +53,14 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
         //temp- assumes users don't break things (LOL)
 
         $target_file = basename($_FILES["fileToUpload"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        
+        if(!(in_array($imageFileType, $whitelist, TRUE)))
+        {
+            $result=0;
+        }
+        
+        else{
 
         if ($target_file != null) {
             $check = filesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -70,12 +87,12 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
               }
         }
     }
-
+    }
 }
 else{
     $result="add-img.png";
-    $result= "完全失敗";
+   // $result= "完全失敗";
 }
-//print $result;
+print $result;
 
 ?>

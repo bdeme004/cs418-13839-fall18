@@ -21,7 +21,7 @@ class message{
         else
         {
             $this->name="DNE";
-            $this->body="DNE";
+            $this->body="";
             $this->avatar="default_img.png";
             $this->time=803;
             $this->tally=803;

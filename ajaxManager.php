@@ -1,27 +1,25 @@
 <?php
 require_once 'sqlManager.php';
+require_once 'directTemplate.php';
 require_once 'messageTemplate.php';
 require_once 'threadTemplate.php';
 
-if (isset($_GET['op']))
-    $op = intval($_GET['op']);
-else
     $op = intval($_POST['op']);
 
 switch ($op) {
 
     case 1:
-        $q = test_input($_GET['q']);
+        $q = test_input($_POST['q']);
         search_users($q);
         break;
 
     case 2:
         $body = test_input($_POST["message"]);
-        update_thread($body, $_POST["top"], $_POST["thread"], $_POST["user"], $_POST["avatar"], $_POST["admin"]);
+        update_thread($body, $_POST["thread"], $_POST["user"], $_POST["avatar"], $_POST["admin"], $_POST["top"], $_POST["dbname"]);
         break;
 
     case 3:
-        fetch_messages($_POST["thread"], $_POST["top"], $_POST["page"], 10, $_POST["admin"]);
+        fetch_messages($_POST["thread"], $_POST["top"], "threads", $_POST["admin"]);
         break;
 
     case 4:
@@ -45,12 +43,31 @@ switch ($op) {
         break;
 
     case 9:
-        remove_reaction($_POST["chKey"], $_POST["userRX"]);
+        add_reaction($_POST["thread"], $_POST["chKey"], $_POST["rxCode"], $_POST["userOP"], $_POST["userRX"], "direct");
         break;
 
     case 10:
         $body = test_input($_POST["message"]);
         new_message_json($_POST["user"], $body, $_POST["avatar"]);
+        break;
+        
+    case 11:
+        new_message_raw();
+        break;
+        
+    case 12: //temp; stupid
+        $q = test_input($_POST["q"]);
+        user_exists($q);
+        break;
+        
+    case 13: 
+        $message = test_input($_POST["message"]);
+        $recipient= test_input($_POST["recipient"]);
+        send_direct_message($_POST["sender"], $recipient, $message, $_POST["avatar"]);
+        break;
+        
+    default:
+        print "default";
         break;
 } // end switch
 

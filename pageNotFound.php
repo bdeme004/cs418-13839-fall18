@@ -23,5 +23,38 @@ navbars("monarchs");
 <span class="right-corner">Time is a myth</span>
 </div>
 </div>
+    
+    <?php
+    function fetch_messages ($thread, $channel_top, $page, $cap, $admin) {
+    $conn=set_connection("threads");
+    $sql="SELECT * FROM `" . $thread . "` ORDER BY chKey DESC";
+    if($result=$conn->query($sql)){
+    $index=1;
+    $first=1+(10*($page-1));
+    $last=$first+9;
+    while($row= ($result->fetch_assoc())){
+    $newraw=array();
+    foreach ($row as $field){
+    array_push($newraw, $field);
+    }
+    $newmess=new message($newraw);
+
+    if($index>=$first && $index<=$last )
+                                      {
+                                      $newmess->print_with_format(($index%2), $channel_top, $admin);
+    $index=$index+1;
+    }
+    }
+    }
+    else echo("Error executing ". $sql. ": ".$conn->error);
+    }
+    ?>
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>

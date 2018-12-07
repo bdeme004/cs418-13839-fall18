@@ -48,6 +48,7 @@ function login_info()
                                  <div class=\"dropdown-content\" >
                                 <a href=\"setAvatar.php\">Change Avatar</a>
                                 <a href=\"searchUsers.php\">Search Users</a>
+                                <a href=\"inbox.php\">Direct Messaging</a>
                                 <a href=\"pageNotFound.php\">Help</a>
                                 <a href=\"logout.php\">Log out</a>
                               </div>

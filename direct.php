@@ -6,28 +6,6 @@ require_once 'sqlManager.php';
 require_once 'upload.php';
 // ----------------------------------------------------------
 
-if (! isset($_SESSION["user"])) {
-    header("Location: index.php?login=0");
-}
-
-$channel_top = $_GET["top"];
-$thread = $_GET["thread"];
-$admin = $_SESSION["admin"];
-
-$archived = isArchived($channel_top, $thread);
-
-$conn = set_connection("threads");
-generate_thread($conn, $thread);
-
-navbars($channel_top);
-
-if ($archived) {
-    $input_form = "display:none";
-    $archive_notice = "";
-} else {
-    $archive_notice = "display:none";
-    $input_form = "";
-}
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +21,37 @@ if ($archived) {
 </head>
 
 <body>
+    
+    <?php
+    if (! isset($_SESSION["user"])) {
+    header("Location: index.php?login=0");
+    }
+
+    $channel_top = "direct";
+    //$thread = $_GET["thread"];
+    $input_form = "display:inline-block;";
+    $admin = 1;
+
+   // $partner = "@mater";
+    //$thread = get_DM_key($_SESSION["user"], $partner);
+    
+    $thread=$_GET["user"];
+    
+    
+    //$archived = isArchived($channel_top, $thread);
+
+    $conn = set_connection("direct");
+    generate_thread($conn, $thread);
+
+    navbars("monarchs");
+    ?>
 
 	<!-- comment box was here-ish -->
-	<script>fileUploadStandby();</script>
-
+	<script>//fileUploadStandby();</script>
+    
     <!-- thread-header -->
 	<div class="thread-header" id="pageinfo"
+        data-message-type="direct";
 		data-thread-id="<?php print($thread);?>"
 		data-channel-top="<?php print($channel_top);?>"
 		data-user-admin="<?php print $admin;?>"
@@ -59,29 +62,22 @@ if ($archived) {
 			<textarea id="message" name="message" rows="6" cols="180"
 				style="margin-bottom: 5px;"></textarea>
 			<br> <input type="button" value="Submit"
-				onclick="submitMessage( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
+				onclick="submitDirectMessage(getElementById('message').value)">
 
 			<i class="material-icons import-share"><a
 				href="javascript:toggleImportDialog()" id="add-image">add_photo_alternate</a></i>
 			<i class="material-icons import-share"><a
 				href="javascript:toggleUploadDialog()">attach_file</a></i>
 		</form>
-
-		<div class="container archive-notice" id="archive-notice" style="<?php echo $archive_notice;?>">
-			<i class="material-icons archived">lock</i> <span
-				style="font-size: 24px; position: relative; bottom: 18px;"> This
-				post has been archived by an administrator and no new posts,
-				comments, or edits can be made. </span>
-		</div>
-
 	</div>
 	<!-- thread-header end-->
 
 	<!-- import-dialog-->
+    <!--
 	<div class="container import-dialog" id="import-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Enter the address of an image or upload your own: <a
-				href="javascript:toggleImportDialog()"><span class="close"><i
+				href="javascript:toggleDialog()"><span class="close"><i
 					class=material-icons>close</i></span></a>
 		</div>
 
@@ -114,6 +110,7 @@ if ($archived) {
 <!-- import-dialog end -->
 
 	<!-- upload-dialog -->
+    <!--
 	<div class="container import-dialog" id="upload-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Upload a file: <a href="javascript:toggleUploadDialog()"><span
@@ -138,7 +135,7 @@ if ($archived) {
 		</form>
 		<input type="button" value="Send Message" name="submit-message"
 			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
-	</div>
+    </div>-->
 	<!-- upload-dialog end -->
 
 	<div class="page-count">
@@ -153,7 +150,7 @@ if ($archived) {
 	<div class="message-area" id="message-area">
 
 
-	<?php echo fetch_messages($thread, $channel_top, 1, 10, $admin); ?>
+	<?php echo fetch_messages($thread, $channel_top, "direct", 0); ?>
 
 </div>
 
