@@ -30,7 +30,7 @@ function submitDirectMessage(mess) {
 }
 
 function updateThread(user, avatar, mess, admin, dbname) {
-
+    
     dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
     
     var thread = getPageInfo("thread-id");
@@ -59,7 +59,8 @@ function updateThread(user, avatar, mess, admin, dbname) {
 
 //gaaaaaaaaaaah I ended up fixing things properly anywaaaaaaaaaaay!
 //serves me right for tying to cheat, I guess.
-function updateDirect(user, avatar, mess, admin) {
+
+/*function updateDirect(user, avatar, mess, admin) {
     
    // window.alert(user+" "+avatar+" "+mess+" "+admin);}
 
@@ -82,7 +83,7 @@ function updateDirect(user, avatar, mess, admin) {
         "application/x-www-form-urlencoded");
     xmlhttp.send("op=13&message=" +
         mess + "&sender=" + user + "&avatar=" + avatar + "&recipient=" + recipient+"inbox=false");
-}
+}*/
 
 /*
  * function loadPage(page){ thread=getPageInfo(thread-id);
@@ -240,15 +241,15 @@ function toggleArchiveMode() {
 
 function clickThread(thread) {
 
-    archived = Boolean(document.getElementById(thread).getElementsByClassName(
+    var archived = Boolean(document.getElementById(thread).getElementsByClassName(
         "thr-archived")[0].innerHTML);
 
-    channelTop = getPageInfo("channel-top");
+    var channelTop = getPageInfo("channel-top");
 
     if (archiveModeOn()) {
         toggleThreadArchived(channelTop, thread, archived);
     } else {
-        target = "thread.php?top=" + channelTop + "&thread=" + thread;
+        var target = "thread.php?top=" + channelTop + "&thread=" + thread;
 
         window.location.assign(target);
 
@@ -269,8 +270,9 @@ function clickThread(thread) {
 
 function toggleThreadArchived(channelTop, thread, archiveSwitch) {
 
+    var confirmText;
     if (archiveSwitch == true) { // jshint ignore:line
-        confirmText = "This thread will be restored, allowing further edits. The thread can be archived again later. Restore thread?";
+        confirmText= "This thread will be restored, allowing further edits. The thread can be archived again later. Restore thread?";
     } else {
         confirmText = "This thread will be archived and no further edits will be allowed. The thread can be restored later. Archive thread?";
     }
@@ -296,7 +298,7 @@ function toggleThreadArchived(channelTop, thread, archiveSwitch) {
 }
 
 function toggleDialog(dialog_id) {
-    modal = document.getElementById(dialog_id);
+    var modal = document.getElementById(dialog_id);
 
     if (modal.style.display == "inline-block") {
         modal.style.display = "none";
@@ -354,7 +356,7 @@ function fileUploadStandby() {
             xmlhttp.onreadystatechange = function () {
                 // window.alert(this.readyState+" "+this.status);
                 if (this.readyState == 4 && this.status == 200) {
-                    window.alert(typeof (this.responseText));
+                  //  window.alert(typeof (this.responseText));
                     if (this.responseText == "0") {
                         document.getElementById("upload-error").innerHTML =
                             "Sorry, this filetype is not supported.";
@@ -390,8 +392,10 @@ function toggleUploadDialog() {
     }
 }
 
-function submitWithFile(user, avatar) {
-    admin = getPageInfo("user-admin");
+function submitWithFile(user, avatar, dbname) {
+    
+    dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
+    var admin = getPageInfo("user-admin");
 
     filename = document.getElementById("file-pre").getAttribute("title");
     if (isImage(filename)) {
@@ -401,9 +405,6 @@ function submitWithFile(user, avatar) {
     }
 
     //window.alert(filename);
-
-
-
 
     body = "<div class=\"container file-display\" id=\"" + filename + "\">" +
         "<div class=\"thumb-frame\">" +
@@ -417,7 +418,7 @@ function submitWithFile(user, avatar) {
         body = body2 + "<hr>" + body;
     }
 
-    updateThread(user, avatar, body, admin);
+    updateThread(user, avatar, body, admin, dbname);
 
 }
 
@@ -625,7 +626,9 @@ function urlImage() {
     document.getElementById("web-src-form").reset();
 }
 
-function submitWithImage(user, avatar) {
+function submitWithImage(user, avatar, dbname) {
+
+    dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
     admin = getPageInfo("user-admin");
 
     imgSrc = document.getElementById("img-img").getAttribute("src");
@@ -638,7 +641,7 @@ function submitWithImage(user, avatar) {
         body += body2;
     }
 
-    updateThread(user, avatar, body, admin);
+    updateThread(user, avatar, body, admin, dbname);
     //toggleImportDialog();
     clearImportDialog();
 
@@ -740,7 +743,7 @@ function addReaction(index, chKey) {
     xmlhttp.open("POST", "ajaxManager.php", true);
     xmlhttp.setRequestHeader("Content-type",
         "application/x-www-form-urlencoded");
-    xmlhttp.send(    longString="op="+op+"&thread=" + thread + "&chKey=" + chKey + "&rxCode=" +
+    xmlhttp.send("op="+op+"&thread=" + thread + "&chKey=" + chKey + "&rxCode=" +
                  (rxCode) + "&userOP=" + userOP + "&userRX=" + userRX);
 }
 
@@ -753,6 +756,12 @@ function isImage(filename) {
         (filename.endsWith(".jpg")) ||
         (filename.endsWith(".gif")) ||
         (filename.endsWith(".bmp")));
+}
+
+
+function newDirectMessage(){
+    toggleDialog('new-message');
+    sendDirectMessage();
 }
 
 function sendDirectMessage(){
@@ -776,7 +785,7 @@ function sendDirectMessage(){
     xmlhttp.open("POST", "ajaxManager.php", true);
     xmlhttp.setRequestHeader("Content-type",
                              "application/x-www-form-urlencoded");
-    xmlhttp.send("op=13&sender="+sender+"&recipient="+recipient+"&message="+message+"&avatar="+avatar+"inbox=true");
+    xmlhttp.send("op=13&sender="+sender+"&recipient="+recipient+"&message="+message+"&avatar="+avatar);
 
 }
 

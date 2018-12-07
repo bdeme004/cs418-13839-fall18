@@ -102,7 +102,7 @@ class="material-icons">close</i></span></a>
             <hr>
             </label>
 
-            <button type="button" id="new-message-dialog" onclick="sendDirectMessage()">Send Message</button>
+            <button type="button" id="new-message-dialog" onclick="newDirectMessage()">Send Message</button>
 
         
     </form>

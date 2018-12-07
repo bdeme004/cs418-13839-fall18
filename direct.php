@@ -21,6 +21,9 @@ require_once 'upload.php';
 </head>
 
 <body>
+    <!--currently nothing to stop randoms from coming in and chatting. oops.-->
+    <!--need to send the other party by GET and then build the id string with $_SESSION["user"]-->
+    <!--but that's surprisingly involved, so I guess this'll do for now...-->
     
     <?php
     if (! isset($_SESSION["user"])) {
@@ -30,6 +33,7 @@ require_once 'upload.php';
     $channel_top = "direct";
     //$thread = $_GET["thread"];
     $input_form = "display:inline-block;";
+    
     $admin = 1;
 
    // $partner = "@mater";
@@ -47,7 +51,7 @@ require_once 'upload.php';
     ?>
 
 	<!-- comment box was here-ish -->
-	<script>//fileUploadStandby();</script>
+	<script>fileUploadStandby();</script>
     
     <!-- thread-header -->
 	<div class="thread-header" id="pageinfo"
@@ -65,19 +69,19 @@ require_once 'upload.php';
 				onclick="submitDirectMessage(getElementById('message').value)">
 
 			<i class="material-icons import-share"><a
-				href="javascript:toggleImportDialog()" id="add-image">add_photo_alternate</a></i>
+            href="javascript:toggleDialog('import-dialog')" id="add-image">add_photo_alternate</a></i>
 			<i class="material-icons import-share"><a
-				href="javascript:toggleUploadDialog()">attach_file</a></i>
+            href="javascript:toggleDialog('upload-dialog')">attach_file</a></i>
 		</form>
 	</div>
 	<!-- thread-header end-->
 
 	<!-- import-dialog-->
-    <!--
+ 
 	<div class="container import-dialog" id="import-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Enter the address of an image or upload your own: <a
-				href="javascript:toggleDialog()"><span class="close"><i
+				href="javascript:toggleDialog('import-dialog')"><span class="close"><i
 					class=material-icons>close</i></span></a>
 		</div>
 
@@ -105,12 +109,13 @@ require_once 'upload.php';
 				accept="image/*">
 		</form>
 		<input type="button" value="Send Message" name="submit-message"
-			onclick="submitWithImage(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
+			onclick="submitWithImage(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, 'direct')">
+        <div id="import-error"> </div>
 </div>
 <!-- import-dialog end -->
 
 	<!-- upload-dialog -->
-    <!--
+    
 	<div class="container import-dialog" id="upload-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Upload a file: <a href="javascript:toggleUploadDialog()"><span
@@ -134,8 +139,9 @@ require_once 'upload.php';
 			<input type="file" name="fileToUpload" id="fileToUpload">
 		</form>
 		<input type="button" value="Send Message" name="submit-message"
-			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>)">
-    </div>-->
+			onclick="submitWithFile(<?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, 'direct')">
+        <div id="upload-error"> </div>
+    </div>
 	<!-- upload-dialog end -->
 
 	<div class="page-count">

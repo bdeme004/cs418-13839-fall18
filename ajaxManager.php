@@ -64,6 +64,7 @@ switch ($op) {
         $message = test_input($_POST["message"]);
         $recipient= test_input($_POST["recipient"]);
         send_direct_message($_POST["sender"], $recipient, $message, $_POST["avatar"]);
+        update_direct_channel($_POST["sender"]);
         break;
         
     default:

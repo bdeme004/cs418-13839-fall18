@@ -284,8 +284,7 @@ function update_thread($body, $thread, $user, $avatar, $admin, $channel_top="mon
     $stmt="INSERT INTO `". $thread."` (user, body, avatar) VALUES (?,?,?)";
     $sql = $conn->prepare($stmt);
 
-  //  echo $conn->error;
-    //print("<br> ".$stmt);
+   // print($conn->error."<br> ".$stmt);
     
   /*  $user=$user;
     $avatar=$avatar;

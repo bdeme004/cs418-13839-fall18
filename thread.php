@@ -62,7 +62,7 @@ if ($archived) {
 				onclick="submitMessage( <?php print("'".$_SESSION["user"]."', '".$_SESSION["avatar"]."'"."")?>, getElementById('message').value, <?php print $admin;?>)">
 
 			<i class="material-icons import-share"><a
-				href="javascript:toggleImportDialog()" id="add-image">add_photo_alternate</a></i>
+				href="javascript:toggleDialog('import-dialog')" id="add-image">add_photo_alternate</a></i>
 			<i class="material-icons import-share"><a
 				href="javascript:toggleUploadDialog()">attach_file</a></i>
 		</form>
@@ -81,7 +81,7 @@ if ($archived) {
 	<div class="container import-dialog" id="import-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Enter the address of an image or upload your own: <a
-				href="javascript:toggleImportDialog()"><span class="close"><i
+				href="javascript:toggleDialog('import-dialog')"><span class="close"><i
 					class=material-icons>close</i></span></a>
 		</div>
 
