@@ -1,12 +1,32 @@
-//just a shortcut since I kept doing the same three things over and over
+
 
 /* jshint browser:true */
-/* jshint -W117 */
 /* eslint-env browser*/
-/* eslint no-unused-vars: "off" */ //temp--I got tired of it warning me about the dummyFunction.
+
+/* jshint esversion:6*/
+/* eslint-env es6*/
+
+/* jshint -W117 */
 /* eslint no-undef: "off" */
 
+/* eslint no-unused-vars: "off" */ //temp--I got tired of it warning me about the dummyFunction.
 
+
+
+const DEFAULT_IMG = "sysimg/default-img.png";
+const DEFAULT_INF = "sysimg/default-img-inf.png";
+
+const ADD_IMG_DEF = "sysimg/add-img.png";
+const ADD_FILE_DEF = "sysimg/file-gen-30.png";
+const ADD_FILE_OK = "sysimg/file-gen-95.png" ;
+const ADD_FILE_THUMB = "sysimg/file-gen.png";
+
+const IMG_DIR = "upload/img/";
+const FILE_DIR = "upload/files/";
+const GRAV_EXT = "?d=identicon&s=50";
+
+
+//just a shortcut since I kept doing the same three things over and over
 function getPageInfo(attribute) {
     attribute = "data-" + attribute;
     return document.getElementById("pageinfo").getAttribute(attribute);
@@ -366,7 +386,7 @@ function fileUploadStandby() {
                         if (isImage(this.responseText)) {
                             imgSrc = this.responseText;
                         } else {
-                            imgSrc = "file-gen-95.png";
+                            imgSrc = ADD_FILE_THUMB;
                         }
 
                         document.getElementById("file-pre").setAttribute("src", imgSrc);
@@ -401,7 +421,7 @@ function submitWithFile(user, avatar, dbname) {
     if (isImage(filename)) {
         imgSrc = filename;
     } else {
-        imgSrc = "file-gen.png";
+        imgSrc = ADD_FILE_THUMB;
     }
 
     //window.alert(filename);
@@ -421,7 +441,7 @@ function submitWithFile(user, avatar, dbname) {
     updateThread(user, avatar, body, admin, dbname);
     
     document.getElementById("upload-form").reset();
-    document.getElementById("file-pre").setAttribute("src", "file-gen-30.png");
+    document.getElementById("file-pre").setAttribute("src", ADD_FILE_DEF);
     toggleDialog("upload-dialog");
 
 }
@@ -591,7 +611,7 @@ function generateWithFile(message0) { //, data0){
     base = basicMessage(message0);
     data0 = JSON.stringify({
         "fpath": "files/nope.py",
-        "fsrc": "file-gen.png"
+        "fsrc": ADD_FILE_THUMB
     });
     file = fileBox(data0);
 
@@ -624,7 +644,7 @@ function urlImage() {
     document.getElementById("import-form").reset();
     imgSrc = document.getElementById("web-img-src").value;
     if (imgSrc === "" || imgSrc === null) {
-        imgSrc = "add-img.png";
+        imgSrc = ADD_IMG_DEF;
     }
     document.getElementById("img-img").setAttribute("src", imgSrc);
     document.getElementById("web-src-form").reset();
@@ -653,7 +673,7 @@ function submitWithImage(user, avatar, dbname) {
 
 function clearImportDialog() {
     document.getElementById("web-src-form").reset();
-    document.getElementById("img-img").setAttribute("src", "add-img.png");
+    document.getElementById("img-img").setAttribute("src", ADD_IMG_DEF);
     document.getElementById("import-form").reset();
 }
 
