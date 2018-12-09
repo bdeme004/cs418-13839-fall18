@@ -228,12 +228,12 @@ function toggleArchiveMode() {
     if (archiveModeOn()) {
         document.getElementById("pageinfo").getAttributeNode(
             "data-archive-mode").value = "";
-        document.getElementById("archive-mode-toggle").innerHTML = "・Archive Threads";
+        document.getElementById("archive-mode-toggle").innerHTML = "&#5867;Archive Threads";
         document.getElementById("archive-switch").getAttributeNode("style").value = "display: none;";
     } else {
         document.getElementById("pageinfo").getAttributeNode(
             "data-archive-mode").value = "on";
-        document.getElementById("archive-mode-toggle").innerHTML = "・Finish";
+        document.getElementById("archive-mode-toggle").innerHTML = "&#5867;Finish";
         document.getElementById("archive-switch").getAttributeNode("style").value = "display: inline-block;";
 
     }

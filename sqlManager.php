@@ -1,7 +1,7 @@
 <?php
 
-require 'htmlpurifier-4.10.0-standalone/HTMLPurifier.standalone.php';
-
+require_once 'lib/htmlpurifier-4.10.0-standalone/HTMLPurifier.standalone.php';
+require_once 'constants.php';
 
 
 function test_input($data) {
@@ -367,7 +367,7 @@ function count_pages($thread)
 function delete_post($channel_top, $thread, $chkey, $admin)
 {
     $conn=set_connection("threads");
-    $sql="UPDATE ".$thread." SET user='admin', body= 'This post was deleted by an administrator.', avatar='default_img.png' WHERE chkey= ".$chkey;
+    $sql="UPDATE ".$thread." SET user='admin', body= 'This post was deleted by an administrator.', avatar='".DEFAULT_IMG."' WHERE chkey= ".$chkey;
     if($conn->query($sql))
     {fetch_messages($thread, $channel_top, "threads", 1);}
 }
@@ -413,7 +413,7 @@ function test_image($src){
     if (!strpos($src, "gravatar.com/")){ //if it's not a gravatar image...
         if (!(file_exists($src))) //...and it doesn't exist...
         {
-            return "default_img_inf.png"; //...return the "image not found" fallback.
+            return DEFAULT_INF; //...return the "image not found" fallback.
         }
     }
     return $src; // just return it as-is.
@@ -548,7 +548,7 @@ function new_message_raw(){
 echo $new1->get_json();
 }
 
-function send_direct_message($sender, $recipient, $message, $avatar="default_img.png"){
+function send_direct_message($sender, $recipient, $message, $avatar=DEFAULT_IMG){
     $conn=set_connection("direct");
     if(user_exists_strict($recipient)){
         
@@ -564,7 +564,7 @@ function send_direct_message($sender, $recipient, $message, $avatar="default_img
         $id=get_DM_key($sender, "admin");
         $mess2="Your message could not be delivered: User \"".$recipient."\" was not found.";
         generate_thread($conn, $id);
-        post_to_dm_channel("admin", $sender, "default_img.png", $mess2);
+        post_to_dm_channel("admin", $sender, DEFAULT_IMG, $mess2);
         //update_direct_channel($sender);
     }
 }

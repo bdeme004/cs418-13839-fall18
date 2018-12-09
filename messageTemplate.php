@@ -22,7 +22,7 @@ class message{
         {
             $this->name="DNE";
             $this->body="";
-            $this->avatar="default_img.png";
+            $this->avatar2 = DEFAULT_IMG;
             $this->time=803;
             $this->tally=803;
             $this->key=803;
@@ -56,7 +56,7 @@ class message{
        $this->time=803;
        $this->tally=803;
        $this->key=803;
-       $this->avatar="default_img.png";
+       $this->avatar2 = DEFAULT_IMG;
        }
     }
 

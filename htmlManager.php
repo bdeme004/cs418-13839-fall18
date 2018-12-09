@@ -60,18 +60,4 @@ function login_info()
     return $output;
 }
 
-function fileDisplay($file)
-{
-    if(!file_exists($file)){
-        $file="default-img.png";
-    }
-
-    print("<div class=\"container file-display\" id=\"$file\">
-           <div class=\"thumb-frame\">
-		   <img class=\"import-display\" id=\"file-pre2\" src=\"$file\" alt=\"no preview available\">
-		   </div>
-		   <span class=\"filename-display\">$file</span>
-           </div>");
-}
-
 ?>

@@ -87,7 +87,7 @@ if ($archived) {
 
 		<hr>
 		<div class="import-frame">
-			<img class="import" id="img-img" src="add-img.png"
+			<img class="import" id="img-img" src="<?php echo ADD_IMG_DEF;?>"
 				alt="no image selected">
 		</div>
 		<textarea rows="6" cols="56" id="img-comment"

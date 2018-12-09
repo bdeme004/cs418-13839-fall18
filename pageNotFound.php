@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'htmlManager.php';
+require_once 'constants.php';
+
 navbars("monarchs");
 ?>
 <!DOCTYPE html>
@@ -15,7 +17,7 @@ navbars("monarchs");
   
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
-<img class="b" style="border-color: var(--color-acc-monarchs);" src="default_img.png" alt="Admin">
+<img class="b" style="border-color: var(--color-acc-monarchs);" src="<?php echo DEFAULT_IMG; ?>" alt="Admin">
 <span class="name-left">Admin</span>
 <div style="margin-left:75px;">    
 <p><b>Page Not Found</b></p>

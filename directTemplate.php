@@ -22,9 +22,9 @@ class directm{
         else
         {
             $this->user1="DNE";
-            $this->avatar1="default_img.png";
+            $this->avatar1 = DEFAULT_IMG;
             $this->user2="DNE";
-            $this->avatar2="default_img.png";
+            $this->avatar2 = DEFAULT_IMG;
             $this->newest="DNE";
             $this->modified=date_create();
         }
@@ -55,9 +55,9 @@ class directm{
         else
         {
             $this->user1="DNE";
-            $this->avatar1="default_img.png";
+            $this->avatar1 = DEFAULT_IMG;
             $this->user2="DNE";
-            $this->avatar2="default_img.png";
+            $this->avatar2 = DEFAULT_IMG;
             $this->newest="DNE";
             $this->modified=date_create();
         }

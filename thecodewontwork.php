@@ -71,7 +71,7 @@ $newmess=new message();
 <!--
 	<div class="container" id="1" style="border-color: var(- -color-con-lightsky);">
 
-		<img class="a" src="default-img.png" alt="Avatar" style="border-color: var(- -color-con-lightsky);">
+		<img class="a" src="<?php// echo DEFAULT_IMG;?>" alt="Avatar" style="border-color: var(- -color-con-lightsky);">
 
 		<div class="post-react">
 

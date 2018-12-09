@@ -14,10 +14,11 @@ session_start();
 <?php
 require_once 'htmlManager.php';
 require_once 'sqlManager.php';
+    
 navbars("monarchs");
 $user=$_GET["user"];
 $conn=set_connection("users");
-$sql="SELECT * FROM usertable WHERE handle LIKE\"". $user ."\";";
+$sql="SELECT * FROM usertableWHERE handle LIKE\"". $user ."\";";
 if ($result=$conn->query($sql))
 {
     $result=$result->fetch_assoc();
@@ -27,7 +28,7 @@ if ($result=$conn->query($sql))
         
 }
 else {
-    $avatar="default_img.png";
+    $avatar= DEFAULT_IMG;
     $comment="Looks like something went wrong. Sorry about that!";
 }
 ?>

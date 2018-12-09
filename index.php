@@ -57,33 +57,22 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         
         
         if(!strpos($avatar, "gravatar.com/")){
-        if (($avatar=="default_img.png") || (!file_exists($avatar))) {
+        if (($avatar==DEFAULT_IMG) || (!file_exists($avatar))) {
             //currently re-gravataring the gravatar every time. Oh, well
             //It's not working right yet anyway so it's a bit of a waste fixing that
                 //also, the file pretty seriously doesn't exist. so yeah
            
             
-            $avatar= "https://www.gravatar.com/avatar/" . $email. "?d=identicon&s=50";
+            $avatar= "https://www.gravatar.com/avatar/" . $email. GRAV_EXT;
        
             
             $conn->query("UPDATE usertable SET avatar=\"".$avatar."\" WHERE handle=\"".$name."\"");
             } 
         }
    
-            $_SESSION["avatar"]=$avatar;
+            $_SESSION["avatar"]=$avatar;  
         
-    
-            
-          /*  else
-            {
-                $_SESSION["avatar"]="default_img.png";
-                $conn->query("UPDATE usertable SET avatar=\"default_img.png\" WHERE handle=\"".$name."\"");
-            } */
-        
-        
-        
-        
-       header( "refresh:2;" );
+       header( "refresh:1;" );
        
         }
         
@@ -96,14 +85,14 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
             {session_unset();
              session_destroy();
              $login_result= $error_icon. ("Logged out. The page may take a few seconds to update.");
-             header("refresh:2;");}
+             header("refresh;");}
           else {$login_result= $error_icon. "user not found.";}}
 }
 ?>
   
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
-<img class="b" style="border-color: var(--color-acc-monarchs);" src="default_img.png" alt="Admin">
+<img class="b" style="border-color: var(--color-acc-monarchs);" src="<?php echo DEFAULT_IMG;?>" alt="Admin">
 <span class="name-left" style="margin-left:55px;">Admin</span>
 <div style="margin-left: 75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>

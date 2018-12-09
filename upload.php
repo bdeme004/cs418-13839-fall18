@@ -1,4 +1,6 @@
 <?php
+require_once 'constants.php';
+
 $target_dir = "";
 $result= "Failed from the getgo, huh?";
 
@@ -10,7 +12,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
 
     //--------------------------------------------------------
        // $target_dir="img/"
-        $target_file = $target_dir . basename($_FILES["imgToUpload"]["name"]);
+        $target_file = IMG_DIR . basename($_FILES["imgToUpload"]["name"]);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         
         if(!(in_array($imageFileType, $whitelist, TRUE)))
@@ -28,7 +30,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
             }
 
             if ($upload_ok == 0) {
-                $result = "add-img.png";
+                $result = ADD_IMG_DEF;
 
             } else {
                 $new_name = uniqid() . "." . $imageFileType;
@@ -37,7 +39,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
 
                     $result = $new_file;
                 } else {
-                    $result = "add-img.png";
+                    $result = ADD_IMG_DEF;
 
                 }
             }
@@ -49,10 +51,10 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
 
     }
     else {
-        $target_dir="files/";
+       // $target_dir="files/";
         //temp- assumes users don't break things (LOL)
 
-        $target_file = basename($_FILES["fileToUpload"]["name"]);
+        $target_file = FILE_DIR .basename($_FILES["fileToUpload"]["name"]);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         
         if(!(in_array($imageFileType, $whitelist, TRUE)))
@@ -72,7 +74,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
             }
 
             if ($upload_ok == 0) {
-                $result = "add-img.png";
+                $result = ADD_IMG_DEF;
                 $result= "upload_ok == 0";
             } else {
                 $new_name = uniqid() . "__".$target_file;//.".". $imageFileType;
@@ -81,7 +83,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
 
                     $result = $new_file;
                 } else {
-                    $result = "add-img.png";
+                    $result = ADD_IMG_DEF;
                     $result= "move_uploaded_file == 0";
                 }
               }
@@ -90,7 +92,7 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
     }
 }
 else{
-    $result="add-img.png";
+    $result=ADD_IMG_DEF;
    // $result= "完全失敗";
 }
 print $result;

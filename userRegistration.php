@@ -17,8 +17,9 @@ session_start();
 
 require_once 'htmlManager.php';
 require_once 'sqlManager.php';
-require_once 'recaptcha-master/src/autoload.php';
+require_once 'lib/recaptcha-master/src/autoload.php';
     
+    //change this value to 'true' to bypass captcha for testing
     $passed=false;
 
 if(!empty($_POST["g-recaptcha-response"])){
@@ -43,7 +44,7 @@ $email=$handle="";
 $conn=set_connection("users");
 
 $stmt="SELECT handle, email FROM usertable WHERE handle LIKE ? OR email LIKE ?;";
-$stmt2="INSERT INTO usertable (handle, email, passcode, avatar) VALUES (?,?,?, \"default_img.png\");";
+$stmt2="INSERT INTO usertable (handle, email, passcode, avatar) VALUES (?,?,?,?);";
 if(!$sql=$conn->prepare($stmt))
     $email_err = $conn->error;
 if(!$sql2=$conn->prepare($stmt2))
@@ -112,12 +113,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     elseif($passed)
     {
-    $sql2->bind_param("sss", $handle, $email, $passcode);
+    $avatar= "https://www.gravatar.com/avatar/". md5( strtolower( trim( $email ) ) ).GRAV_EXT ;
+    $sql2->bind_param("ssss", $handle, $email, $passcode, $avatar);
     if($sql2->execute()){
     echo "You're signed up! Yay.";
     
     $_SESSION["user"]=$handle;
-    $_SESSION["avatar"]="default_img.png";
+    $_SESSION["avatar"]=$avatar;
     header("Location: index.php");
     }
 
