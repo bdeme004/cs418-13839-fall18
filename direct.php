@@ -124,7 +124,7 @@ require_once 'upload.php';
 
 		<hr>
 		<div class="import-frame">
-			<img class="import" id="file-pre" src="file-gen-30.png"
+            <img class="import" id="file-pre" src="<?php echo ADD_FILE_DEF;?>"
 				alt="no preview available">
 		</div>
 		<textarea rows="6" cols="56" id="file-comment"
