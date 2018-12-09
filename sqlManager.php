@@ -568,6 +568,7 @@ function send_direct_message($sender, $recipient, $message, $avatar="default_img
         //update_direct_channel($sender);
     }
 }
+$privatekey = "";
 
 
 

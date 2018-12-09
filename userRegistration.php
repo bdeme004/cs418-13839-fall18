@@ -8,6 +8,7 @@ session_start();
 <title>New User- lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='lptcolors.js'></script>
 
 </head>
 <body>
@@ -16,7 +17,24 @@ session_start();
 
 require_once 'htmlManager.php';
 require_once 'sqlManager.php';
+require_once 'recaptcha-master/src/autoload.php';
+    
+    $passed=false;
 
+if(!empty($_POST["g-recaptcha-response"])){
+    $secret='6LfatX0UAAAAAE6K0bsAXifdavd7Ngrs9g1LXQ9R';
+    $gRecaptchaResponse=$_POST["g-recaptcha-response"];
+    $remoteIp=$_SERVER['REMOTE_ADDR'];
+    $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+    $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+    if ($resp->isSuccess()) {
+        $passed=true;
+    } else {
+        $errors = $resp->getErrorCodes();
+    }
+}
+    
+    
 navbars("monarchs");
 
 $email_err=$handle_err=$password_err=$repeat_err="";
@@ -30,59 +48,69 @@ if(!$sql=$conn->prepare($stmt))
     $email_err = $conn->error;
 if(!$sql2=$conn->prepare($stmt2))
     $email_err = $conn->error;
+    $clear=true;
 //get the password associated with the username in the database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $email_err = "Email is required";
+        $clear=false;
     } else {
         $email = test_input($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $email_err = " *Invalid email format";
+            $clear=false;
         }
-        if (strlen($email)>13)
-        {$email_err = "*Max 45 characters";}
+        if (strlen($email)>45)
+        {$email_err = "*Max 45 characters";
+         $clear=false;}
     }
     
     if (empty($_POST["handle"])) {
         $handle_err = " *Username is required";
+            $clear=false;
     } else {
         $handle = test_input($_POST["handle"]);
         if (strlen($handle)>13)
-        {$handle_err = "*Max 13 characters";}
+        {$handle_err = "*Max 13 characters";
+         $clear=false;}
         
     }
     
     if (empty($_POST["passcode"])) {
         $password_err= " *Password is required";
+        $clear=false;
     } else {
         $passcode = test_input($_POST["passcode"]);
         if (strlen($passcode)>13)
-        {$password_err = "*Max 13 characters";}
+        {$password_err = "*Max 13 characters";
+         $clear=false;}
     }
     
     if (empty($_POST["passcode-repeat"])){
         $repeat = "";
     } else {
         $repeat= test_input($_POST["passcode-repeat"]);
-        if ($passcode!=$repeat)
+        if ($passcode!=$repeat){
             $repeat_err = " *Passwords don't match";
+            $clear=false;}
     }
-
-
     
+    if($clear){
     $col1=$col2="";
     $sql->bind_param("ss", $handle, $email);
     $sql->execute();
     $sql->bind_result($col1, $col2);
     
     if($sql->fetch()){
-    if ($handle==$col1)
+    if ($handle==$col1){
     $handle_err= " *Username is already in use";
-    if ($email==$col2)
+        }
+    if ($email==$col2){
     $email_err= " *Email is already in use";
+        }
     }
 
-    else
+    elseif($passed)
     {
     $sql2->bind_param("sss", $handle, $email, $passcode);
     if($sql2->execute()){
@@ -92,14 +120,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["avatar"]="default_img.png";
     header("Location: index.php");
     }
-    //over 13 chars for username or password will cause it to do nothing
-    //but it doesn't crash so-- actually, hold that thought. It might just be faster to fix than to document.
-    //there, now it complains when it fails.
+
     else $email_err=$conn->error;
 
+    }
+        else $repeat_err="Please complete the CAPTCHA form.";
+            
+    
 }
 }
-
 
 ?>
 
@@ -126,14 +155,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </label>
 <br><br>
-<div class="g-recaptcha" data-sitekey="6LfatX0UAAAAABxYqjHLajS2yvFLtmUEejaWSGbX"></div>
-<hr>
 
-<button type="submit" disabled>Sign Up</button>
+<hr>
+    
+    <div class="g-recaptcha" data-sitekey="6LfatX0UAAAAABxYqjHLajS2yvFLtmUEejaWSGbX"></div>
+    
+<button type="submit" id="sign-up-button">Sign Up</button>
 
 </div>
 
 </form>
 
+    <?php
+
+    
+
+    ?>    
+
+    
+    
 </body>
 </html>

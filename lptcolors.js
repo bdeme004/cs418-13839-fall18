@@ -789,6 +789,67 @@ function sendDirectMessage(){
 
 }
 
+function callbackFunction() {
+    return new Promise(function(resolve, reject) { 
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                window.alert("But why?!");
+                var result=JSON.parse(this.responseText);
+                if(result.success){
+                    document.getElementById("sign-up-button").removeAttribute("disabled");
+                    resolve();
+
+                }
+                //  else 
+            }
+
+        };
+
+        xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
+        xmlhttp.setRequestHeader("Content-type",
+                                 "application/x-www-form-urlencoded");
+        xmlhttp.send("secret=6LfatX0UAAAAAE6K0bsAXifdavd7Ngrs9g1LXQ9R");
+        //Your code logic goes here
+
+        //Instead of using 'return false', use reject()
+        //Instead of using 'return' / 'return true', use resolve()
+        
+    }); //end promise
+}
+
+/*function callbackFunction(){
+    window.alert("But why?!");
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            window.alert("But why?!");
+            var result=JSON.parse(this.responseText);
+            if(result.success){
+            document.getElementById("sign-up-button").removeAttribute("disabled");
+            }
+          //  else 
+        }
+
+    };
+    
+    xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
+    xmlhttp.setRequestHeader("Content-type",
+                             "application/x-www-form-urlencoded");
+    xmlhttp.send("secret=6LfatX0UAAAAAE6K0bsAXifdavd7Ngrs9g1LXQ9R&response="+g-recaptcha-response);
+
+
+    
+}*/
 
 function dummyFunction() {
     window.alert("Hello, World!");

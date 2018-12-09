@@ -65,7 +65,7 @@ $thread = get_DM_key($_SESSION["user"], $partner);
     }
     ?>
 
-    <?php navbars($channel_top);?>
+    <?php navbars("monarchs");?>
 
     <div class="container thread" id="pageinfo" data-archive-mode="" data-thread-id="<?php echo $thread;?>" data-channel-top="<?php echo $channel_top;?>" style="border-color:var(--color-acc-<?php echo $channel_top;?>); border-radius: 7px; color:#000000;">
 
