@@ -763,8 +763,10 @@ function isImage(filename) {
 
 
 function newDirectMessage(){
-    toggleDialog('new-message');
     sendDirectMessage();
+
+    document.getElementById("new-direct-message").reset();
+    toggleDialog('new-message');
 }
 
 function sendDirectMessage(){
