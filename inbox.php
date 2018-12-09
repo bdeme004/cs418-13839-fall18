@@ -85,7 +85,7 @@ class="material-icons">close</i></span></a>
 
 
 
-    <form action="#" method="post">
+    <form action="#" id="new-direct-message" method="post">
        
             <h1>New Message</h1>
             <hr>
