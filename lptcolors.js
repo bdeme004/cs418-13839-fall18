@@ -421,7 +421,8 @@ function submitWithFile(user, avatar, dbname) {
     updateThread(user, avatar, body, admin, dbname);
     
     document.getElementById("upload-form").reset();
-    toggleDialog("upload-form");
+    document.getElementById("file-pre").setAttribute("src", "file-gen-30.png");
+    toggleDialog("upload-dialog");
 
 }
 
