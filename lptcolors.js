@@ -419,6 +419,9 @@ function submitWithFile(user, avatar, dbname) {
     }
 
     updateThread(user, avatar, body, admin, dbname);
+    
+    document.getElementById("upload-form").reset();
+    toggleDialog("upload-form");
 
 }
 
