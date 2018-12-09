@@ -561,7 +561,7 @@ function send_direct_message($sender, $recipient, $message, $avatar="default_img
     }
     
     else {
-        $id="admin".$sender;
+        $id=get_DM_key($sender, "admin");
         $mess2="Your message could not be delivered: User \"".$recipient."\" was not found.";
         generate_thread($conn, $id);
         post_to_dm_channel("admin", $sender, $avatar, $mess2);
