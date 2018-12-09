@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 20, 2018 at 12:13 PM
+-- Generation Time: Dec 07, 2018 at 09:41 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -27,6 +27,24 @@ USE `channels`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `direct`
+--
+
+DROP TABLE IF EXISTS `direct`;
+CREATE TABLE IF NOT EXISTS `direct` (
+  `thIndex` varchar(26) NOT NULL,
+  `user` varchar(13) DEFAULT NULL,
+  `avatar` text,
+  `user2` varchar(13) DEFAULT NULL,
+  `avatar2` text,
+  `newest` text COMMENT 'the most recent message',
+  `chKey` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'date modified; named ''chKey'' for compatibility',
+  PRIMARY KEY (`thIndex`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `heliotrope`
 --
 
@@ -37,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `heliotrope` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `lightsky` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -73,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `milan` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -91,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `mint` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -109,9 +127,29 @@ CREATE TABLE IF NOT EXISTS `tearose` (
   `chPrivate` int(11) NOT NULL DEFAULT '0',
   `chAllowedUsers` varchar(5) NOT NULL DEFAULT 'ALL',
   `chReplies` int(11) NOT NULL DEFAULT '0' COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
-  `chUpdated` datetime NOT NULL COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
+  `chUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'This isn''t strictly necessary. But I sort of suspect it''s good to have.',
   `chArchived` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`chIndex`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+--
+-- Database: `direct`
+--
+CREATE DATABASE IF NOT EXISTS `direct` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `direct`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reactions`
+--
+
+DROP TABLE IF EXISTS `reactions`;
+CREATE TABLE IF NOT EXISTS `reactions` (
+  `thIndex` varchar(16) NOT NULL,
+  `chKey` int(11) NOT NULL,
+  `rxCode` int(2) NOT NULL,
+  `userOP` text NOT NULL,
+  `userRX` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 -- Database: `threads`
@@ -122,18 +160,17 @@ USE `threads`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t15420755835785`
+-- Table structure for table `reactions`
 --
 
-DROP TABLE IF EXISTS `t15420755835785`;
-CREATE TABLE IF NOT EXISTS `t15420755835785` (
-  `user` varchar(13) NOT NULL,
-  `body` text NOT NULL,
-  `creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `chKey` int(11) NOT NULL AUTO_INCREMENT,
-  `avatar` text NOT NULL,
-  PRIMARY KEY (`chKey`)
-) ENGINE=MyISAM AUTO_INCREMENT=283 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `reactions`;
+CREATE TABLE IF NOT EXISTS `reactions` (
+  `thIndex` varchar(16) NOT NULL,
+  `chKey` int(11) NOT NULL,
+  `rxCode` int(2) NOT NULL,
+  `userOP` text NOT NULL,
+  `userRX` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 -- Database: `users`
 --
@@ -163,18 +200,14 @@ CREATE TABLE IF NOT EXISTS `usertable` (
 --
 
 INSERT INTO `usertable` (`handle`, `name`, `passcode`, `email`, `avatar`, `comment`) VALUES
-('@mater', 'Tow Mater', '@mater', 'mater@rsprings.gov', '15422236415563.png', 'Tow trucks tow things.'),
-('@sally', 'Sally Carrera', '@sally', 'porsche@rsprings.gov', '15408259634168.png', 'Zoom Zoom.'),
-('@doc', 'Doc Hudson', '@doc', 'hornet@rsprings.gov', '15408259361210.png', 'Zoom Zoom.'),
-('@mcmissile', 'Finn McMissile', '@mcmissile', 'topsecret@agent.org', '15408259411731.png', 'Zoom Zoom?'),
-('@mcqueen', 'Lightning McQueen', '@mcqueen', 'kachow@rusteze.com', 'default_img.png', 'ZOOM ZOOM!'),
-('@chick', 'Chick Hicks', '@chick', 'chinga@cars.com', '15408259306433.png', 'Zoom zoom.'),
-('bdemerch', 'Bethany DeMerchant', 'bdemerch', 'bdeme004@odu.edu', '15426710113260.jpg', 'I added my own username because I kept having to stop and look up the car names.'),
-('@Silas', NULL, 'silas', 'de.bethj@gmail.com', 'default_img.png', '\"This user hasn\'t added a comment.\"'),
-('@TheMoosh', 'MOOSH', '@themoosh', 'moosh@moo.sh', 'default_img.png', 'STOP CODING AND PET ME'),
-('@mome', NULL, 'mome', 'TRACIDEMERCHANT@GMAIL.COM', 'default_img.png', '\"This user hasn\'t added a comment.\"'),
-('ADMINISTRATOR', NULL, 'ADMINISTRATOR', '803box@gmail.com', 'default_img.png', '\"This user hasn\'t added a comment.\"'),
-('<p> cat</p>', NULL, 'cat', 'mome@mome', 'default_img.png', '\"This user hasn\'t added a comment.\"');
+('@mater', 'Tow Mater', '@mater', 'mater@rsprings.gov', 'https://www.gravatar.com/avatar/65ff88ee5edcce639c8544d824c6e544?d=identicon&s=50', 'Tow trucks tow things.'),
+('@sally', 'Sally Carrera', '@sally', 'porsche@rsprings.gov', 'https://www.gravatar.com/avatar/101265fcf141c6fb4a98e520735e2419?d=identicon&s=50', 'Zoom Zoom.'),
+('@doc', 'Doc Hudson', '@doc', 'hornet@rsprings.gov', 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d?d=identicon&s=50', 'Zoom Zoom.'),
+('@mcmissile', 'Finn McMissile', '@mcmissile', 'topsecret@agent.org', 'https://www.gravatar.com/avatar/e6810e5428b5ef81f2c41c5fff797db4?d=identicon&s=50', 'Zoom Zoom?'),
+('@mcqueen', 'Lightning McQueen', '@mcqueen', 'kachow@rusteze.com', 'https://www.gravatar.com/avatar/kachow@rusteze.com?d=identicon&s=50', 'ZOOM ZOOM!'),
+('@chick', 'Chick Hicks', '@chick', 'chinga@cars.com', 'https://www.gravatar.com/avatar/2a4237a9a1676a06923482291c63de8f?d=identicon&s=50', 'Zoom zoom.'),
+('bdemerch', 'Bethany DeMerchant', 'bdemerch', 'bdeme004@odu.edu', 'https://www.gravatar.com/avatar/2ec26a7d21f2a985c3d3c916144dcc5c?d=identicon&s=50', 'I added my own username because I kept having to stop and look up the car names.'),
+('ADMINISTRATOR', NULL, 'ADMINISTRATOR', '803box@gmail.com', 'https://www.gravatar.com/avatar/85443a34eb6e41dffef11e2bb9a7fe32?d=identicon&s=50', 'This user hasn\'t added a comment.');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
