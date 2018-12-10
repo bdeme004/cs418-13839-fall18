@@ -17,19 +17,24 @@ Requests::register_autoloader();
         
 
         <?php
-     $data = array('client_id' => GH_CLIENT_ID, 'client_secret' => GH_CLIENT_SEC, 'code' => $_GET["code"]);
+        
+        $conn=set_connection("users");
+        $key=$conn->query("SELECT fetchcode AS result");
+        $key=$key->fetch_assoc()["result"];
+        $conn->close();
+           
+     $data = array('client_id' => GH_CLIENT_ID, 'client_secret' => $key, 'code' => $_GET["code"]);
         $response = Requests::post('https://github.com/login/oauth/access_token', array(), $data);
-       
+       var_dump($response);
         parse_str($response->body, $result);
         $_SESSION["token"]=$result["access_token"];
-     //   echo $token;
 
         
         $userdata0 = Requests::get('https://api.github.com/user?access_token='.$_SESSION["token"]);
-        //var_dump($userdata0);
+        
        $userdata=json_decode($userdata0->body); 
         
-       // var_dump($userdata);
+        var_dump($userdata);
         
         $_SESSION["user"]=$userdata->login;
         $_SESSION["avatar"]=$userdata->avatar_url;
