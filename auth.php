@@ -27,7 +27,7 @@ Requests::register_autoloader();
            
      $data = array('client_id' => GH_CLIENT_ID, 'client_secret' => $key, 'code' => $_GET["code"]);
         $response = Requests::post('https://github.com/login/oauth/access_token', array(), $data);
-       var_dump($response);
+     //  var_dump($response);
         parse_str($response->body, $result);
         $_SESSION["token"]=$result["access_token"];
 
