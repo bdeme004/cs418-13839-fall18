@@ -5,19 +5,22 @@ require_once 'constants.php';
 
 
 function test_input($data) {
-/*      $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);  */
+    //  $data = trim($data);
+   // $data = stripslashes($data);
+   // $data = htmlspecialchars($data);  
 
     //------------------------------------------------------------------------
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
+    //$data = str_replace("&","(and)",$data);
     $data=$purifier->purify($data);
+    //$data=urlencode($data);
 
     //-------------------------------------------------------------------------
 
     return $data;
 }
+
 
 function set_connection($_dbname){
     $servername = "localhost";

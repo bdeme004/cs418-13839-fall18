@@ -37,7 +37,8 @@ function getPageInfo(attribute) {
 function submitMessage(user, avatar, mess, admin) {
 
     document.getElementById("inputform").reset();
-    updateThread(user, avatar, mess, admin);
+    var message = encodeURIComponent(mess);
+    updateThread(user, avatar, message, admin);
 }
 
 function submitDirectMessage(mess) {
@@ -45,8 +46,9 @@ function submitDirectMessage(mess) {
     var user=document.getElementById("topnav-user-id").innerHTML;
     var avatar=document.getElementById("topnav-icon").getAttribute("src");
     var admin=0;
+    var message = encodeURIComponent(mess);
     document.getElementById("inputform").reset();
-    updateThread(user, avatar, mess, admin, "direct");
+    updateThread(user, avatar, message, admin, "direct");
 }
 
 function updateThread(user, avatar, mess, admin, dbname="threads") {
@@ -63,7 +65,8 @@ function updateThread(user, avatar, mess, admin, dbname="threads") {
 
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("message-area").innerHTML = this.responseText;
+           document.getElementById("message-area").innerHTML = this.responseText;
+          //  window.alert(this.responseText);
         }
     };
 

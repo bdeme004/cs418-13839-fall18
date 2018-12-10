@@ -16,6 +16,7 @@ switch ($op) {
     case 2:
         $body = test_input($_POST["message"]);
         update_thread($body, $_POST["thread"], $_POST["user"], $_POST["avatar"], $_POST["admin"], $_POST["top"], $_POST["dbname"]);
+       // print $body;
         break;
 
     case 3:

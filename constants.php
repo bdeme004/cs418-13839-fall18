@@ -12,4 +12,5 @@ define("IMG_DIR", "upload/img/");
 define("FILE_DIR", "upload/files/");
 define("GRAV_EXT", "?d=identicon&s=50");
 
+
 ?>

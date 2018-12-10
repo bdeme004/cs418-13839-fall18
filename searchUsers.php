@@ -18,7 +18,6 @@ include 'htmlManager.php';
 <input type="text" placeholder="Enter a username" oninput="searchUsers(this.value)">
 </form>
 </div>
-<div id="userResults" style="position:absolute; top:150px; width:88%;">No matches found.</div>
-
-</body>
+    <div id="userResults" style="position:absolute; top:150px; color:#818181; font-size: 18px; width:88%;">No matches found.</div>
+   </body>
 </html>
