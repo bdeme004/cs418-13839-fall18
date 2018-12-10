@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 07, 2018 at 09:41 AM
+-- Generation Time: Dec 10, 2018 at 01:24 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -23,8 +23,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `channels` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `channels`;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `direct`
@@ -157,7 +155,6 @@ CREATE TABLE IF NOT EXISTS `reactions` (
 CREATE DATABASE IF NOT EXISTS `threads` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `threads`;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `reactions`
@@ -176,6 +173,39 @@ CREATE TABLE IF NOT EXISTS `reactions` (
 --
 CREATE DATABASE IF NOT EXISTS `users` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `users`;
+
+DELIMITER $$
+--
+-- Functions
+--
+DROP FUNCTION IF EXISTS `fetchcode`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `fetchcode` () RETURNS TEXT CHARSET latin1 NO SQL
+BEGIN
+RETURN (SELECT potato FROM `data` WHERE chKey=1);
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data`
+--
+
+DROP TABLE IF EXISTS `data`;
+CREATE TABLE IF NOT EXISTS `data` (
+  `chKey` int(11) NOT NULL AUTO_INCREMENT,
+  `potato` text NOT NULL,
+  PRIMARY KEY (`chKey`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`chKey`, `potato`) VALUES
+(1, '82558fb986dcd5a695b74c7c0623ad85bbcfffc4'),
+(2, '8a0da6951437616cd4ccf5e1faed6bd810867c48');
 
 -- --------------------------------------------------------
 
@@ -206,7 +236,7 @@ INSERT INTO `usertable` (`handle`, `name`, `passcode`, `email`, `avatar`, `comme
 ('@mcmissile', 'Finn McMissile', '@mcmissile', 'topsecret@agent.org', 'https://www.gravatar.com/avatar/e6810e5428b5ef81f2c41c5fff797db4?d=identicon&s=50', 'Zoom Zoom?'),
 ('@mcqueen', 'Lightning McQueen', '@mcqueen', 'kachow@rusteze.com', 'https://www.gravatar.com/avatar/kachow@rusteze.com?d=identicon&s=50', 'ZOOM ZOOM!'),
 ('@chick', 'Chick Hicks', '@chick', 'chinga@cars.com', 'https://www.gravatar.com/avatar/2a4237a9a1676a06923482291c63de8f?d=identicon&s=50', 'Zoom zoom.'),
-('bdemerch', 'Bethany DeMerchant', 'bdemerch', 'bdeme004@odu.edu', 'https://www.gravatar.com/avatar/2ec26a7d21f2a985c3d3c916144dcc5c?d=identicon&s=50', 'I added my own username because I kept having to stop and look up the car names.'),
+('bdemerch', 'Bethany DeMerchant', 'bdemerch', 'bdeme004@odu.edu', 'https://www.gravatar.com/avatar/bdeme004@odu.edu?d=identicon&s=50', 'I added my own username because I kept having to stop and look up the car names.'),
 ('ADMINISTRATOR', NULL, 'ADMINISTRATOR', '803box@gmail.com', 'https://www.gravatar.com/avatar/85443a34eb6e41dffef11e2bb9a7fe32?d=identicon&s=50', 'This user hasn\'t added a comment.');
 COMMIT;
 

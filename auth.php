@@ -36,7 +36,7 @@ Requests::register_autoloader();
         
        $userdata=json_decode($userdata0->body); 
         
-        var_dump($userdata);
+       // var_dump($userdata);
         
         $_SESSION["user"]=$userdata->login;
         $_SESSION["avatar"]=$userdata->avatar_url;
