@@ -105,12 +105,7 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
 </div>
 </div>
 <span style="color:#818181; font-size: 18px;"><?php echo $login_result;?></span>
-    <form action="https://github.com/login/oauth/authorize" method="GET">
-        <input type="hidden" name="client_id" value="<?php echo GH_CLIENT_ID;?>">
-        <input type="submit" value="GitHub Stuff Button">
-    
-    </form>
-    
+
 
 
 </body>

@@ -31,12 +31,21 @@ function test_permissions($address)
 function login_info()
 {
     if (! isset($_SESSION["user"])) {
-        $output = "<form action=\"index.php\" method=\"post\" style=\" float: right;  margin-right:40px; margin-top:5px; \">
+        $output = "
+        <form action=\"index.php\" method=\"post\" style=\" float: right; margin-right:40px; margin-top:5px; \">
+        
                         <input type=\"text\" placeholder=\"Username\" name=\"name\">
                         <input type=\"password\" placeholder=\"Password\" name=\"passcode\">
                         <button type=\"submit\">Login</button>
+                        
                         <a href=\"userRegistration.php\" style=\"font-size: 14px; margin-left: 2px;\">Sign up</a>
                         </form>
+                            <form action=\"https://github.com/login/oauth/authorize/?\" method=\"GET\" style=\" float: right; margin-right:10px; margin-top:5px; \">
+        <input type=\"hidden\" name=\"client_id\" value=\"".GH_CLIENT_ID."\">
+            <input type=\"submit\" value=\"Login with GitHub\">
+
+            </form>
+
 
 ";
     } else {
