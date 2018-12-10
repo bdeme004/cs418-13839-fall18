@@ -32,8 +32,6 @@ function getPageInfo(attribute) {
     return document.getElementById("pageinfo").getAttribute(attribute);
 }
 
-
-
 function submitMessage(user, avatar, mess, admin) {
 
     document.getElementById("inputform").reset();
