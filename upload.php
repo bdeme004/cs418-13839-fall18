@@ -11,8 +11,8 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
     if (isset($_FILES["imgToUpload"])){
 
     //--------------------------------------------------------
-       // $target_dir="img/"
-        $target_file = IMG_DIR . basename($_FILES["imgToUpload"]["name"]);
+       $target_dir= IMG_DIR;
+        $target_file =basename($_FILES["imgToUpload"]["name"]);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         
         if(!(in_array($imageFileType, $whitelist, TRUE)))
@@ -51,10 +51,10 @@ if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {
 
     }
     else {
-       // $target_dir="files/";
+        $target_dir= FILE_DIR;
         //temp- assumes users don't break things (LOL)
 
-        $target_file = FILE_DIR .basename($_FILES["fileToUpload"]["name"]);
+        $target_file =basename($_FILES["fileToUpload"]["name"]);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         
         if(!(in_array($imageFileType, $whitelist, TRUE)))
