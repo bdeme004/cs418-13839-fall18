@@ -91,7 +91,7 @@ class="material-icons">close</i></span></a>
             <hr>
 
             <label><b>Send to: </b>
-                <input type="text" id="target-user" placeholder="@john" onKeyUp="userExists(this.value)">
+                <input type="text" id="target-user" placeholder="@john" onkeyup="userExists(this.value)">
                 <span id="recipient-error"> </span>
             </label><br><br>
 

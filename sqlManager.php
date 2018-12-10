@@ -4,6 +4,7 @@ require_once 'lib/htmlpurifier-4.10.0-standalone/HTMLPurifier.standalone.php';
 require_once 'constants.php';
 
 
+
 function test_input($data) {
     //  $data = trim($data);
    // $data = stripslashes($data);
@@ -206,7 +207,7 @@ $avatar=$row["avatar"];
 $user= new message($name, $avatar, "", 803, 803);
 $user->print_as_searchresult(1, "monarchs");
 
-$odd++;
+//$odd++;
 }
 }
 
@@ -413,7 +414,7 @@ function isArchived($channel_top, $thread){
 }
 
 function test_image($src){
-    if (!strpos($src, "gravatar.com/")){ //if it's not a gravatar image...
+    if ((!strpos($src, "gravatar.com/")) && (!strpos($src, "githubuser"))){ //if it's not a gravatar image...
         if (!(file_exists($src))) //...and it doesn't exist...
         {
             return DEFAULT_INF; //...return the "image not found" fallback.

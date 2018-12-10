@@ -13,7 +13,7 @@ if(!isset($_SESSION["user"]))
 
 $user_admin=$_SESSION["admin"];
 $channel_top=$_GET["top"];
-navbars($channel_top);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ navbars($channel_top);
 </head>
 <body>
 
-
+    <?php navbars($channel_top);?>
 
 <div class="container thread" id="pageinfo" data-archive-mode="" data-channel-top="<?php echo $channel_top;?>"
 style="border-color:var(--color-acc-<?php echo $channel_top;?>); border-radius: 7px; color:#000000;">

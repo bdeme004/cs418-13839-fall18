@@ -3,7 +3,7 @@ session_start();
 include 'htmlManager.php';
 require_once 'constants.php';
 
-navbars("monarchs");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@ navbars("monarchs");
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>
 <body>
-  
+    <?php navbars("monarchs");?>
   
     <div class="container" style="border-color: var(--color-acc-monarchs);">
 
@@ -21,7 +21,7 @@ navbars("monarchs");
 <span class="name-left">Admin</span>
 <div style="margin-left:75px;">    
 <p><b>Page Not Found</b></p>
-<p>Sorry, that page doesn't seem to exist. Maybe the gnomes ate it?<br>
+    <p>Sorry, that page doesn't seem to exist. Maybe the gnomes ate it?</p><br>
 <span class="right-corner">Time is a myth</span>
 </div>
 </div>

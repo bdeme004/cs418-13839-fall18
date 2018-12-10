@@ -7,8 +7,8 @@ session_start();
 <meta charset="UTF-8">
 <title>New User- lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
-<script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src='lptcolors.js'></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="lptcolors.js"></script>
 
 </head>
 <body>

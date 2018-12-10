@@ -3,7 +3,7 @@ session_start();
 require_once 'htmlManager.php';
 require_once 'sqlManager.php';
 
-navbars("monarchs");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +18,7 @@ navbars("monarchs");
   
   
 <?php
+navbars("monarchs");
 
 $error_icon="<i class=\"material-icons\">error_outline  </i>";
 $success_icon="<i class=\"material-icons\">check_circle_outline  </i>";
@@ -58,7 +59,7 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
         {$_SESSION["admin"]=false;}
         
         
-        if(!strpos($avatar, "gravatar.com/")){
+         if((!strpos($avatar, "gravatar.com/")) && (!strpos($src, "githubuser"))){
         if (($avatar==DEFAULT_IMG) || (!file_exists($avatar))) {
             //currently re-gravataring the gravatar every time. Oh, well
             //It's not working right yet anyway so it's a bit of a waste fixing that
@@ -99,13 +100,13 @@ if((isset($_POST["name"]))&& isset($_POST["passcode"]))
 <div style="margin-left: 75px;">    
 <p><b>Welcome to Lin Picked The Colors!</b></p>
 <p>Click on a link to the left to enter a chat group.
-    (You must be logged in to join a chat group.)<br>
+    (You must be logged in to join a chat group.)</p><br>
 <span class="right-corner">Time is a myth</span>
 </div>
 </div>
 <span style="color:#818181; font-size: 18px;"><?php echo $login_result;?></span>
     <form action="https://github.com/login/oauth/authorize" method="GET">
-        <input type="hidden" name="client_id" value="71ce02e70e6de763c9a2">
+        <input type="hidden" name="client_id" value="<?php echo GH_CLIENT_ID;?>">
         <input type="submit" value="GitHub Stuff Button">
     
     </form>

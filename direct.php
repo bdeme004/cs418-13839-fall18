@@ -82,7 +82,7 @@ require_once 'upload.php';
 		<div style="font-size: 21px; font-weight: bold;">
 			Enter the address of an image or upload your own: <a
 				href="javascript:toggleDialog('import-dialog')"><span class="close"><i
-					class=material-icons>close</i></span></a>
+					class="material-icons">close</i></span></a>
 		</div>
 
 		<hr>
@@ -98,7 +98,7 @@ require_once 'upload.php';
 		<form action="#" method="post" id="web-src-form"
 			style="display: inline-block;">
 			<input type="url" name="web-img-src" id="web-img-src"
-				placeholder="Enter image URL..."> <input type=button
+				placeholder="Enter image URL..."> <input type="button"
 				value="Fetch Image" name="submit-web-src"
 				onclick="javascript:urlImage()">
 		</form>
@@ -119,7 +119,7 @@ require_once 'upload.php';
 	<div class="container import-dialog" id="upload-dialog">
 		<div style="font-size: 21px; font-weight: bold;">
 			Upload a file: <a href="javascript:toggleUploadDialog()"><span
-				class="close"><i class=material-icons>close</i></span></a>
+				class="close"><i class="material-icons">close</i></span></a>
 		</div>
 
 		<hr>
