@@ -18,7 +18,7 @@ require_once 'sqlManager.php';
 navbars("monarchs");
 $user=$_GET["user"];
 $conn=set_connection("users");
-$sql="SELECT * FROM usertableWHERE handle LIKE\"". $user ."\";";
+$sql="SELECT * FROM usertable WHERE handle LIKE\"". $user ."\";";
 if ($result=$conn->query($sql))
 {
     $result=$result->fetch_assoc();
