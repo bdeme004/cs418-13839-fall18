@@ -19,8 +19,10 @@ Requests::register_autoloader();
         <?php
         
         $conn=set_connection("users");
-        $key=$conn->query("SELECT fetchcode AS result");
+        $key=$conn->query("SELECT fetchcode() AS result");
+      //  echo $conn->error;
         $key=$key->fetch_assoc()["result"];
+        
         $conn->close();
            
      $data = array('client_id' => GH_CLIENT_ID, 'client_secret' => $key, 'code' => $_GET["code"]);
