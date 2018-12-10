@@ -12,5 +12,5 @@ define("IMG_DIR", "upload/img/");
 define("FILE_DIR", "upload/files/");
 define("GRAV_EXT", "?d=identicon&s=50");
 
-define("GH_CLIENT_ID", "ccc7822e7e7d2aea391b");
+define("GH_CLIENT_ID", "71ce02e70e6de763c9a2");
 ?>
