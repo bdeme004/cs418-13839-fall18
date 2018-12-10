@@ -430,7 +430,7 @@ function get_gravatar($user){
     {
         $email=$result->fetch_assoc()["email"];
         $email=md5( strtolower( trim( $email ) ) ) ;
-        $avatar= "https://www.gravatar.com/avatar/" . $email. "?d=identicon&s=50";
+        $avatar= "https://www.gravatar.com/avatar/" . $email. GRAV_EXT;
         $sql="UPDATE usertable SET avatar=\"".$avatar."\" WHERE handle=\"".$user."\"";
         if($result=$conn->query($sql))
         {

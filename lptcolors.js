@@ -49,9 +49,9 @@ function submitDirectMessage(mess) {
     updateThread(user, avatar, mess, admin, "direct");
 }
 
-function updateThread(user, avatar, mess, admin, dbname) {
+function updateThread(user, avatar, mess, admin, dbname="threads") {
     
-    dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
+   // dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
     
     var thread = getPageInfo("thread-id");
     var channelTop = getPageInfo("channel-top");
@@ -412,12 +412,13 @@ function toggleUploadDialog() {
     }
 }
 
-function submitWithFile(user, avatar, dbname) {
+function submitWithFile(user, avatar, dbname="threads") {
     
-    dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
+   // dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
     var admin = getPageInfo("user-admin");
 
     filename = document.getElementById("file-pre").getAttribute("title");
+    displayName =filename.replace(FILE_DIR,"");
     if (isImage(filename)) {
         imgSrc = filename;
     } else {
@@ -430,7 +431,7 @@ function submitWithFile(user, avatar, dbname) {
         "<div class=\"thumb-frame\">" +
         "<img class=\"import-display\" id=\"file-pre2\" src=\"" + imgSrc + "\" alt=\"no preview available\">" +
         "</div>" +
-        "<span class=\"filename-display\"><a href=\"" + filename + "\" download>" + filename + "</a></span>" +
+        "<span class=\"filename-display\"><a href=\"" + filename + "\" download>" + displayName + "</a></span>" +
         "</a></div>";
     body2 = document.getElementById('file-comment').value;
 
@@ -650,9 +651,9 @@ function urlImage() {
     document.getElementById("web-src-form").reset();
 }
 
-function submitWithImage(user, avatar, dbname) {
+function submitWithImage(user, avatar, dbname="threads") {
 
-    dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
+    //dbname = (typeof dbname !== 'undefined') ?  dbname : "threads";
     admin = getPageInfo("user-admin");
 
     imgSrc = document.getElementById("img-img").getAttribute("src");
