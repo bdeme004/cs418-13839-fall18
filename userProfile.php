@@ -26,6 +26,7 @@ if ($result=$conn->query($sql))
 {
     $result=$result->fetch_assoc();
     
+    
     $avatar=$result["avatar"];
     $comment=$result["comment"];
         

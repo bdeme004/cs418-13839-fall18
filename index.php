@@ -8,7 +8,7 @@ require_once 'sqlManager.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"

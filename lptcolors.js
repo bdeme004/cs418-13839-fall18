@@ -6,10 +6,14 @@
 /* jshint esversion:6*/
 /* eslint-env es6*/
 
+// disabled because I didn't understand JS variables at first
+// and now the sheer number of undeclared variables is overwhelming
 /* jshint -W117 */
 /* eslint no-undef: "off" */
 
-/* eslint no-unused-vars: "off" */ //temp--I got tired of it warning me about the dummyFunction.
+// disabled because eslint is marking things as unused
+// that I call in the php script
+/* eslint no-unused-vars: "off" */
 
 
 
@@ -75,52 +79,7 @@ function updateThread(user, avatar, mess, admin, dbname="threads") {
         mess + "&user=" + user + "&avatar=" + avatar + "&admin=" + admin+"&dbname="+dbname);
 }
 
-//this is seriously getting ridiculous, but it's easier to duplicate everything
-//than to go through and change all the arguments
 
-//gaaaaaaaaaaah I ended up fixing things properly anywaaaaaaaaaaay!
-//serves me right for tying to cheat, I guess.
-
-/*function updateDirect(user, avatar, mess, admin) {
-    
-   // window.alert(user+" "+avatar+" "+mess+" "+admin);}
-
-   
-    var recipient=getPageInfo("thread-id").replace(user, "");
-    var xmlhttp;
-
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    }
-
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("message-area").innerHTML = this.responseText;
-        }
-    };
-
-    xmlhttp.open("POST", "ajaxManager.php", true);
-    xmlhttp.setRequestHeader("Content-type",
-        "application/x-www-form-urlencoded");
-    xmlhttp.send("op=13&message=" +
-        mess + "&sender=" + user + "&avatar=" + avatar + "&recipient=" + recipient+"inbox=false");
-}*/
-
-/*
- * function loadPage(page){ thread=getPageInfo(thread-id);
- * channel_top=getPageInfo(channel-top);
- *
- * if (window.XMLHttpRequest) {xmlhttp = new XMLHttpRequest(); }
- *
- * xmlhttp.onreadystatechange = function() { if (this.readyState == 4 &&
- * this.status == 200) { document.getElementById("message-area").innerHTML =
- * this.responseText; } };
- *
- * xmlhttp.open("POST","ajaxManager.php",true);
- * xmlhttp.setRequestHeader("Content-type",
- * "application/x-www-form-urlencoded");
- * xmlhttp.send("op=3&top="+top+"&thread="+thread+"&page="+page); }
- */
 function showCommentBox() {
     document.getElementById("commentBox").style.display = "block";
 }
@@ -273,19 +232,6 @@ function clickThread(thread) {
         var target = "thread.php?top=" + channelTop + "&thread=" + thread;
 
         window.location.assign(target);
-
-        /*
-         * if (window.XMLHttpRequest) {xmlhttp = new XMLHttpRequest(); }
-         *
-         * xmlhttp.onreadystatechange = function() { if (this.readyState == 4 &&
-         * this.status == 200) { window.alert(this.responseText); } };
-         *
-         * xmlhttp.open("POST","ajaxManager.php",true);
-         * xmlhttp.setRequestHeader("Content-type",
-         * "application/x-www-form-urlencoded");
-         * xmlhttp.send("op=7&thread.php?top="+channelTop+"&thread="+thread+"&archived="+archived);
-         */
-
     }
 }
 
@@ -717,25 +663,13 @@ function singlePOST(name, value, target) {
 
 }
 
-function handleCAPTCHA() {
-
-    //  greca // <---??????? Pretty sure I fell asleep while I was working... ><
-    // I'm sure it's meant to be "grecaptcha" but I have no idea what came next.
-    singlePOST(name, value, "https://www.google.com/recaptcha/api/siteverify");
-
-}
-
 function likePost(chKey) {
 
     addReaction(0, chKey);
-    // document.getElementById(chKey).getElementsByClassName("post-react-a")[0].setAttribute("href",
-    // "javascript:removeReaction("+chKey+")");//not finished!
 }
 
 function dislikePost(chKey) {
     addReaction(2, chKey);
-    // document.getElementById(chKey).getElementsByClassName("post-react-a")[1].setAttribute("href",
-    // "javascript:removeReaction("+chKey+")");//not finished!
 }
 
 function addReaction(index, chKey) {
@@ -817,72 +751,26 @@ function sendDirectMessage(){
 
 }
 
-function callbackFunction() {
-    return new Promise(function(resolve, reject) { 
-
-        var xmlhttp;
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        }
-
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                window.alert("But why?!");
-                var result=JSON.parse(this.responseText);
-                if(result.success){
-                    document.getElementById("sign-up-button").removeAttribute("disabled");
-                    resolve();
-
-                }
-                //  else 
-            }
-
-        };
-
-        xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
-        xmlhttp.setRequestHeader("Content-type",
-                                 "application/x-www-form-urlencoded");
-        xmlhttp.send("secret=6LfatX0UAAAAAE6K0bsAXifdavd7Ngrs9g1LXQ9R");
-        //Your code logic goes here
-
-        //Instead of using 'return false', use reject()
-        //Instead of using 'return' / 'return true', use resolve()
-        
-    }); //end promise
-}
-
-/*function callbackFunction(){
-    window.alert("But why?!");
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    }
-
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            window.alert("But why?!");
-            var result=JSON.parse(this.responseText);
-            if(result.success){
-            document.getElementById("sign-up-button").removeAttribute("disabled");
-            }
-          //  else 
-        }
-
-    };
-    
-    xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
-    xmlhttp.setRequestHeader("Content-type",
-                             "application/x-www-form-urlencoded");
-    xmlhttp.send("secret=6LfatX0UAAAAAE6K0bsAXifdavd7Ngrs9g1LXQ9R&response="+g-recaptcha-response);
-
-
-    
-}*/
-
-function dummyFunction() {
+/*function sayHello() {
     window.alert("Hello, World!");
 
-}
+}*/
+
+/*
+ * function loadPage(page){ thread=getPageInfo(thread-id);
+ * channel_top=getPageInfo(channel-top);
+ *
+ * if (window.XMLHttpRequest) {xmlhttp = new XMLHttpRequest(); }
+ *
+ * xmlhttp.onreadystatechange = function() { if (this.readyState == 4 &&
+ * this.status == 200) { document.getElementById("message-area").innerHTML =
+ * this.responseText; } };
+ *
+ * xmlhttp.open("POST","ajaxManager.php",true);
+ * xmlhttp.setRequestHeader("Content-type",
+ * "application/x-www-form-urlencoded");
+ * xmlhttp.send("op=3&top="+top+"&thread="+thread+"&page="+page); }
+ */
 
 /*function removeReaction(chKey) {
     var userRX = document.getElementById("topnav-user-id").innerHTML;

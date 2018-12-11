@@ -4,7 +4,7 @@ require_once 'constants.php';
 $target_dir = "";
 $result= "Failed from the getgo, huh?";
 
-$whitelist=array("txt", "pdf", "doc", "docx", "rtf", "odt", "pptx", "ppt", "odp", "gif", "png", "jpg", ".bmp", "svg", "xlsx", "xlsx", "mp3", "ogg", "wav", "m4a");
+$whitelist=array("txt", "pdf", "doc", "docx", "rtf", "odt", "pptx", "ppt", "odp", "gif", "png", "jpg", "bmp", "svg", "xlsx", "xlsx", "mp3", "ogg", "wav", "m4a");
 
 
 if ( (isset($_FILES["imgToUpload"])) || (isset($_FILES["fileToUpload"]) ) ) {

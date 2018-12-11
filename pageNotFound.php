@@ -8,7 +8,7 @@ require_once 'constants.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>Page Not Found - lptColors</title>
 <link rel="stylesheet" type="text/css" href="lptcolors.css">
 </head>

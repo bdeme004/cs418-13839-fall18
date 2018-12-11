@@ -29,11 +29,19 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .sidenav a:not(:first-child) {display: none;}
-    .sidenav a.icon {
-        float: right;
-        display: block;
+    body {
+        margin-right:auto;
+        margin-left: auto;
     }
+    
+    textarea {width:88%;}  
+
+    .sidenav {display: none;}  
+    
+    .message-text {margin-left:15px;
+        margin-top:22px;}
+    
+    .topnav-fields{display:none;}
 }
 
 
@@ -50,6 +58,8 @@ body {
 .b {
     border-color: #ff8bcb;
 }
+
+
 
 .container.archive-notice {
     position: relative;
@@ -163,7 +173,7 @@ body {
 
 
 .message-text {
-    margin-left: 72px;
+   /* margin-left: 20%; */
 }
 
 .thread-title {
@@ -185,6 +195,8 @@ body {
     color: #aaa;
 }
 
+
+
 .post-react {
     float: left;
     position: relative;
@@ -192,6 +204,8 @@ body {
     font-size: 10px;
     top: 39px;
     left: -27px;
+    
+    
 }
 
 .post-react a {
@@ -217,6 +231,7 @@ body {
     font-size: 17px;
     font-weight: bold;
     padding-left: 50px;
+    
 }
 
 .page-count {
@@ -261,8 +276,9 @@ body {
     max-width: 50px;
     width: 100%;
     margin-top: 24px;
+    margin-right:2%;
     left: 5px;
-    z-index: 0;
+    /*z-index: 0;*/
 
 }
 
@@ -277,7 +293,7 @@ body {
     width: 100%;
     /*margin-right: 35px;*/
     margin-top: 24px;
-    z-index: 0;
+/*    z-index: 0;*/
 }
 
 .container img.search-user {
@@ -362,6 +378,29 @@ a.name-center-a:hover {
 .topnav a:hover {
     color: #f1f1f1;
 }
+
+.topnav.responsive{
+    position: fixed;
+    background-color: #181818;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    padding-left: 20px;
+    padding-top: 25px;
+    z-index: 2;
+    
+}
+
+.topnav.responsive a{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
 
 .accent {
     background-color: #ff8bcb;
