@@ -6,7 +6,7 @@ require_once 'constants.php';
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Page Not Found - lptColors</title>

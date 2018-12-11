@@ -17,7 +17,7 @@ $channel_top=$_GET["top"];
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title><?php echo $channel_top;?> - lptColors</title>

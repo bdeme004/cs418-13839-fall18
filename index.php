@@ -6,7 +6,7 @@ require_once 'sqlManager.php';
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>lptColors</title>

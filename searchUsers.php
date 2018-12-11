@@ -3,7 +3,7 @@ session_start();
 include 'htmlManager.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Search Users - lptColors</title>

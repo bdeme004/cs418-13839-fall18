@@ -11,11 +11,11 @@ function navbars($color)
 
     <div class=\"sidenav\">
         <br><br><br><br><br>
-        <a href=" . test_permissions("channel.php?top=heliotrope") . ">Heliotrope</a>
-        <a href=" . test_permissions("channel.php?top=tearose") . ">Tea Rose</a>
-        <a href=" . test_permissions("channel.php?top=mint") . ">Mint</a>
-        <a href=" . test_permissions("channel.php?top=milan") . ">Milan</a>
-        <a href=" . test_permissions("channel.php?top=lightsky") . ">Light Sky</a>
+        <a href=\"" . test_permissions("channel.php?top=heliotrope") . "\">Heliotrope</a>
+        <a href=\"" . test_permissions("channel.php?top=tearose") . "\">Tea Rose</a>
+        <a href=\"" . test_permissions("channel.php?top=mint") . "\">Mint</a>
+        <a href=\"" . test_permissions("channel.php?top=milan") . "\">Milan</a>
+        <a href=\"" . test_permissions("channel.php?top=lightsky") . "\">Light Sky</a>
        </div>
         ");
 }

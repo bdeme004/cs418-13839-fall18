@@ -22,7 +22,7 @@ $thread = get_DM_key($_SESSION["user"], $partner);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
